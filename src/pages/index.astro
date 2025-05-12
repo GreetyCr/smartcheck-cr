@@ -1,0 +1,309 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
+import heroImage from '../assets/hero-inspection.jpg';
+---
+
+<BaseLayout
+  title="Servicio de Inspección Vehicular"
+  description="SmartCheck ofrece servicios profesionales de inspección vehicular en Costa Rica. Inspecciones rápidas, confiables y convenientes para su vehículo."
+>
+  <!-- Hero Section -->
+  <section class="relative min-h-[90vh] flex items-center overflow-hidden">
+    <!-- Background with gradient -->
+    <div class="absolute inset-0 bg-gradient-to-br from-smartcheck-blue via-smartcheck-blue/90 to-smartcheck-blue/80 z-0"></div>
+    
+    <!-- Decorative elements -->
+    <div class="absolute top-0 right-0 w-1/3 h-1/3 bg-smartcheck-accent/10 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+    <div class="absolute bottom-0 left-0 w-1/3 h-1/3 bg-white/10 rounded-full translate-y-1/2 -translate-x-1/2"></div>
+    
+    <div class="container mx-auto px-4 flex flex-col lg:flex-row items-center justify-between relative z-10">
+      <!-- Text Content -->
+      <div class="text-white w-full lg:w-1/2 mb-10 lg:mb-0">
+        <span class="inline-block px-3 py-1 bg-white/20 text-white rounded-full text-sm font-medium mb-6">SERVICIO PROFESIONAL</span>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+          Inspección<br/> Vehicular <span class="text-smartcheck-accent">Profesional</span>
+        </h1>
+        <p class="text-xl text-white/90 mb-8 max-w-xl">
+          En SmartCheck nos especializamos en inspecciones vehiculares profesionales para que pueda tomar decisiones informadas al comprar un vehículo usado en Costa Rica.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="https://wa.me/50686752713?text=Hola,%20estoy%20interesado%20en%20una%20inspección%20vehicular" class="inline-flex items-center bg-white hover:bg-gray-100 text-smartcheck-blue font-medium py-3 px-6 rounded-lg text-lg transition-colors">
+            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+            Contactar por WhatsApp
+          </a>
+          <a href="/servicios" class="inline-flex items-center bg-smartcheck-accent hover:bg-smartcheck-accent/90 text-white font-medium py-3 px-6 rounded-lg text-lg transition-colors">
+            Ver Servicios
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+      </div>
+      
+      <!-- Image -->
+      <div class="w-full lg:w-1/2 relative">
+        <div class="relative z-10 rounded-2xl overflow-hidden shadow-2xl border-4 border-white/20 transform hover:scale-105 transition-transform duration-500">
+          <Image 
+            src={heroImage} 
+            alt="Inspección de vehículo" 
+            width={600} 
+            height={400} 
+            class="w-full h-auto object-cover"
+            quality={85}
+          />
+          <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent p-6">
+            <p class="text-white font-bold text-xl">La mejor decisión para su próxima compra</p>
+          </div>
+        </div>
+        <!-- Decorative element -->
+        <div class="absolute -bottom-6 -right-6 w-24 h-24 bg-smartcheck-accent rounded-full z-0"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="py-20 bg-smartcheck-blue text-white">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">Nuestros Resultados</h2>
+        <p class="text-xl text-gray-200 max-w-3xl mx-auto">Confíe en nuestra experiencia y profesionalismo.</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+        <!-- Stat 1 -->
+        <div>
+          <p class="text-5xl font-bold mb-2 counter-animation">900+</p>
+          <p class="text-gray-200 text-lg">Vehículos Inspeccionados</p>
+        </div>
+        
+        <!-- Stat 2 -->
+        <div>
+          <p class="text-5xl font-bold mb-2">1h</p>
+          <p class="text-gray-200 text-lg">Entrega de Reportes</p>
+        </div>
+        
+        <!-- Stat 3 -->
+        <div>
+          <p class="text-5xl font-bold mb-2 counter-animation">150+</p>
+          <p class="text-gray-200 text-lg">Puntos de Revisión</p>
+        </div>
+        
+        <!-- Stat 4 -->
+        <div>
+          <p class="text-5xl font-bold mb-2">2022</p>
+          <p class="text-gray-200 text-lg">Año de Fundación</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits Section -->
+  <section class="py-20">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <span class="inline-block px-3 py-1 bg-smartcheck-blue/10 text-smartcheck-blue rounded-full text-sm font-medium mb-4">BENEFICIOS</span>
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">¿Por qué elegirnos?</h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          Ofrecemos un servicio profesional y detallado para darle tranquilidad en su compra.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Benefit 1 -->
+        <div class="bg-gray-50 rounded-xl p-8 shadow-sm hover:shadow-md transition-shadow">
+          <div class="text-smartcheck-blue mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-gray-900">Inspección Detallada</h3>
+          <p class="text-gray-600">Revisamos más de 150 puntos en cada vehículo para asegurar una evaluación completa.</p>
+        </div>
+        
+        <!-- Benefit 2 -->
+        <div class="bg-gray-50 rounded-xl p-8 shadow-sm hover:shadow-md transition-shadow">
+          <div class="text-smartcheck-blue mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-gray-900">Servicio Rápido</h3>
+          <p class="text-gray-600">Entregamos su informe detallado en tan solo 1 hora después de completar la inspección.</p>
+        </div>
+        
+        <!-- Benefit 3 -->
+        <div class="bg-gray-50 rounded-xl p-8 shadow-sm hover:shadow-md transition-shadow">
+          <div class="text-smartcheck-blue mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-gray-900">Servicio a Domicilio</h3>
+          <p class="text-gray-600">Nos desplazamos a su ubicación en toda el área metropolitana de Costa Rica.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Preview -->
+  <section class="py-20 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <span class="inline-block px-3 py-1 bg-smartcheck-blue/10 text-smartcheck-blue rounded-full text-sm font-medium mb-4">SERVICIOS</span>
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Nuestros Servicios</h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          Ofrecemos servicios especializados para diferentes tipos de vehículos.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Service 1 -->
+        <div class="bg-white rounded-xl overflow-hidden shadow-lg border border-gray-100 hover:transform hover:-translate-y-2 transition-all duration-300">
+          <div class="bg-smartcheck-blue/10 p-8">
+            <div class="w-16 h-16 rounded-full bg-smartcheck-blue flex items-center justify-center mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900">Vehículos Convencionales</h3>
+          </div>
+          <div class="p-8">
+            <p class="mb-6 text-gray-600">Inspección completa para vehículos convencionales dentro del GAM, con 150+ puntos de revisión.</p>
+            <a href="/servicios" class="inline-flex items-center text-smartcheck-blue hover:text-smartcheck-accent transition-colors">
+              Ver detalles
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Service 2 -->
+        <div class="bg-white rounded-xl overflow-hidden shadow-lg border border-gray-100 hover:transform hover:-translate-y-2 transition-all duration-300">
+          <div class="bg-smartcheck-blue/10 p-8">
+            <div class="w-16 h-16 rounded-full bg-smartcheck-blue flex items-center justify-center mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900">Vehículos Eléctricos</h3>
+          </div>
+          <div class="p-8">
+            <p class="mb-6 text-gray-600">Inspección especializada para vehículos eléctricos, incluyendo evaluación de batería y sistemas específicos.</p>
+            <a href="/servicios" class="inline-flex items-center text-smartcheck-blue hover:text-smartcheck-accent transition-colors">
+              Ver detalles
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Service 3 -->
+        <div class="bg-white rounded-xl overflow-hidden shadow-lg border border-gray-100 hover:transform hover:-translate-y-2 transition-all duration-300">
+          <div class="bg-smartcheck-blue/10 p-8">
+            <div class="w-16 h-16 rounded-full bg-smartcheck-blue flex items-center justify-center mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900">Fuera del GAM</h3>
+          </div>
+          <div class="p-8">
+            <p class="mb-6 text-gray-600">Servicio flexible para inspecciones fuera del área metropolitana, con cotización personalizada.</p>
+            <a href="/servicios" class="inline-flex items-center text-smartcheck-blue hover:text-smartcheck-accent transition-colors">
+              Ver detalles
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="text-center mt-12">
+        <a href="/servicios" class="inline-flex items-center bg-smartcheck-blue hover:bg-smartcheck-blue/90 text-white font-medium py-3 px-6 rounded-lg text-lg transition-colors">
+          Ver todos los servicios
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-16 relative overflow-hidden">
+    <!-- Background with gradient -->
+    <div class="absolute inset-0 bg-gradient-to-br from-smartcheck-blue via-smartcheck-blue/90 to-smartcheck-blue/80 z-0"></div>
+    
+    <!-- Decorative elements -->
+    <div class="absolute top-0 right-0 w-1/3 h-1/3 bg-smartcheck-accent/10 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+    <div class="absolute bottom-0 left-0 w-1/3 h-1/3 bg-white/10 rounded-full translate-y-1/2 -translate-x-1/2"></div>
+    
+    <div class="container mx-auto px-4 text-center relative z-10">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">¿Listo para conocer el estado real de su vehículo?</h2>
+        <p class="text-xl text-gray-200 mb-8">
+          Contáctenos hoy mismo para programar su inspección y tomar decisiones informadas.
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+          <a href="https://wa.me/50686752713?text=Hola,%20me%20gustaría%20solicitar%20una%20inspección%20vehicular." 
+             class="inline-flex items-center bg-white hover:bg-gray-100 text-smartcheck-blue font-medium py-3 px-6 rounded-lg text-lg transition-colors">
+            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+            Contactar por WhatsApp
+          </a>
+          <a href="/contacto" class="inline-flex items-center bg-smartcheck-accent hover:bg-smartcheck-accent/90 text-white font-medium py-3 px-6 rounded-lg text-lg transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+            Formulario de Contacto
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Simple Counter Animation -->
+  <script>
+    // Wait for DOM to be loaded
+    document.addEventListener("DOMContentLoaded", function() {
+      // Get all elements with counter-animation class
+      const counters = document.querySelectorAll('.counter-animation');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const el = entry.target as HTMLElement;
+            const targetValue = parseInt(el.textContent || "0");
+            animateCounter(el, 0, targetValue, 2000);
+            observer.unobserve(el);
+          }
+        });
+      }, { threshold: 0.5 });
+      
+      counters.forEach(counter => {
+        observer.observe(counter);
+      });
+      
+      function animateCounter(element: HTMLElement, start: number, end: number, duration: number): void {
+        let startTime: number | null = null;
+        const step = (timestamp: number): void => {
+          if (!startTime) startTime = timestamp;
+          const progress = Math.min((timestamp - startTime) / duration, 1);
+          const value = Math.floor(progress * (end - start) + start);
+          element.textContent = value + "+";
+          if (progress < 1) {
+            window.requestAnimationFrame(step);
+          }
+        };
+        window.requestAnimationFrame(step);
+      }
+    });
+  </script>
+</BaseLayout>

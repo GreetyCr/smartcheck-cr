@@ -1,0 +1,225 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Métodos de Pago"
+  description="Conozca las diferentes formas de pago disponibles para los servicios de inspección vehicular de SmartCheck Costa Rica."
+>
+  <!-- Hero Section -->
+  <section class="relative py-20 px-4 overflow-hidden">
+    <!-- Background with gradient -->
+    <div class="absolute inset-0 bg-gradient-to-br from-smartcheck-blue via-smartcheck-blue/90 to-smartcheck-blue/80 z-0"></div>
+    
+    <!-- Decorative elements -->
+    <div class="absolute top-0 right-0 w-1/3 h-1/3 bg-smartcheck-accent/10 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+    <div class="absolute bottom-0 left-0 w-1/3 h-1/3 bg-white/10 rounded-full translate-y-1/2 -translate-x-1/2"></div>
+    
+    <div class="max-w-4xl mx-auto text-center relative z-10">
+      <span class="inline-block px-3 py-1 bg-white/20 text-white rounded-full text-sm font-medium mb-6">OPCIONES DE PAGO</span>
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+        Métodos de Pago
+      </h1>
+      <p class="text-xl text-white/90 max-w-2xl mx-auto">
+        Ofrecemos opciones flexibles y seguras para pagar por nuestros servicios de inspección vehicular
+      </p>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <div class="max-w-5xl mx-auto px-4 py-16">
+    <!-- Intro Card -->
+    <div class="bg-white rounded-2xl shadow-xl p-8 md:p-10 border border-gray-100 mb-12 relative overflow-hidden">
+      <!-- Decorative backgrounds -->
+      <div class="absolute -top-20 -right-20 w-40 h-40 bg-smartcheck-blue/5 rounded-full"></div>
+      <div class="absolute -bottom-20 -left-20 w-40 h-40 bg-smartcheck-accent/5 rounded-full"></div>
+      
+      <div class="relative">
+        <span class="inline-block px-3 py-1 bg-smartcheck-blue/10 text-smartcheck-blue rounded-full text-sm font-medium mb-4">INFORMACIÓN DE PAGO</span>
+        <h2 class="text-3xl font-bold text-smartcheck-blue mb-6">
+          Información Importante
+        </h2>
+        <p class="text-lg text-gray-700 mb-8">
+          Aceptamos transferencias bancarias y SINPE Móvil. Revisa la información a continuación antes de realizar tu pago.
+        </p>
+        
+        <div class="grid md:grid-cols-3 gap-6 mt-8">
+          <!-- Nota 1 -->
+          <div class="bg-gradient-to-br from-white to-smartcheck-bg p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300">
+            <div class="w-12 h-12 rounded-full bg-smartcheck-blue/10 flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-smartcheck-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-smartcheck-blue mb-3">Pago Final</h3>
+            <p class="text-gray-700">El pago debe realizarse antes de recibir el informe final de la inspección.</p>
+          </div>
+          
+          <!-- Nota 2 -->
+          <div class="bg-gradient-to-br from-white to-smartcheck-bg p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300">
+            <div class="w-12 h-12 rounded-full bg-smartcheck-blue/10 flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-smartcheck-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-smartcheck-blue mb-3">Garantía</h3>
+            <p class="text-gray-700">Garantizamos la devolución del pago si no podemos realizar la inspección.</p>
+          </div>
+          
+          <!-- Nota 3 -->
+          <div class="bg-gradient-to-br from-white to-smartcheck-bg p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300">
+            <div class="w-12 h-12 rounded-full bg-smartcheck-blue/10 flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-smartcheck-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-smartcheck-blue mb-3">Reserva</h3>
+            <p class="text-gray-700">La revisión se reserva con el 50% del monto total de la inspección.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Payment Methods Section -->
+    <section class="mb-16">
+      <div class="text-center mb-12">
+        <span class="inline-block px-3 py-1 bg-smartcheck-blue/10 text-smartcheck-blue rounded-full text-sm font-medium mb-4">OPCIONES DISPONIBLES</span>
+        <h2 class="text-3xl font-bold text-smartcheck-blue mb-4">
+          Nuestros Métodos de Pago
+        </h2>
+        <p class="text-gray-600 max-w-3xl mx-auto">
+          Elija el método que sea más conveniente para usted
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- SINPE Móvil Card -->
+        <div class="bg-white rounded-2xl shadow-xl p-8 border border-gray-100 hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 relative overflow-hidden">
+          <!-- Decorative circle -->
+          <div class="absolute -top-10 -right-10 w-32 h-32 bg-smartcheck-accent/5 rounded-full"></div>
+          
+          <div class="relative">
+            <div class="flex items-center mb-6">
+              <div class="w-14 h-14 rounded-2xl bg-smartcheck-accent/10 flex items-center justify-center mr-4">
+                <svg class="w-7 h-7 text-smartcheck-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <h3 class="text-2xl font-bold text-smartcheck-blue">SINPE Móvil</h3>
+            </div>
+            
+            <div class="space-y-4 ml-2">
+              <div class="border-l-4 border-smartcheck-accent/30 pl-4 py-1">
+                <p class="text-sm text-gray-500 uppercase">Nombre</p>
+                <p class="font-semibold text-gray-800">JOSE ESTEBAN PINNOCK LONG MORE</p>
+              </div>
+              
+              <div class="border-l-4 border-smartcheck-accent/30 pl-4 py-1">
+                <p class="text-sm text-gray-500 uppercase">Número</p>
+                <div class="flex items-center">
+                  <p class="font-semibold text-gray-800 text-xl mr-3">8675 2713</p>
+                  <button 
+                    class="text-smartcheck-accent hover:text-smartcheck-blue transition-colors"
+                    title="Copiar número"
+                    onclick="navigator.clipboard.writeText('86752713').then(() => alert('Número copiado al portapapeles'))"
+                  >
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Bank Transfer Card -->
+        <div class="bg-white rounded-2xl shadow-xl p-8 border border-gray-100 hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 relative overflow-hidden">
+          <!-- Decorative circle -->
+          <div class="absolute -top-10 -right-10 w-32 h-32 bg-smartcheck-blue/5 rounded-full"></div>
+          
+          <div class="relative">
+            <div class="flex items-center mb-6">
+              <div class="w-14 h-14 rounded-2xl bg-smartcheck-blue/10 flex items-center justify-center mr-4">
+                <svg class="w-7 h-7 text-smartcheck-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                </svg>
+              </div>
+              <h3 class="text-2xl font-bold text-smartcheck-blue">Transferencia Bancaria</h3>
+            </div>
+            
+            <div class="space-y-4 ml-2">
+              <div class="border-l-4 border-smartcheck-blue/30 pl-4 py-1">
+                <p class="text-sm text-gray-500 uppercase">Banco</p>
+                <p class="font-semibold text-gray-800">BAC</p>
+              </div>
+              
+              <div class="border-l-4 border-smartcheck-blue/30 pl-4 py-1">
+                <p class="text-sm text-gray-500 uppercase">Cuenta</p>
+                <div class="flex items-center">
+                  <p class="font-semibold text-gray-800 text-xl mr-3">951669563</p>
+                  <button 
+                    class="text-smartcheck-accent hover:text-smartcheck-blue transition-colors"
+                    title="Copiar cuenta"
+                    onclick="navigator.clipboard.writeText('951669563').then(() => alert('Número de cuenta copiado al portapapeles'))"
+                  >
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              
+              <div class="border-l-4 border-smartcheck-blue/30 pl-4 py-1">
+                <p class="text-sm text-gray-500 uppercase">IBAN</p>
+                <div class="flex items-center">
+                  <p class="font-semibold text-gray-800 break-all mr-3">CR65010200009516695639</p>
+                  <button 
+                    class="text-smartcheck-accent hover:text-smartcheck-blue transition-colors"
+                    title="Copiar IBAN"
+                    onclick="navigator.clipboard.writeText('CR65010200009516695639').then(() => alert('IBAN copiado al portapapeles'))"
+                  >
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              
+              <div class="border-l-4 border-smartcheck-blue/30 pl-4 py-1">
+                <p class="text-sm text-gray-500 uppercase">Nombre</p>
+                <p class="font-semibold text-gray-800">JOSE ESTEBAN PINNOCK LONG MORE</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="bg-gradient-to-r from-smartcheck-blue to-smartcheck-blue/90 rounded-3xl p-8 md:p-12 text-center">
+      <h2 class="text-3xl font-bold text-white mb-6">
+        ¿Tienes dudas sobre el proceso de pago?
+      </h2>
+      <p class="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+        Nuestro equipo está listo para resolver cualquier consulta que tengas
+      </p>
+      <a
+        href="https://wa.me/50686752713?text=Hola,%20tengo%20una%20consulta%20sobre%20los%20métodos%20de%20pago."
+        class="inline-flex items-center bg-white text-smartcheck-blue font-semibold px-8 py-4 rounded-full text-lg hover:scale-105 hover:shadow-lg transition-all duration-300"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        Contáctanos por WhatsApp
+      </a>
+    </section>
+  </div>
+
+  <!-- JavaScript for Copy Functionality -->
+  <script>
+    // Already using inline script in buttons
+  </script>
+</BaseLayout>

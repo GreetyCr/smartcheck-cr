@@ -1,0 +1,320 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { format } from 'date-fns';
+import { es } from 'date-fns/locale';
+
+const posts = await Astro.glob('./*.md');
+const sortedPosts = posts.sort((a, b) => new Date(b.frontmatter.pubDate).getTime() - new Date(a.frontmatter.pubDate).getTime());
+
+// Extraer categorías únicas de los posts
+const allCategories = sortedPosts.map(post => post.frontmatter.category).filter(Boolean);
+const uniqueCategories = [...new Set(allCategories)];
+const categories = uniqueCategories.map(name => ({
+  id: name.toLowerCase().replace(/\s+/g, '-'),
+  name
+}));
+
+// Añadir categoría "Todos" al principio
+categories.unshift({ id: 'all', name: 'Todos' });
+
+// Artículo destacado (el más reciente)
+const featuredPost = sortedPosts.length > 0 ? sortedPosts[0] : null;
+// Resto de los artículos
+const regularPosts = sortedPosts.length > 1 ? sortedPosts.slice(1) : [];
+---
+
+<BaseLayout 
+  title="Blog de Inspección Vehicular | SmartCheck Costa Rica"
+  description="Artículos y guías sobre inspección vehicular, consejos para comprar carros usados y más información útil de SmartCheck Costa Rica."
+>
+  <!-- Hero Section -->
+  <section class="relative py-20 px-4 overflow-hidden">
+    <!-- Background with gradient -->
+    <div class="absolute inset-0 bg-gradient-to-br from-smartcheck-blue via-smartcheck-blue/90 to-smartcheck-blue/80 z-0"></div>
+    
+    <!-- Decorative elements -->
+    <div class="absolute top-0 right-0 w-1/3 h-1/3 bg-smartcheck-accent/10 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+    <div class="absolute bottom-0 left-0 w-1/3 h-1/3 bg-white/10 rounded-full translate-y-1/2 -translate-x-1/2"></div>
+    
+    <div class="max-w-4xl mx-auto text-center relative z-10">
+      <span class="inline-block px-3 py-1 bg-white/20 text-white rounded-full text-sm font-medium mb-6">RECURSOS Y CONSEJOS</span>
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+        Blog de SmartCheck
+      </h1>
+      <p class="text-xl text-white/90 max-w-2xl mx-auto mb-8">
+        Artículos especializados para ayudarte a tomar mejores decisiones sobre tu próximo vehículo
+      </p>
+      
+      <!-- Buscador -->
+      <div class="max-w-xl mx-auto relative">
+        <div class="relative">
+          <input 
+            type="text" 
+            placeholder="Buscar artículos..." 
+            class="w-full py-3 px-5 pr-12 rounded-full border-2 border-white/30 bg-white/10 text-white placeholder:text-white/60 focus:outline-none focus:border-smartcheck-accent"
+          />
+          <button class="absolute right-4 top-1/2 transform -translate-y-1/2 text-white">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories Nav -->
+  <div class="bg-white sticky top-16 z-20 shadow-sm">
+    <div class="max-w-6xl mx-auto px-4 py-3 overflow-x-auto">
+      <div class="flex gap-2 min-w-max">
+        {categories.map((cat, index) => (
+          <button 
+            class={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+              index === 0 
+                ? 'bg-smartcheck-blue text-white' 
+                : 'bg-gray-100 hover:bg-gray-200 text-gray-700'
+            }`}
+            data-category={cat.id}
+          >
+            {cat.name}
+          </button>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- Blog Content -->
+  <div class="max-w-6xl mx-auto px-4 py-16">
+    {sortedPosts.length === 0 ? (
+      <div class="text-center py-12">
+        <svg class="w-16 h-16 text-gray-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+        </svg>
+        <h3 class="text-xl font-medium text-gray-500">No hay artículos publicados todavía</h3>
+        <p class="text-gray-400 mt-2">Pronto añadiremos contenido interesante sobre inspección vehicular.</p>
+      </div>
+    ) : (
+      <div>
+        <!-- Featured Article -->
+        {featuredPost && (
+          <div class="mb-16">
+            <div class="text-center mb-12">
+              <span class="inline-block px-3 py-1 bg-smartcheck-accent/10 text-smartcheck-accent rounded-full text-sm font-medium mb-4">ARTÍCULO DESTACADO</span>
+              <h2 class="text-3xl md:text-4xl font-bold text-smartcheck-blue mb-2">
+                Descubre Nuestro Contenido Más Reciente
+              </h2>
+            </div>
+            
+            <a href={featuredPost.url} class="block group">
+              <div class="bg-white rounded-2xl shadow-xl overflow-hidden transition-all duration-300 hover:shadow-2xl group-hover:-translate-y-1">
+                <div class="md:flex">
+                  <div class="md:w-1/2 relative">
+                    <div class="aspect-video bg-gray-200 relative overflow-hidden">
+                      <img 
+                        src={featuredPost.frontmatter.image || '/images/blog/default-blog.jpg'} 
+                        alt={featuredPost.frontmatter.title} 
+                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                      <div class="absolute top-4 left-4">
+                        <span class="bg-smartcheck-blue text-white text-xs font-semibold px-3 py-1.5 rounded-full">
+                          {featuredPost.frontmatter.category}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="md:w-1/2 p-8">
+                    <div class="flex items-center text-sm text-gray-500 mb-3">
+                      <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
+                      <time datetime={featuredPost.frontmatter.pubDate}>
+                        {format(new Date(featuredPost.frontmatter.pubDate), "d 'de' MMMM, yyyy", { locale: es })}
+                      </time>
+                      <span class="mx-3">•</span>
+                      <span>{featuredPost.frontmatter.readingTime}</span>
+                    </div>
+                    
+                    <h2 class="text-2xl md:text-3xl font-bold text-smartcheck-blue mb-4 group-hover:text-smartcheck-accent transition-colors">
+                      {featuredPost.frontmatter.title}
+                    </h2>
+                    
+                    <p class="text-gray-600 mb-6">{featuredPost.frontmatter.description}</p>
+                    
+                    <div class="flex items-center text-smartcheck-accent font-medium group-hover:translate-x-2 transition-transform">
+                      Leer artículo completo
+                      <svg class="w-5 h-5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        )}
+
+        <!-- Regular Articles Grid -->
+        {regularPosts.length > 0 && (
+          <div>
+            <div class="text-center mb-12">
+              <h2 class="text-3xl font-bold text-smartcheck-blue mb-4">
+                Nuestros Artículos
+              </h2>
+              <p class="text-gray-600 max-w-2xl mx-auto">
+                Encuentra información valiosa sobre inspección vehicular, trámites y consejos de compra
+              </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {regularPosts.map((post) => (
+                <article class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1" data-category={post.frontmatter.category?.toLowerCase().replace(/\s+/g, '-')}>
+                  <a href={post.url}>
+                    <div class="aspect-video bg-gray-200 relative overflow-hidden">
+                      <img 
+                        src={post.frontmatter.image || '/images/blog/default-blog.jpg'} 
+                        alt={post.frontmatter.title} 
+                        class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                      />
+                      <div class="absolute top-4 left-4">
+                        <span class="bg-smartcheck-blue text-white text-xs font-semibold px-3 py-1.5 rounded-full">
+                          {post.frontmatter.category}
+                        </span>
+                      </div>
+                    </div>
+                    
+                    <div class="p-6">
+                      <div class="flex items-center text-sm text-gray-500 mb-3">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                        <time datetime={post.frontmatter.pubDate}>
+                          {format(new Date(post.frontmatter.pubDate), "d 'de' MMMM, yyyy", { locale: es })}
+                        </time>
+                        <span class="mx-2">•</span>
+                        <span>{post.frontmatter.readingTime}</span>
+                      </div>
+                      
+                      <h2 class="text-xl font-bold text-smartcheck-blue mb-3 hover:text-smartcheck-accent transition-colors line-clamp-2">
+                        {post.frontmatter.title}
+                      </h2>
+                      
+                      <p class="text-gray-600 line-clamp-3 mb-4">{post.frontmatter.description}</p>
+                      
+                      <div class="flex items-center text-smartcheck-accent font-medium">
+                        Leer artículo
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                      </div>
+                    </div>
+                  </a>
+                </article>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    )}
+    
+    <!-- Newsletter Subscription -->
+    <div class="mt-20 bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-8 md:p-12">
+      <div class="md:flex items-center justify-between">
+        <div class="md:w-1/2 mb-6 md:mb-0 md:pr-8">
+          <h3 class="text-2xl md:text-3xl font-bold text-smartcheck-blue mb-4">
+            Suscríbete a nuestro newsletter
+          </h3>
+          <p class="text-gray-600">
+            Recibe nuestros artículos más recientes y consejos para la compra e inspección de vehículos directamente en tu correo.
+          </p>
+        </div>
+        <div class="md:w-1/2">
+          <form class="flex flex-col sm:flex-row gap-3">
+            <input 
+              type="email" 
+              placeholder="Tu correo electrónico" 
+              class="flex-1 px-4 py-3 rounded-lg border border-gray-300 focus:border-smartcheck-blue focus:outline-none"
+              required
+            />
+            <button 
+              type="submit" 
+              class="px-6 py-3 bg-smartcheck-blue hover:bg-smartcheck-blue/90 text-white font-medium rounded-lg transition-colors"
+            >
+              Suscribirme
+            </button>
+          </form>
+          <p class="text-gray-500 text-sm mt-3">
+            Prometemos no enviarte spam. Puedes darte de baja en cualquier momento.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Filtrado por categorías
+    document.addEventListener('DOMContentLoaded', () => {
+      const categoryButtons = document.querySelectorAll('[data-category]');
+      const articles = document.querySelectorAll('article[data-category]');
+      
+      categoryButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          // Actualizar estado visual de los botones
+          categoryButtons.forEach(btn => {
+            btn.classList.remove('bg-smartcheck-blue', 'text-white');
+            btn.classList.add('bg-gray-100', 'text-gray-700');
+          });
+          button.classList.remove('bg-gray-100', 'text-gray-700');
+          button.classList.add('bg-smartcheck-blue', 'text-white');
+          
+          const selectedCategory = button.getAttribute('data-category');
+          
+          // Mostrar/ocultar artículos según la categoría
+          articles.forEach(article => {
+            const articleCategory = article.getAttribute('data-category');
+            if (selectedCategory === 'all' || selectedCategory === articleCategory) {
+              (article as HTMLElement).style.display = '';
+            } else {
+              (article as HTMLElement).style.display = 'none';
+            }
+          });
+        });
+      });
+      
+      // Manejador para el campo de búsqueda
+      const searchInput = document.querySelector('input[type="text"]');
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          const target = e.target as HTMLInputElement;
+          const searchTerm = target.value.toLowerCase();
+          
+          if (searchTerm.length < 3) {
+            articles.forEach(article => {
+              (article as HTMLElement).style.display = '';
+            });
+            return;
+          }
+          
+          articles.forEach(article => {
+            const title = article.querySelector('h2')?.textContent?.toLowerCase() || '';
+            const description = article.querySelector('p')?.textContent?.toLowerCase() || '';
+            
+            if (title.includes(searchTerm) || description.includes(searchTerm)) {
+              (article as HTMLElement).style.display = '';
+            } else {
+              (article as HTMLElement).style.display = 'none';
+            }
+          });
+        });
+      }
+    });
+  </script>
+</BaseLayout>
+
+<style>
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+  }
+</style>

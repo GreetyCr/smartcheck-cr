@@ -1,0 +1,13 @@
+# robots.txt para smartcheck.cr
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://smartcheck.cr/sitemap.xml
+
+# Directorios y archivos específicos
+Disallow: /admin/
+Disallow: /*.json$
+
+# Mejorar eficiencia de rastreo
+Crawl-delay: 10 
