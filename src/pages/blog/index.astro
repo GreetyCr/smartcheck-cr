@@ -109,11 +109,11 @@ const regularPosts = sortedPosts.length > 1 ? sortedPosts.slice(1) : [];
               <div class="bg-white rounded-2xl shadow-xl overflow-hidden transition-all duration-300 hover:shadow-2xl group-hover:-translate-y-1">
                 <div class="md:flex">
                   <div class="md:w-1/2 relative">
-                    <div class="aspect-video bg-gray-200 relative overflow-hidden">
+                    <div class="aspect-[4/3] bg-gray-200 relative overflow-hidden">
                       <img 
                         src={featuredPost.frontmatter.image || '/images/blog/default-blog.jpg'} 
                         alt={featuredPost.frontmatter.title} 
-                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        class="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
                       />
                       <div class="absolute top-4 left-4">
                         <span class="bg-smartcheck-blue text-white text-xs font-semibold px-3 py-1.5 rounded-full">
@@ -169,11 +169,11 @@ const regularPosts = sortedPosts.length > 1 ? sortedPosts.slice(1) : [];
               {regularPosts.map((post) => (
                 <article class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1" data-category={post.frontmatter.category?.toLowerCase().replace(/\s+/g, '-')}>
                   <a href={post.url}>
-                    <div class="aspect-video bg-gray-200 relative overflow-hidden">
+                    <div class="aspect-[4/3] bg-gray-200 relative overflow-hidden">
                       <img 
                         src={post.frontmatter.image || '/images/blog/default-blog.jpg'} 
                         alt={post.frontmatter.title} 
-                        class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                        class="w-full h-full object-cover object-center transition-transform duration-500 hover:scale-105"
                       />
                       <div class="absolute top-4 left-4">
                         <span class="bg-smartcheck-blue text-white text-xs font-semibold px-3 py-1.5 rounded-full">
