@@ -4,7 +4,7 @@ title: "Cómo elegir el mejor seguro vehicular en Costa Rica: Guía completa 202
 description: "Aprende a seleccionar el seguro de auto ideal para tus necesidades en Costa Rica. Compara coberturas, precios y beneficios de las principales aseguradoras para tomar la mejor decisión."
 pubDate: "2024-05-30T00:00:00.000Z"
 category: "Trámites y documentación"
-image: "/images/blog/seguro-vehicular.jpg"
+image: "/images/blog/documentacion-legal-vehiculos.jpg"
 author: "Equipo SmartCheck"
 readingTime: "11 min de lectura"
 ---
