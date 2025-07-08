@@ -1,4 +1,4 @@
-# robots.txt para smartcheck.cr
+# robots.txt para smartcheckcr.com
 User-agent: *
 Allow: /
 
