@@ -1,33 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Página principal -->
   <url>
     <loc>https://smartcheck.cr/</loc>
-    <lastmod>2023-06-01</lastmod>
+    <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
+  
+  <!-- Páginas principales -->
+  <url>
+    <loc>https://smartcheck.cr/servicios</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
   <url>
     <loc>https://smartcheck.cr/sobre-nosotros</loc>
-    <lastmod>2023-06-01</lastmod>
+    <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  
+  <url>
+    <loc>https://smartcheck.cr/contacto</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
   <url>
     <loc>https://smartcheck.cr/metodos-de-pago</loc>
-    <lastmod>2023-06-01</lastmod>
+    <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  
   <url>
     <loc>https://smartcheck.cr/preguntas-frecuentes</loc>
-    <lastmod>2023-06-01</lastmod>
+    <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  
+  <!-- Blog -->
   <url>
     <loc>https://smartcheck.cr/blog</loc>
-    <lastmod>2023-06-01</lastmod>
+    <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+  </url>
+  
+  <!-- Artículos del blog -->
+  <url>
+    <loc>https://smartcheck.cr/blog/como-elegir-mejor-seguro-vehicular-costa-rica</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://smartcheck.cr/blog/guia-documentacion-legal-compra-vehiculos-costa-rica</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://smartcheck.cr/blog/mantenimiento-preventivo-vehicular-guia-completa</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://smartcheck.cr/blog/que-revisar-antes-de-comprar-un-carro-usado</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 </urlset> 
