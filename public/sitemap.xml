@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <!-- Página principal -->
   <url>
-    <loc>https://smartcheck.cr/</loc>
+    <loc>https://smartcheckcr.com/</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -10,35 +10,35 @@
   
   <!-- Páginas principales -->
   <url>
-    <loc>https://smartcheck.cr/servicios</loc>
+    <loc>https://smartcheckcr.com/servicios</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   
   <url>
-    <loc>https://smartcheck.cr/sobre-nosotros</loc>
+    <loc>https://smartcheckcr.com/sobre-nosotros</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://smartcheck.cr/contacto</loc>
+    <loc>https://smartcheckcr.com/contacto</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://smartcheck.cr/metodos-de-pago</loc>
+    <loc>https://smartcheckcr.com/metodos-de-pago</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://smartcheck.cr/preguntas-frecuentes</loc>
+    <loc>https://smartcheckcr.com/preguntas-frecuentes</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -46,7 +46,7 @@
   
   <!-- Blog -->
   <url>
-    <loc>https://smartcheck.cr/blog</loc>
+    <loc>https://smartcheckcr.com/blog</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -54,28 +54,28 @@
   
   <!-- Artículos del blog -->
   <url>
-    <loc>https://smartcheck.cr/blog/como-elegir-mejor-seguro-vehicular-costa-rica</loc>
+    <loc>https://smartcheckcr.com/blog/como-elegir-mejor-seguro-vehicular-costa-rica</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://smartcheck.cr/blog/guia-documentacion-legal-compra-vehiculos-costa-rica</loc>
+    <loc>https://smartcheckcr.com/blog/guia-documentacion-legal-compra-vehiculos-costa-rica</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://smartcheck.cr/blog/mantenimiento-preventivo-vehicular-guia-completa</loc>
+    <loc>https://smartcheckcr.com/blog/mantenimiento-preventivo-vehicular-guia-completa</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://smartcheck.cr/blog/que-revisar-antes-de-comprar-un-carro-usado</loc>
+    <loc>https://smartcheckcr.com/blog/que-revisar-antes-de-comprar-un-carro-usado</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
