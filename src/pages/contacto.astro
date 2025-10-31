@@ -4,7 +4,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <BaseLayout
   title="Contáctenos"
-  description="Póngase en contacto con SmartCheck Costa Rica para solicitar una inspección vehicular o para cualquier consulta relacionada con nuestros servicios."
+  description="Póngase en contacto con SmartCheck Costa Rica para solicitar una revisión de vehículo o para cualquier consulta relacionada con nuestros servicios."
 >
   <!-- Hero Section -->
   <section class="relative py-20 px-4 overflow-hidden">
@@ -21,7 +21,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         Contacto
       </h1>
       <p class="text-xl text-white/90 max-w-2xl mx-auto">
-        Estamos a su disposición para responder cualquier pregunta sobre nuestros servicios de inspección vehicular
+        Estamos a su disposición para responder cualquier pregunta sobre nuestros servicios de revisión de vehículos
       </p>
     </div>
   </section>
@@ -63,7 +63,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                     <p class="text-gray-600 mb-6 text-center">Respuesta en minutos durante horario laboral</p>
                   </div>
                   
-                  <a href="https://wa.me/50686752713?text=Hola,%20estoy%20interesado%20en%20una%20inspección%20vehicular" class="inline-flex items-center justify-center w-full bg-smartcheck-blue hover:bg-smartcheck-blue/90 text-white font-medium py-3 px-6 rounded-lg text-lg transition-colors">
+                  <a href="https://wa.me/50686752713?text=Hola,%20estoy%20interesado%20en%20una%20revisión%20de%20vehículo" class="inline-flex items-center justify-center w-full bg-smartcheck-blue hover:bg-smartcheck-blue/90 text-white font-medium py-3 px-6 rounded-lg text-lg transition-colors">
                     <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
                     </svg>
@@ -81,7 +81,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                     </svg>
                   </div>
                   <h3 class="text-xl font-bold text-smartcheck-blue mb-2">Horario de Atención</h3>
-                  <p class="text-gray-600 mb-4">Disponibilidad para sus inspecciones</p>
+                  <p class="text-gray-600 mb-4">Disponibilidad para sus revisiones</p>
                 </div>
                 
                 <div class="flex-grow">
@@ -102,7 +102,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
                       <p class="text-gray-700 text-sm">
-                        <span class="font-semibold">Nota:</span> Las inspecciones se programan con cita previa para asegurar disponibilidad y el mejor servicio.
+                        <span class="font-semibold">Nota:</span> Las revisiones se programan con cita previa para asegurar disponibilidad y el mejor servicio.
                       </p>
                     </div>
                   </div>
@@ -123,7 +123,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <!-- Stat 1 -->
             <div>
               <p class="text-4xl font-bold mb-2 text-smartcheck-blue">900+</p>
-              <p class="text-gray-600">Vehículos Inspeccionados</p>
+              <p class="text-gray-600">Vehículos Revisados</p>
             </div>
             
             <!-- Stat 2 -->
@@ -187,11 +187,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   </section>
 
   <!-- Stats -->
-  <section class="py-16 bg-gray-50">
+  <section id="precios" class="py-16 bg-gray-50">
     <div class="container mx-auto px-4">
       <div class="max-w-3xl mx-auto text-center mb-12">
         <h2 class="text-3xl font-bold text-gray-900 mb-4">Nuestra Cobertura y Precios</h2>
-        <p class="text-xl text-gray-600">Ofrecemos inspecciones a domicilio con tarifas transparentes.</p>
+        <p class="text-xl text-gray-600">Ofrecemos revisiones a domicilio con tarifas transparentes.</p>
       </div>
       
       <div class="max-w-5xl mx-auto">
@@ -209,19 +209,26 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               <p class="text-gray-600">Tarifas claras sin sorpresas</p>
             </div>
             
-            <div class="space-y-6">
-              <!-- Precio Vehículos Normales -->
-              <div class="bg-gray-50 rounded-xl p-6 text-center">
-                <p class="text-lg font-medium text-gray-700 mb-2">Vehículos Normales</p>
-                <p class="text-3xl font-bold text-smartcheck-blue mb-1">₡49.000</p>
-                <p class="text-sm text-gray-500">Inspección completa a domicilio</p>
+            <div class="space-y-4">
+              <!-- Precio Automóvil Convencional -->
+              <div class="bg-gray-50 rounded-xl p-5 text-center">
+                <p class="text-base font-medium text-gray-700 mb-2">Automóvil Convencional</p>
+                <p class="text-2xl font-bold text-smartcheck-blue mb-1">$115</p>
+                <p class="text-sm text-gray-500">Revisión completa a domicilio</p>
               </div>
               
-              <!-- Precio Vehículos Eléctricos/Híbridos -->
-              <div class="bg-gray-50 rounded-xl p-6 text-center">
-                <p class="text-lg font-medium text-gray-700 mb-2">Vehículos Eléctricos e Híbridos</p>
-                <p class="text-3xl font-bold text-smartcheck-blue mb-1">₡59.000</p>
-                <p class="text-sm text-gray-500">Inspección especializada a domicilio</p>
+              <!-- Precio Crossover/SUV Medianos -->
+              <div class="bg-gray-50 rounded-xl p-5 text-center">
+                <p class="text-base font-medium text-gray-700 mb-2">Crossover o SUV Medianos</p>
+                <p class="text-2xl font-bold text-smartcheck-blue mb-1">$125</p>
+                <p class="text-sm text-gray-500">Revisión completa a domicilio</p>
+              </div>
+              
+              <!-- Precio SUV/Pick up -->
+              <div class="bg-gray-50 rounded-xl p-5 text-center">
+                <p class="text-base font-medium text-gray-700 mb-2">SUV o Pick up Grandes</p>
+                <p class="text-2xl font-bold text-smartcheck-blue mb-1">$135</p>
+                <p class="text-sm text-gray-500">Revisión completa a domicilio</p>
               </div>
             </div>
           </div>
@@ -256,7 +263,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               <div class="bg-gray-50 rounded-xl p-6">
                 <h4 class="font-bold text-gray-900 mb-2">Fuera de GAM</h4>
                 <p class="text-gray-700">Servicio disponible mediante cotización personalizada dependiendo de la ubicación.</p>
-                <a href="https://wa.me/50686752713?text=Hola,%20estoy%20interesado%20en%20una%20inspección%20vehicular%20fuera%20de%20la%20GAM" class="inline-flex items-center justify-center mt-4 text-smartcheck-blue hover:text-smartcheck-accent transition-colors">
+                <a href="https://wa.me/50686752713?text=Hola,%20estoy%20interesado%20en%20una%20revisión%20de%20vehículo%20fuera%20de%20la%20GAM" class="inline-flex items-center justify-center mt-4 text-smartcheck-blue hover:text-smartcheck-accent transition-colors">
                   <span class="underline">Solicitar cotización</span>
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
@@ -301,7 +308,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
             <button class="w-full text-left px-6 py-5 flex justify-between items-center">
               <h3 class="text-lg font-semibold text-smartcheck-blue pr-8">
-                ¿Cómo puedo agendar una inspección?
+                ¿Cómo puedo agendar una revisión?
               </h3>
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-smartcheck-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
@@ -309,7 +316,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             </button>
             <div class="px-6 pb-5">
               <p class="text-gray-700">
-                Puede agendar una inspección enviándonos un WhatsApp. Le responderemos para confirmar la fecha y hora según su disponibilidad.
+                Puede agendar una revisión enviándonos un WhatsApp. Le responderemos para confirmar la fecha y hora según su disponibilidad.
               </p>
             </div>
           </div>
@@ -318,7 +325,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
             <button class="w-full text-left px-6 py-5 flex justify-between items-center">
               <h3 class="text-lg font-semibold text-smartcheck-blue pr-8">
-                ¿Cuáles son las zonas de cobertura para las inspecciones?
+                ¿Cuáles son las zonas de cobertura para las revisiones?
               </h3>
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-smartcheck-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
