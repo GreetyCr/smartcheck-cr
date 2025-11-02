@@ -195,10 +195,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       </div>
       
       <div class="max-w-5xl mx-auto">
-        <!-- Container para reorganización móvil -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <!-- Card Precios - Aparece primero en móvil -->
-          <div class="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 p-8 md:order-1">
+        <!-- Precios y cobertura -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+          <!-- Card Precios -->
+          <div class="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 p-8">
             <div class="text-center mb-6">
               <div class="w-16 h-16 rounded-full bg-smartcheck-blue flex items-center justify-center mx-auto mb-4">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -240,37 +240,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             </div>
           </div>
           
-          <!-- Nota sobre Vehículos Especiales - Aparece segundo en móvil, span completo en desktop -->
-          <div class="md:col-span-2 md:order-3">
-            <div class="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 p-8">
-              <div class="text-center mb-6">
-                <div class="w-16 h-16 rounded-full bg-smartcheck-accent flex items-center justify-center mx-auto mb-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-                <h3 class="text-2xl font-bold text-smartcheck-blue mb-2">Vehículos Especiales y Deportivos</h3>
-                <p class="text-gray-600">Cotización personalizada para vehículos únicos</p>
-              </div>
-              
-              <div class="bg-gray-50 rounded-xl p-6">
-                <p class="text-gray-700 leading-relaxed text-center mb-4">
-                  Para automóviles deportivos, crossovers de ediciones especiales, pickups de versiones premium y vehículos con características particulares, ofrecemos cotización personalizada según las especificaciones técnicas del vehículo.
-                </p>
-                <div class="text-center">
-                  <a href="https://wa.me/50686752713?text=Hola,%20necesito%20cotización%20para%20revisión%20de%20vehículo%20especial" class="inline-flex items-center bg-smartcheck-blue hover:bg-smartcheck-blue/90 text-white font-medium py-3 px-6 rounded-lg text-lg transition-colors">
-                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-                    </svg>
-                    Solicitar Cotización Personalizada
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Card Cobertura - Aparece tercero en móvil -->
-          <div class="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 p-8 md:order-2">
+          <!-- Card Cobertura -->
+          <div class="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 p-8">
             <div class="text-center mb-6">
               <div class="w-16 h-16 rounded-full bg-smartcheck-blue flex items-center justify-center mx-auto mb-4">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -304,6 +275,35 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                   </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Nota sobre Vehículos Especiales -->
+        <div class="max-w-4xl mx-auto">
+          <div class="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 p-8">
+            <div class="text-center mb-6">
+              <div class="w-16 h-16 rounded-full bg-smartcheck-accent flex items-center justify-center mx-auto mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h3 class="text-2xl font-bold text-smartcheck-blue mb-2">Vehículos Especiales y Deportivos</h3>
+              <p class="text-gray-600">Cotización personalizada para vehículos únicos</p>
+            </div>
+            
+            <div class="bg-gray-50 rounded-xl p-6">
+              <p class="text-gray-700 leading-relaxed text-center mb-4">
+                Para automóviles deportivos, crossovers de ediciones especiales, pickups de versiones premium y vehículos con características particulares, ofrecemos cotización personalizada según las especificaciones técnicas del vehículo.
+              </p>
+              <div class="text-center">
+                <a href="https://wa.me/50686752713?text=Hola,%20necesito%20cotización%20para%20revisión%20de%20vehículo%20especial" class="inline-flex items-center bg-smartcheck-blue hover:bg-smartcheck-blue/90 text-white font-medium py-3 px-6 rounded-lg text-lg transition-colors">
+                  <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+                  </svg>
+                  Solicitar Cotización Personalizada
                 </a>
               </div>
             </div>
