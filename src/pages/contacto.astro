@@ -195,10 +195,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       </div>
       
       <div class="max-w-5xl mx-auto">
-        <!-- Precios y cobertura -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-          <!-- Card Precios -->
-          <div class="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 p-8">
+        <!-- Container con orden móvil personalizado -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- Card Precios - Orden 1 en móvil -->
+          <div class="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 p-8 order-1 md:order-1">
             <div class="text-center mb-6">
               <div class="w-16 h-16 rounded-full bg-smartcheck-blue flex items-center justify-center mx-auto mb-4">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -240,8 +240,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             </div>
           </div>
           
-          <!-- Card Cobertura -->
-          <div class="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 p-8">
+          <!-- Card Cobertura - Orden 3 en móvil -->
+          <div class="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 p-8 order-3 md:order-2">
             <div class="text-center mb-6">
               <div class="w-16 h-16 rounded-full bg-smartcheck-blue flex items-center justify-center mx-auto mb-4">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -281,9 +281,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           </div>
         </div>
         
-        <!-- Nota sobre Vehículos Especiales -->
-        <div class="max-w-4xl mx-auto">
-          <div class="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 p-8">
+          <!-- Nota sobre Vehículos Especiales - Orden 2 en móvil, span completo -->
+          <div class="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 p-8 order-2 md:order-3 md:col-span-2">
             <div class="text-center mb-6">
               <div class="w-16 h-16 rounded-full bg-smartcheck-accent flex items-center justify-center mx-auto mb-4">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
