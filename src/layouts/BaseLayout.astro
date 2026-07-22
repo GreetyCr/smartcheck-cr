@@ -17,12 +17,15 @@ const {
 
 const siteName = 'SmartCheck CR';
 
-// URLs absolutas a partir de `site` (astro.config.mjs). Sin `site`, el build
-// emitia http://localhost:4321. Se quita la barra final para que la canonica
-// coincida con las <loc> de public/sitemap.xml.
-const pathname = Astro.url.pathname.replace(/(.)\/$/, '$1');
-const canonical = canonicalURL ?? new URL(pathname, Astro.site).href;
-const imageURL = new URL(image || '/images/social-share.jpg', Astro.site).href;
+// URL canónica absoluta de producción a partir de Astro.site + la ruta actual.
+// Normalizamos la barra final (excepto la raíz) para que coincida con el sitemap.
+const normalizedPath = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const pageURL = new URL(normalizedPath, Astro.site ?? Astro.url).href;
+const canonical = canonicalURL ?? pageURL;
+// URL absoluta para la imagen social (og:image / twitter:image).
+// El `||` no es redundante: BlogPost pasa image="" cuando el post no trae una,
+// y un string vacío no dispara el valor por defecto de la prop.
+const socialImage = new URL(image || '/images/social-share.jpg', Astro.site ?? Astro.url).href;
 ---
 
 <!doctype html>
@@ -55,26 +58,27 @@ const imageURL = new URL(image || '/images/social-share.jpg', Astro.site).href;
     <title>{title} | {siteName}</title>
     <meta name="description" content={description} />
     <meta name="robots" content="index, follow" />
-    
+
     <!-- Open Graph / Social Media -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonical} />
     <meta property="og:title" content={`${title} | ${siteName}`} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={imageURL} />
-    
+    <meta property="og:image" content={socialImage} />
+
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content={canonical} />
     <meta property="twitter:title" content={`${title} | ${siteName}`} />
     <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={imageURL} />
+    <meta property="twitter:image" content={socialImage} />
     
     <!-- Structured Data for Local Business -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
+      "@id": "https://smartcheckcr.com/#localbusiness",
       "name": "SmartCheck CR",
       "description": "Servicio profesional de revisión de vehículos para compra en Costa Rica",
       "url": "https://smartcheckcr.com",
@@ -94,6 +98,24 @@ const imageURL = new URL(image || '/images/social-share.jpg', Astro.site).href;
         "@type": "Place",
         "name": "Gran Área Metropolitana, Costa Rica"
       },
+      "areaServed": {
+        "@type": "AdministrativeArea",
+        "name": "Gran Área Metropolitana (San José, Heredia, Alajuela, Cartago), Costa Rica"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "08:00",
+          "closes": "18:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Saturday",
+          "opens": "08:00",
+          "closes": "14:00"
+        }
+      ],
       "priceRange": "$$",
       "sameAs": [
         "https://www.facebook.com/smartcheckcr",
@@ -233,12 +255,14 @@ const imageURL = new URL(image || '/images/social-share.jpg', Astro.site).href;
           <!-- Quick Links -->
           <div>
             <h3 class="text-xl font-bold mb-4">Enlaces Rápidos</h3>
-            <ul class="space-y-2">
+            <ul class="grid grid-cols-2 gap-x-4 gap-y-2">
               <li><a href="/servicios" class="text-gray-300 hover:text-white">Nuestros Servicios</a></li>
               <li><a href="/metodos-de-pago" class="text-gray-300 hover:text-white">Métodos de Pago</a></li>
               <li><a href="/sobre-nosotros" class="text-gray-300 hover:text-white">Quiénes Somos</a></li>
               <li><a href="/preguntas-frecuentes" class="text-gray-300 hover:text-white">Preguntas Frecuentes</a></li>
               <li><a href="/blog" class="text-gray-300 hover:text-white">Blog</a></li>
+              <li><a href="/terminos-y-condiciones" class="text-gray-300 hover:text-white">Términos y Condiciones</a></li>
+              <li><a href="/politica-de-privacidad" class="text-gray-300 hover:text-white">Política de Privacidad</a></li>
             </ul>
           </div>
           
