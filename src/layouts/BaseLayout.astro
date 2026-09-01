@@ -11,11 +11,18 @@ interface Props {
 const {
   title,
   description,
-  canonicalURL = Astro.url.href,
+  canonicalURL,
   image = '/images/social-share.jpg',
 } = Astro.props;
 
 const siteName = 'SmartCheck CR';
+
+// URLs absolutas a partir de `site` (astro.config.mjs). Sin `site`, el build
+// emitia http://localhost:4321. Se quita la barra final para que la canonica
+// coincida con las <loc> de public/sitemap.xml.
+const pathname = Astro.url.pathname.replace(/(.)\/$/, '$1');
+const canonical = canonicalURL ?? new URL(pathname, Astro.site).href;
+const imageURL = new URL(image || '/images/social-share.jpg', Astro.site).href;
 ---
 
 <!doctype html>
@@ -44,23 +51,24 @@ const siteName = 'SmartCheck CR';
     <!-- Additional Meta -->
     <meta name="generator" content={Astro.generator} />
     <meta name="google-site-verification" content="TJK8XHnVqi1X_5OxZJ-vEtPep0ilYslQ_6pFFolCDtA" />
+    <link rel="canonical" href={canonical} />
     <title>{title} | {siteName}</title>
     <meta name="description" content={description} />
     <meta name="robots" content="index, follow" />
     
     <!-- Open Graph / Social Media -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:url" content={canonical} />
     <meta property="og:title" content={`${title} | ${siteName}`} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={image} />
+    <meta property="og:image" content={imageURL} />
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:url" content={canonical} />
     <meta property="twitter:title" content={`${title} | ${siteName}`} />
     <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={image} />
+    <meta property="twitter:image" content={imageURL} />
     
     <!-- Structured Data for Local Business -->
     <script type="application/ld+json">

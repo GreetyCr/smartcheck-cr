@@ -3,7 +3,7 @@ import BaseLayout from './BaseLayout.astro';
 import { format } from 'date-fns';
 import { es } from 'date-fns/locale';
 
-interface Props {
+interface PostData {
   title: string;
   description: string;
   pubDate: Date | string;
@@ -14,16 +14,21 @@ interface Props {
   readingTime?: string;
 }
 
-const { 
-  title, 
-  description, 
+// Astro entrega el frontmatter de una pagina .md bajo `frontmatter`, no como
+// props sueltas. Leerlas directo de Astro.props dejaba title/description vacios
+// en los 4 articulos. El fallback permite seguir usando el layout como componente.
+type Props = Partial<PostData> & { frontmatter?: PostData };
+
+const {
+  title,
+  description,
   pubDate,
   category = "Revisión de vehículos",
   image = "",
   author = "SmartCheck",
   authorImage = "",
   readingTime = "5 min de lectura"
-} = Astro.props;
+} = (Astro.props.frontmatter ?? Astro.props) as PostData;
 
 // Manejo seguro de la fecha
 let date;
