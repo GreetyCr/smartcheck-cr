@@ -65,6 +65,20 @@ El acceso a los datos deberá limitarse a las personas o proveedores que lo nece
 SmartCheck podrá utilizar herramientas de mensajería, correo electrónico, almacenamiento, alojamiento web, facturación o procesamiento de pagos para prestar sus servicios.
 Cuando un proveedor tenga acceso a datos personales, SmartCheck deberá procurar que dicho acceso se limite a lo necesario y que la información se maneje bajo condiciones adecuadas de seguridad.
 Si el sitio utiliza herramientas adicionales de seguimiento, analítica o publicidad, esta Política deberá complementarse para informar su uso de manera adecuada.
+Analítica web: PostHog
+Este sitio utiliza PostHog como proveedor de analítica web, con servidores en Estados Unidos de América. Su finalidad es conocer cómo se usa el sitio y qué botones de contacto resultan útiles. PostHog mide:
+• las páginas vistas, el tiempo que se permanece en cada página y hasta dónde se baja en ella;
+• los clics en los botones de WhatsApp, con el botón que se tocó y la página en que se encontraba;
+• datos técnicos del navegador y del dispositivo, como el navegador, el sistema operativo, el tamaño de la pantalla, el idioma y la zona horaria;
+• la página desde la que se llegó al sitio y los parámetros de campaña de la dirección web; y
+• la ubicación aproximada (país y ciudad o región).
+Esta analítica no utiliza cookies ni guarda información en su navegador, no crea perfiles de personas y no graba sesiones. La dirección IP se descarta y no se conserva; solo se usa para estimar la ubicación aproximada. El identificador anónimo de visitante lo calcula el servidor de PostHog, sin que quede almacenado en su dispositivo. Los datos de esta medición se comunican a PostHog únicamente para prestar este servicio de analítica.
+Como los datos de esta medición no permiten identificarle, SmartCheck no puede asociarlos a una persona determinada. Si no desea que se mida su visita, puede evitarlo bloqueando los scripts de analítica en su navegador. Para consultas sobre este tema, puede utilizar los canales indicados en la sección 11 de esta Política.
+Almacenamiento de Informes y fotografías: Convex
+Los Informes y las fotografías de las inspecciones se guardan en Convex, un proveedor de base de datos con servidores en Estados Unidos de América. SmartCheck procurará que el acceso de ese proveedor se limite a lo necesario para prestar el servicio de almacenamiento, conforme a lo indicado en esta sección.
+Alojamiento del sitio y tipografía: Vercel y Google Fonts
+El sitio está alojado en Vercel, un proveedor de alojamiento web con servidores en Estados Unidos de América. Vercel recibe la dirección IP y datos técnicos de cada visita al sitio, que quedan en sus registros de funcionamiento.
+La tipografía del sitio se carga desde los servidores de Google (Google Fonts). Por esta razón, Google recibe la dirección IP y los datos del navegador de quien visita el sitio.
 11. Cambios a esta Política y contacto
 SmartCheck podrá actualizar esta Política cuando cambie la legislación, los servicios ofrecidos o la forma en que se tratan los datos. La versión vigente deberá indicar su fecha de actualización.
 Para consultas relacionadas con privacidad o para ejercer derechos sobre datos personales, puede utilizarse el correo smartcheckcr@gmail.com o el teléfono / WhatsApp +506 8675-2713.

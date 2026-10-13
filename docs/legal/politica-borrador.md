@@ -1,6 +1,8 @@
 # Borrador de la Política de Privacidad · para la revisión de Randall
 
-Estado: borrador del 13 de octubre de 2026, vuelta 2 (U2 del plan `docs/planes/2026-10-13-raiz.md`). No está publicado: la página `src/pages/politica-de-privacidad.astro` ya tiene este texto en la rama, pero nada se enciende hasta que Randall lo revise (U7).
+**Aprobado por Randall el 13-oct-2026.**
+
+Estado: borrador del 13 de octubre de 2026, vuelta 3 (U2 del plan `docs/planes/2026-10-13-raiz.md`), aprobado por Randall ese mismo día. No está publicado: la página `src/pages/politica-de-privacidad.astro` ya tiene este texto en la rama, pero nada se enciende hasta U7.
 
 Fuente: `docs/legal/fuente/politica-2026-07.txt`, la Política del .docx que Esteban confirmó el 13 de octubre. Las 11 secciones están **tal cual**, con un solo cambio decidido por Randall (el domicilio, punto 1 de abajo). Lo único que se agregó es el complemento de la sección 10, marcado abajo con el recuadro «NUEVO». La fecha de «Última actualización» pasa a ser el 13 de octubre de 2026.
 
@@ -14,7 +16,7 @@ Fuente: `docs/legal/fuente/politica-2026-07.txt`, la Política del .docx que Est
 
 1. **Analítica web: PostHog.** Proveedor, servidores en EE. UU., qué mide (páginas vistas, tiempo en cada página y hasta dónde se baja; clics a WhatsApp con botón y página; datos técnicos del navegador y del dispositivo; página de origen y parámetros de campaña; ubicación aproximada con ciudad o región), qué no hace (cookies, perfiles, grabación; la IP se descarta y solo sirve para estimar la ubicación) y la oposición.
 2. **Oposición, sin prometer lo que no se puede cumplir.** No hay mecanismo de opt-out y los datos no identifican a la persona. El texto dice que, como no permiten identificarle, SmartCheck no puede asociarlos a una persona; que quien no quiera ser medido puede bloquear los scripts de analítica en su navegador; y que las consultas van por los canales de la sección 11.
-3. **Almacenamiento de Informes y fotografías: Convex.** Proveedor de base de datos con servidores en EE. UU. **La región es inferida** (por confirmar, ver el punto 3 de abajo).
+3. **Almacenamiento de Informes y fotografías: Convex.** Proveedor de base de datos con servidores en EE. UU. (región confirmada por Randall el 13-oct).
 4. **Alojamiento y tipografía: Vercel y Google Fonts** (decisión de Randall del 13-oct). Vercel aloja el sitio, en EE. UU., y recibe la IP y datos técnicos de cada visita en sus registros. Google recibe la IP y los datos del navegador porque la tipografía se carga desde sus servidores.
 
 Además, solo en la versión publicada: un índice de anclas arriba (fuera del bloque de texto de la Política) y la fecha nueva. No hay ninguna frase que diga que no se comparten datos con terceros (la sección 6 del .docx dice cuándo sí se comunican, y el complemento dice quién recibe qué).
@@ -33,7 +35,6 @@ El texto del .docx no se tocó. Esto es lo que Randall puede querer decidir con 
 
 ## 3. Pendientes antes de publicar (de los que depende este texto)
 
-- **Convex, región:** EE. UU. se infirió de la URL del deployment (`*.convex.cloud`, sin sufijo de región). Confirmar en el panel de Convex antes de U7.
 - **IP descartada y sin cookies:** son verdad solo cuando U5a deja en la cuenta de PostHog «Discard client IP data» y «Cookieless server hash mode» encendidos. El verificador lo mide (R4).
 - **Qué mide:** el texto cubre el tiempo en cada página (evento `$pageleave` de la configuración de U3) y, según la revisión, los datos técnicos, la página de origen, los parámetros de campaña, hasta dónde se baja y la ubicación con ciudad o región. Si U3 cambia la configuración, hay que releer esa lista.
 - **Vercel, EE. UU.:** es la decisión de Randall. Vercel sirve el sitio desde una red de servidores distribuida, así que la ubicación exacta de los registros no está verificada.
@@ -179,8 +180,6 @@ Como los datos de esta medición no permiten identificarle, SmartCheck no puede 
 ### Almacenamiento de Informes y fotografías: Convex
 
 Los Informes y las fotografías de las inspecciones se guardan en **Convex**, un proveedor de base de datos con servidores en Estados Unidos de América. SmartCheck procurará que el acceso de ese proveedor se limite a lo necesario para prestar el servicio de almacenamiento, conforme a lo indicado en esta sección.
-
-**POR CONFIRMAR:** la región de Convex (Estados Unidos de América) es inferida de la URL del deployment, no confirmada en el panel. Esta marca solo está en el borrador; la página publicada no la lleva.
 
 ### Alojamiento del sitio y tipografía: Vercel y Google Fonts
 

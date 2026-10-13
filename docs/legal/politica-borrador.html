@@ -12,7 +12,8 @@ code{background:#f3f4f6;padding:0 .25rem;border-radius:.25rem}</style>
 </head>
 <body>
 <h1>Borrador de la Política de Privacidad · para la revisión de Randall</h1>
-<p>Estado: borrador del 13 de octubre de 2026, vuelta 2 (U2 del plan <code>docs/planes/2026-10-13-raiz.md</code>). No está publicado: la página <code>src/pages/politica-de-privacidad.astro</code> ya tiene este texto en la rama, pero nada se enciende hasta que Randall lo revise (U7).</p>
+<p><strong>Aprobado por Randall el 13-oct-2026.</strong></p>
+<p>Estado: borrador del 13 de octubre de 2026, vuelta 3 (U2 del plan <code>docs/planes/2026-10-13-raiz.md</code>), aprobado por Randall ese mismo día. No está publicado: la página <code>src/pages/politica-de-privacidad.astro</code> ya tiene este texto en la rama, pero nada se enciende hasta U7.</p>
 <p>Fuente: <code>docs/legal/fuente/politica-2026-07.txt</code>, la Política del .docx que Esteban confirmó el 13 de octubre. Las 11 secciones están <strong>tal cual</strong>, con un solo cambio decidido por Randall (el domicilio, punto 1 de abajo). Lo único que se agregó es el complemento de la sección 10, marcado abajo con el recuadro «NUEVO». La fecha de «Última actualización» pasa a ser el 13 de octubre de 2026.</p>
 <h2>1. Qué cambió respecto del .docx</h2>
 <p><strong>Cambio decidido por Randall el 13-oct (no está en el .docx):</strong></p>
@@ -23,7 +24,7 @@ code{background:#f3f4f6;padding:0 .25rem;border-radius:.25rem}</style>
 <ol>
 <li><strong>Analítica web: PostHog.</strong> Proveedor, servidores en EE. UU., qué mide (páginas vistas, tiempo en cada página y hasta dónde se baja; clics a WhatsApp con botón y página; datos técnicos del navegador y del dispositivo; página de origen y parámetros de campaña; ubicación aproximada con ciudad o región), qué no hace (cookies, perfiles, grabación; la IP se descarta y solo sirve para estimar la ubicación) y la oposición.</li>
 <li><strong>Oposición, sin prometer lo que no se puede cumplir.</strong> No hay mecanismo de opt-out y los datos no identifican a la persona. El texto dice que, como no permiten identificarle, SmartCheck no puede asociarlos a una persona; que quien no quiera ser medido puede bloquear los scripts de analítica en su navegador; y que las consultas van por los canales de la sección 11.</li>
-<li><strong>Almacenamiento de Informes y fotografías: Convex.</strong> Proveedor de base de datos con servidores en EE. UU. <strong>La región es inferida</strong> (por confirmar, ver el punto 3 de abajo).</li>
+<li><strong>Almacenamiento de Informes y fotografías: Convex.</strong> Proveedor de base de datos con servidores en EE. UU. (región confirmada por Randall el 13-oct).</li>
 <li><strong>Alojamiento y tipografía: Vercel y Google Fonts</strong> (decisión de Randall del 13-oct). Vercel aloja el sitio, en EE. UU., y recibe la IP y datos técnicos de cada visita en sus registros. Google recibe la IP y los datos del navegador porque la tipografía se carga desde sus servidores.</li>
 </ol>
 <p>Además, solo en la versión publicada: un índice de anclas arriba (fuera del bloque de texto de la Política) y la fecha nueva. No hay ninguna frase que diga que no se comparten datos con terceros (la sección 6 del .docx dice cuándo sí se comunican, y el complemento dice quién recibe qué).</p>
@@ -40,7 +41,6 @@ code{background:#f3f4f6;padding:0 .25rem;border-radius:.25rem}</style>
 </ol>
 <h2>3. Pendientes antes de publicar (de los que depende este texto)</h2>
 <ul>
-<li><strong>Convex, región:</strong> EE. UU. se infirió de la URL del deployment (<code>*.convex.cloud</code>, sin sufijo de región). Confirmar en el panel de Convex antes de U7.</li>
 <li><strong>IP descartada y sin cookies:</strong> son verdad solo cuando U5a deja en la cuenta de PostHog «Discard client IP data» y «Cookieless server hash mode» encendidos. El verificador lo mide (R4).</li>
 <li><strong>Qué mide:</strong> el texto cubre el tiempo en cada página (evento <code>$pageleave</code> de la configuración de U3) y, según la revisión, los datos técnicos, la página de origen, los parámetros de campaña, hasta dónde se baja y la ubicación con ciudad o región. Si U3 cambia la configuración, hay que releer esa lista.</li>
 <li><strong>Vercel, EE. UU.:</strong> es la decisión de Randall. Vercel sirve el sitio desde una red de servidores distribuida, así que la ubicación exacta de los registros no está verificada.</li>
@@ -144,7 +144,6 @@ code{background:#f3f4f6;padding:0 .25rem;border-radius:.25rem}</style>
 <p>Como los datos de esta medición no permiten identificarle, SmartCheck no puede asociarlos a una persona determinada. Si no desea que se mida su visita, puede evitarlo bloqueando los scripts de analítica en su navegador. Para consultas sobre este tema, puede utilizar los canales indicados en la sección 11 de esta Política.</p>
 <h3>Almacenamiento de Informes y fotografías: Convex</h3>
 <p>Los Informes y las fotografías de las inspecciones se guardan en <strong>Convex</strong>, un proveedor de base de datos con servidores en Estados Unidos de América. SmartCheck procurará que el acceso de ese proveedor se limite a lo necesario para prestar el servicio de almacenamiento, conforme a lo indicado en esta sección.</p>
-<p><strong>POR CONFIRMAR:</strong> la región de Convex (Estados Unidos de América) es inferida de la URL del deployment, no confirmada en el panel. Esta marca solo está en el borrador; la página publicada no la lleva.</p>
 <h3>Alojamiento del sitio y tipografía: Vercel y Google Fonts</h3>
 <p>El sitio está alojado en <strong>Vercel</strong>, un proveedor de alojamiento web con servidores en Estados Unidos de América. Vercel recibe la dirección IP y datos técnicos de cada visita al sitio, que quedan en sus registros de funcionamiento.</p>
 <p>La tipografía del sitio se carga desde los servidores de Google (<strong>Google Fonts</strong>). Por esta razón, Google recibe la dirección IP y los datos del navegador de quien visita el sitio.</p>
