@@ -130,7 +130,7 @@ Es importante considerar estos costos adicionales:
 ### Uso de servicios profesionales
 
 - **Abogado independiente**: Considera contratar un abogado para revisar la documentación.
-- **Servicios de verificación**: Empresas como SmartCheck ofrecen verificación legal del vehículo.
+- **Notario público**: Puede revisar el estudio registral y los gravámenes antes de que firmes. SmartCheck revisa el estado técnico y mecánico, no el registral.
 
 ## Pasos posteriores a la compra
 
@@ -150,10 +150,10 @@ Es importante considerar estos costos adicionales:
 
 ## Conclusión
 
-Adquirir un vehículo en Costa Rica requiere atención a numerosos detalles legales y administrativos. Una documentación correcta te protege de futuros problemas legales y garantiza que tu inversión esté segura. 
+Adquirir un vehículo en Costa Rica requiere atención a numerosos detalles legales y administrativos. Revisar bien los papeles antes de pagar te ayuda a evitar problemas legales después.
 
-En SmartCheck no solo revisamos el estado mecánico de los vehículos, sino que también podemos ayudarte a verificar toda la documentación legal antes de que realices la compra. Nuestro servicio incluye una revisión completa del estado legal del vehículo, dándote la tranquilidad de que tu inversión está protegida.
+En SmartCheck revisamos el estado técnico y mecánico del vehículo. La verificación registral (Registro Nacional, gravámenes, multas y traspaso) no forma parte de nuestro servicio: la hace el comprador o un abogado o notario de su confianza, y esta guía te dice cómo. Con ambas revisiones, la mecánica y la de los papeles, compras con mejor información.
 
 ---
 
-¿Necesitas ayuda con la verificación legal de un vehículo? [Contacta a nuestros especialistas](/contacto) y evita sorpresas desagradables en tu compra. 
+¿Quieres revisar el estado técnico y mecánico de un vehículo antes de comprarlo? [Contacta a nuestros especialistas](/contacto) y evita sorpresas desagradables en tu compra.
