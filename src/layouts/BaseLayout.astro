@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import PostHog from '../components/PostHog.astro';
 
 interface Props {
   title: string;
@@ -178,6 +179,7 @@ const socialImage = new URL(image || '/images/social-share.jpg', Astro.site ?? A
         z-index: 10;
       }
     </style>
+    <PostHog />
   </head>
   <body>
     <header class="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">

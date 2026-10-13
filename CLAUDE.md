@@ -18,7 +18,7 @@ No hay tests ni linter configurados: `astro check` es la unica verificacion auto
 
 Sitio de marketing estatico de SmartCheck CR (inspeccion vehicular en Costa Rica), Astro 5 + Tailwind 3, `output: 'static'`. Todo el contenido esta en espanol (`lang="es-CR"`), los precios en colones (CRC), y los mensajes de commit tambien van en espanol. Repo: `GreetyCr/smartcheck-cr`; deploy a Vercel por integracion de git (push a la rama = deploy).
 
-Sin islas ni frameworks de UI: cero componentes React/Vue/Svelte. La unica interactividad es un `<script>` inline en `BaseLayout.astro` para el menu movil.
+Sin islas ni frameworks de UI: cero componentes React/Vue/Svelte. La interactividad es un `<script>` inline en `BaseLayout.astro` para el menu movil y, solo cuando el build trae `PUBLIC_POSTHOG_KEY`, el snippet de PostHog (`src/components/PostHog.astro`).
 
 ## Arquitectura
 
@@ -50,6 +50,8 @@ El blog usa el patron antiguo de Astro (no content collections): cada post es un
 **`public/sitemap.xml` es manual** (no esta `@astrojs/sitemap`). Cada pagina o post nuevo hay que agregarlo a mano; todos los `lastmod` actuales dicen `2025-01-11`.
 
 **`vite.config.js` en la raiz es codigo muerto.** Astro no lee configs de Vite sueltos; la configuracion real de Vite esta en la clave `vite:` de `astro.config.mjs`. Tocar el de la raiz no hace nada.
+
+**PostHog solo carga si `PUBLIC_POSTHOG_KEY` esta en el entorno del build.** `src/components/PostHog.astro` (incluido en el `<head>` de `BaseLayout`) lee la clave de `import.meta.env` y la recorta con `.trim()`; sin clave, o con una de solo espacios, no renderiza nada y el HTML no trae ni una linea de PostHog (`grep -rli posthog dist` tiene que dar 0). Es una variable de build: se hornea en el HTML estatico, asi que cambiarla en Vercel exige un redeploy. Reglas: la clave va solo en el entorno **Production** de Vercel, para que los previews y el desarrollo local queden apagados; para probar en local se pasa en el comando (`PUBLIC_POSTHOG_KEY=phc_... npm run build`), nunca en un archivo commiteado (`.env.example` va vacio); las opciones de `init` tienen que coincidir con la sec. 10 de la Politica de privacidad, y si cambian hay que cambiar el texto legal.
 
 **`public/sw.js` nunca se registra** — no hay ningun `navigator.serviceWorker.register` en el proyecto. El `manifest.json` si esta enlazado desde `BaseLayout`.
 
