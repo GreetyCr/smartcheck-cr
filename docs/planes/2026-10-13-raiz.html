@@ -19,7 +19,7 @@ blockquote{border-left:3px solid var(--acc);margin:0;padding-left:12px;color:var
   2. Se publica la Política del .docx (la que se le envió). Si le falta algo o algo quedó desactualizado, el borrador de U2 va a Randall para revisarlo antes de publicar.
   3. Autoriza todo lo necesario en su PostHog («Haga todo lo que necesita»). La cuenta es la que dio para este trabajo y el 2FA va con el autenticador de Randall.</li>
 <li><strong>Abogada:</strong> no hay más consultas. Esteban da por buena la Política y la analítica tal como están. La aprobación de U2 pasa a ser la revisión de Randall del borrador.</li>
-<li><strong>Randall:</strong> los Informes y las fotos de la PWA se guardan en Convex, con la base a nombre de Esteban y la cuenta de correo de Randall. Región: EE. UU., inferida de la URL del deployment sin sufijo de región (<code>*.convex.cloud</code>); se confirma en el panel de Convex antes de U7.</li>
+<li><strong>Randall:</strong> los Informes y las fotos de la PWA se guardan en Convex, con la base a nombre de Esteban y la cuenta de correo de Randall. Región: EE. UU., confirmada por Randall el 13-oct.</li>
 </ul>
 <p><strong>Supuestos sin verificar.</strong></p>
 <ul>
@@ -136,7 +136,7 @@ blockquote{border-left:3px solid var(--acc);margin:0;padding-left:12px;color:var
 </tr>
 <tr>
 <td>U7</td>
-<td>Encender: con U2 revisada por Randall, U5a hecha y el verificador en verde, cargar <code>PUBLIC_POSTHOG_KEY</code> <strong>solo en Production</strong> de Vercel, fusionar el PR #1 y mirar Live events en PROD</td>
+<td>Encender: con U2 revisada por Randall, U5a hecha y el verificador en verde, push y vista previa de Vercel para que Randall la mire en el teléfono, Lighthouse móvil con y sin PostHog (2a y 1a del 13-oct), cargar <code>PUBLIC_POSTHOG_KEY</code> <strong>solo en Production</strong> de Vercel, fusionar el PR #1 y mirar Live events en PROD</td>
 <td>raiz</td>
 <td>sesión principal: es la costura con Vercel y con la cuenta</td>
 <td>ninguno</td>
@@ -166,6 +166,28 @@ blockquote{border-left:3px solid var(--acc);margin:0;padding-left:12px;color:var
 <td>no aplica</td>
 <td>no aplica</td>
 <td>0,3</td>
+</tr>
+<tr>
+<td>U9</td>
+<td><em>Protege, agregada por Randall el 13-oct (2a).</em> El post <code>blog/guia-documentacion-legal-compra-vehiculos-costa-rica.md</code> (~153 y ~155) promete «una revisión completa del estado legal del vehículo», contra la cl. 4 y la 5 e). Se reescriben esas frases sin prometer; la guía se queda</td>
+<td>raiz</td>
+<td>constructor</td>
+<td>ese <code>.md</code></td>
+<td>1 archivo</td>
+<td>no aplica</td>
+<td>no aplica</td>
+<td>0,3</td>
+</tr>
+<tr>
+<td>U10</td>
+<td><em>Agregada por Randall el 13-oct (1a), de la investigación SEO (<code>docs/seo/</code>, local).</em> <code>lastmod</code> real en <code>public/sitemap.xml</code>: la fecha de publicación en cada URL cuyo contenido cambia con esta rama, medido con <code>git diff main</code> por página</td>
+<td>raiz</td>
+<td>constructor</td>
+<td><code>public/sitemap.xml</code></td>
+<td>1 archivo</td>
+<td>no aplica</td>
+<td>no aplica</td>
+<td>0,2</td>
 </tr>
 </tbody>
 </table>
@@ -204,7 +226,7 @@ blockquote{border-left:3px solid var(--acc);margin:0;padding-left:12px;color:var
 <td>R3 Sin clave, apagado</td>
 <td>Si se construye sin <code>PUBLIC_POSTHOG_KEY</code>, no queda rastro de PostHog</td>
 <td>U3</td>
-<td><code>grep -rl posthog dist --include=*.html \| wc -l</code> = 0</td>
+<td><code>grep -rlE 'posthog\.init\|array\.js\|whatsapp_click\|us\.i\.posthog' dist \| wc -l</code> = 0 (la Política nombra a PostHog como texto: esa página sí dice «posthog»)</td>
 </tr>
 <tr>
 <td>R4 Sin cookies ni grabación</td>
@@ -222,7 +244,7 @@ blockquote{border-left:3px solid var(--acc);margin:0;padding-left:12px;color:var
 <td>R6 «Hasta 230»</td>
 <td>No queda ningún «más de 230» ni «230+». Después del scroll, el contador del index se lee «Hasta 230», no «230+» ni «NaN+» (ver §5)</td>
 <td>U6; verificador (contador, a 375 px)</td>
-<td>antes 10 = <code>grep -rn -E "230 ?puntos\|230\+" src/pages \| grep -v terminos \| wc -l</code>; después 0 con esa misma búsqueda, y 10 con <code>grep -rni "hasta 230" src/pages \| grep -v terminos</code></td>
+<td>antes 10 = <code>grep -rn -E "230 ?puntos\|230\+" src/pages \| grep -v terminos \| wc -l</code>; después 0 con <code>grep -rn -E "más de 230|230\+|\+230" src/pages | grep -v terminos</code> (la búsqueda de antes también casa «hasta 230 puntos»), y 10 con <code>grep -rni "hasta 230" src/pages \| grep -v terminos</code></td>
 </tr>
 <tr>
 <td>R7 FAQ = 12.1 a 12.5</td>
@@ -399,7 +421,7 @@ blockquote{border-left:3px solid var(--acc);margin:0;padding-left:12px;color:var
 <tr>
 <td>Dónde guarda la PWA los Informes y las fotos</td>
 <td>Randall</td>
-<td>respondido 13-oct: Convex, EE. UU. (región inferida, confirmar en el panel)</td>
+<td>respondido 13-oct: Convex, EE. UU. (confirmado por Randall)</td>
 <td>el texto de U2</td>
 </tr>
 </tbody>
@@ -442,7 +464,18 @@ blockquote{border-left:3px solid var(--acc);margin:0;padding-left:12px;color:var
 <li>Decisiones que se escriben como hojas en <code>decisiones/</code> cuando Randall apruebe: PostHog se enciende con la clave de Production (sin clave no carga); las opciones de <code>init</code> de U3; quedan fuera del evento el «compartir» del blog y la fecha de versión = la de publicación.</li>
 <li>Lo que <strong>no se puede romper:</strong> el texto legal publicado es idéntico a su fuente aprobada (cotejo en 0), y ningún cambio a la cuenta de PostHog se hace sin el OK de Esteban.</li>
 <li>Las horas reales, en <code>ESTADO.md</code>, en el formato trabajo / reloj. La bitácora, en el vault.</li>
-<li><strong>Qué no entra:</strong> banner de cookies, grabación, tableros y embudos en PostHog, texto legal redactado por nosotros fuera del complemento de analítica de U2, <code>49deb11</code>, el blog, el <code>sitemap.xml</code> (sus <code>lastmod</code> quedan viejos, a propósito), y servir Google Fonts desde el propio sitio.</li>
+<li><strong>Qué no entra:</strong> banner de cookies, grabación, tableros y embudos en PostHog, texto legal redactado por nosotros fuera del complemento de analítica de U2, <code>49deb11</code>, el blog, el <code>sitemap.xml</code> más allá de sus <code>lastmod</code> (U10 los pone al día), y servir Google Fonts desde el propio sitio.</li>
 </ul>
 <h2>Al cerrar el proyecto</h2>
-<p>Post-proyecto con el <code>origen</code> de cada decisión y las líneas <code>Hallado-por</code> y <code>Conflicto</code> de los commits. Lo que se mide primero: si el cotejo legal atrapó diferencias antes que Esteban, y cuántos <code>whatsapp_click</code> llegaron la primera semana, contra las conversaciones que Esteban dice haber recibido.</p></body></html>
+<p>Post-proyecto con el <code>origen</code> de cada decisión y las líneas <code>Hallado-por</code> y <code>Conflicto</code> de los commits. Lo que se mide primero: si el cotejo legal atrapó diferencias antes que Esteban, y cuántos <code>whatsapp_click</code> llegaron la primera semana, contra las conversaciones que Esteban dice haber recibido.</p>
+<h2>Post-proyecto (cerrado el 13-oct-2026)</h2>
+<p><strong>Publicado</strong> el 13-oct: PR #1 mergeado por Randall (<code>6aeae61</code>), deploy de Production en verde. 13 de 13 unidades (U0 a U10, con U5a y U5b hechas por Randall). 31 commits entre <code>51c4d91</code> y el merge. Horas: sin medir en la sesión («~?h» en la bitácora).</p>
+<p><strong>Vueltas</strong> (de los trailers de los commits): 8 unidades salieron en la vuelta 1, 4 necesitaron una vuelta 2, 2 una vuelta 3 y 1 una vuelta 4 (U2). Origen de las vueltas: 4 del revisor (una con Randall) y 1 de una medición en PostHog. No hubo conflictos de merge.</p>
+<p><strong>Lo que atrapó cada pieza antes de que llegara a Esteban:</strong>
+- El revisor: el cotejo legal daba 0 falso (dist viejo, estructura, hrefs, índice); el índice de la Política dentro del bloque cotejado; la lista de lo que mide PostHog incompleta; <code>capture_performance</code> y <code>capture_exceptions</code> dependiendo de la configuración remota; el <code>aria-label</code> sin rol en «Hasta 230».
+- La medición en PostHog (ajustes del proyecto): con cookieless, la IP se elimina antes del GeoIP, así que la Política no podía decir que se registra la ubicación.
+- El agente de U8 encontró el post del blog que prometía revisión legal (U9).
+- La investigación SEO (<code>docs/seo/</code>, local): el sitemap con fechas viejas (U10) y que el resumen con IA de Google usa el Instagram, que contradice los T&amp;C.</p>
+<p><strong>Lo que frenó:</strong> el clasificador de auto mode bloqueó los cambios en la cuenta de PostHog, el merge y dos relanzamientos de constructores; Randall hizo U5a y el merge a mano. El conector de Vercel no tiene acceso al equipo (403) y la CLI no tiene sesión: la clave de Production se comprobó por el HTML publicado.</p>
+<p><strong>Lo que se mide primero:</strong> cuántos <code>whatsapp_click</code> llegan la primera semana (14 al 20-oct), por <code>boton</code> y <code>pagina</code>, contra las conversaciones que Esteban dice haber recibido. Los eventos de prueba tienen <code>$host</code> localhost: se excluyen.</p>
+<p><strong>Queda fuera, para otro plan:</strong> Search Console y www → apex (Randall), Instagram y Google Business (Esteban), SEO on-page (doble <code>&lt;h1&gt;</code>, títulos, reseñas en JSON-LD, <code>BlogPosting</code>), U4 vuelta 2 (<code>auxclick</code>, barra final).</p></body></html>
