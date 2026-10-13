@@ -2,6 +2,20 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const lastUpdated = '13 de octubre de 2026';
+
+const indice = [
+  ['responsable', '1. Responsable del tratamiento'],
+  ['datos', '2. Datos que se pueden recopilar'],
+  ['uso', '3. Para qué se utilizan los datos'],
+  ['consentimiento', '4. Consentimiento'],
+  ['informes', '5. Informes e información del vehículo'],
+  ['terceros', '6. Comunicación de datos a terceros'],
+  ['conservacion', '7. Conservación de la información'],
+  ['derechos', '8. Derechos de las personas titulares'],
+  ['seguridad', '9. Seguridad y confidencialidad'],
+  ['herramientas', '10. Herramientas tecnológicas y proveedores'],
+  ['cambios', '11. Cambios a esta Política y contacto'],
+];
 ---
 
 <BaseLayout
@@ -21,6 +35,20 @@ const lastUpdated = '13 de octubre de 2026';
     </div>
   </section>
 
+  <!-- Índice -->
+  <div class="max-w-4xl mx-auto px-4 pt-12">
+    <nav aria-label="Índice de la Política" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8">
+      <p class="text-sm font-semibold uppercase tracking-wide text-smartcheck-blue mb-4">Las 11 secciones</p>
+      <ol class="grid gap-x-8 gap-y-2 md:grid-cols-2 text-sm list-none">
+        {indice.map(([id, titulo]) => (
+          <li>
+            <a href={`#${id}`} class="text-gray-700 hover:text-smartcheck-blue underline-offset-2 hover:underline">{titulo}</a>
+          </li>
+        ))}
+      </ol>
+    </nav>
+  </div>
+
   <!-- Contenido -->
   <div class="max-w-4xl mx-auto px-4 py-12">
     <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-10 legal">
@@ -36,29 +64,12 @@ const lastUpdated = '13 de octubre de 2026';
         frente al Tratamiento de sus Datos Personales y su Reglamento.
       </p>
 
-      <nav aria-label="Índice de la Política" class="bg-gray-50 border border-gray-100 rounded-xl p-5 mb-8">
-        <p class="font-bold text-gray-900 mb-3">Contenido</p>
-        <ol class="mb-0">
-          <li><a href="#responsable">Responsable del tratamiento</a></li>
-          <li><a href="#datos">Datos que se pueden recopilar</a></li>
-          <li><a href="#uso">Para qué se utilizan los datos</a></li>
-          <li><a href="#consentimiento">Consentimiento</a></li>
-          <li><a href="#informes">Informes e información del vehículo</a></li>
-          <li><a href="#terceros">Comunicación de datos a terceros</a></li>
-          <li><a href="#conservacion">Conservación de la información</a></li>
-          <li><a href="#derechos">Derechos de las personas titulares</a></li>
-          <li><a href="#seguridad">Seguridad y confidencialidad</a></li>
-          <li><a href="#herramientas">Herramientas tecnológicas y proveedores</a></li>
-          <li><a href="#cambios">Cambios a esta Política y contacto</a></li>
-        </ol>
-      </nav>
-
       <h2 id="responsable">1. Responsable del tratamiento</h2>
       <p>
         El responsable del tratamiento de los datos personales es
         <strong>3-102-939601 SOCIEDAD DE RESPONSABILIDAD LIMITADA</strong>, cédula jurídica
         3-102-939601, que opera comercialmente bajo el nombre de <strong>SmartCheck Costa Rica</strong>,
-        con domicilio en Heredia, Costa Rica.
+        con domicilio en San José, Costa Rica.
       </p>
       <p>Medios de contacto:</p>
       <ul>
@@ -217,21 +228,24 @@ const lastUpdated = '13 de octubre de 2026';
         contacto resultan útiles. PostHog mide:
       </p>
       <ul>
-        <li>las páginas vistas y el tiempo que se permanece en cada página;</li>
+        <li>las páginas vistas, el tiempo que se permanece en cada página y hasta dónde se baja en ella;</li>
         <li>los clics en los botones de WhatsApp, con el botón que se tocó y la página en que se encontraba;</li>
-        <li>el tipo de navegador y de dispositivo; y</li>
-        <li>el país aproximado desde el que se visita el sitio.</li>
+        <li>datos técnicos del navegador y del dispositivo, como el navegador, el sistema operativo, el tamaño de la pantalla, el idioma y la zona horaria;</li>
+        <li>la página desde la que se llegó al sitio y los parámetros de campaña de la dirección web; y</li>
+        <li>la ubicación aproximada (país y ciudad o región).</li>
       </ul>
       <p>
         Esta analítica no utiliza cookies ni guarda información en su navegador, no crea perfiles de
-        personas y no graba sesiones. La dirección IP se descarta y no se conserva. El identificador
-        anónimo de visitante lo calcula el servidor de PostHog, sin que quede almacenado en su
-        dispositivo. Los datos de esta medición se comunican a PostHog únicamente para prestar este
-        servicio de analítica.
+        personas y no graba sesiones. La dirección IP se descarta y no se conserva; solo se usa para
+        estimar la ubicación aproximada. El identificador anónimo de visitante lo calcula el servidor
+        de PostHog, sin que quede almacenado en su dispositivo. Los datos de esta medición se
+        comunican a PostHog únicamente para prestar este servicio de analítica.
       </p>
       <p>
-        Usted puede ejercer su derecho de oposición a esta medición por los canales indicados en la
-        sección <a href="#cambios">11</a> de esta Política.
+        Como los datos de esta medición no permiten identificarle, SmartCheck no puede asociarlos a
+        una persona determinada. Si no desea que se mida su visita, puede evitarlo bloqueando los
+        scripts de analítica en su navegador. Para consultas sobre este tema, puede utilizar los
+        canales indicados en la sección <a href="#cambios">11</a> de esta Política.
       </p>
 
       <h3 id="almacenamiento">Almacenamiento de Informes y fotografías: Convex</h3>
@@ -240,6 +254,18 @@ const lastUpdated = '13 de octubre de 2026';
         proveedor de base de datos con servidores en Estados Unidos de América. SmartCheck procurará que
         el acceso de ese proveedor se limite a lo necesario para prestar el servicio de almacenamiento,
         conforme a lo indicado en esta sección.
+      </p>
+
+      <h3 id="alojamiento">Alojamiento del sitio y tipografía: Vercel y Google Fonts</h3>
+      <p>
+        El sitio está alojado en <strong>Vercel</strong>, un proveedor de alojamiento web con servidores
+        en Estados Unidos de América. Vercel recibe la dirección IP y datos técnicos de cada visita al
+        sitio, que quedan en sus registros de funcionamiento.
+      </p>
+      <p>
+        La tipografía del sitio se carga desde los servidores de Google (<strong>Google Fonts</strong>).
+        Por esta razón, Google recibe la dirección IP y los datos del navegador de quien visita el
+        sitio.
       </p>
 
       <h2 id="cambios">11. Cambios a esta Política y contacto</h2>

@@ -12,21 +12,27 @@ code{background:#f3f4f6;padding:0 .25rem;border-radius:.25rem}</style>
 </head>
 <body>
 <h1>Borrador de la Política de Privacidad · para la revisión de Randall</h1>
-<p>Estado: borrador del 13 de octubre de 2026 (U2 del plan <code>docs/planes/2026-10-13-raiz.md</code>). No está publicado: la página <code>src/pages/politica-de-privacidad.astro</code> ya tiene este texto en la rama, pero nada se enciende hasta que Randall lo revise (U7).</p>
-<p>Fuente: <code>docs/legal/fuente/politica-2026-07.txt</code>, la Política del .docx que Esteban confirmó el 13 de octubre. Las 11 secciones están <strong>tal cual</strong>. Lo único que se agregó es el complemento de la sección 10, marcado abajo con el recuadro «NUEVO». La fecha de «Última actualización» pasa a ser el 13 de octubre de 2026.</p>
-<h2>1. Qué es nuevo respecto del .docx</h2>
-<p>Solo dos bloques, ambos dentro de la sección 10, que pide el complemento por sí sola («Si el sitio utiliza herramientas adicionales de seguimiento, analítica o publicidad, esta Política deberá complementarse»):</p>
+<p>Estado: borrador del 13 de octubre de 2026, vuelta 2 (U2 del plan <code>docs/planes/2026-10-13-raiz.md</code>). No está publicado: la página <code>src/pages/politica-de-privacidad.astro</code> ya tiene este texto en la rama, pero nada se enciende hasta que Randall lo revise (U7).</p>
+<p>Fuente: <code>docs/legal/fuente/politica-2026-07.txt</code>, la Política del .docx que Esteban confirmó el 13 de octubre. Las 11 secciones están <strong>tal cual</strong>, con un solo cambio decidido por Randall (el domicilio, punto 1 de abajo). Lo único que se agregó es el complemento de la sección 10, marcado abajo con el recuadro «NUEVO». La fecha de «Última actualización» pasa a ser el 13 de octubre de 2026.</p>
+<h2>1. Qué cambió respecto del .docx</h2>
+<p><strong>Cambio decidido por Randall el 13-oct (no está en el .docx):</strong></p>
+<ul>
+<li><strong>Domicilio: «San José, Costa Rica»</strong> en lugar de «Heredia, Costa Rica» (sección 1). Los Términos y Condiciones finales de octubre dicen San José. El cambio está también en la fuente <code>docs/legal/fuente/politica-2026-07.txt</code> (línea 5), para que el cotejo siga en 0.</li>
+</ul>
+<p><strong>Nuevo, todo dentro de la sección 10</strong>, que pide el complemento por sí sola («Si el sitio utiliza herramientas adicionales de seguimiento, analítica o publicidad, esta Política deberá complementarse»):</p>
 <ol>
-<li><strong>Analítica web: PostHog.</strong> Proveedor, servidores en EE. UU., qué mide, qué no hace (cookies, perfiles, grabación, IP) y el derecho de oposición por la sección 11.</li>
-<li><strong>Almacenamiento de Informes y fotografías: Convex.</strong> Proveedor de base de datos con servidores en EE. UU. <strong>La región es inferida</strong> (por confirmar, ver el punto 3).</li>
+<li><strong>Analítica web: PostHog.</strong> Proveedor, servidores en EE. UU., qué mide (páginas vistas, tiempo en cada página y hasta dónde se baja; clics a WhatsApp con botón y página; datos técnicos del navegador y del dispositivo; página de origen y parámetros de campaña; ubicación aproximada con ciudad o región), qué no hace (cookies, perfiles, grabación; la IP se descarta y solo sirve para estimar la ubicación) y la oposición.</li>
+<li><strong>Oposición, sin prometer lo que no se puede cumplir.</strong> No hay mecanismo de opt-out y los datos no identifican a la persona. El texto dice que, como no permiten identificarle, SmartCheck no puede asociarlos a una persona; que quien no quiera ser medido puede bloquear los scripts de analítica en su navegador; y que las consultas van por los canales de la sección 11.</li>
+<li><strong>Almacenamiento de Informes y fotografías: Convex.</strong> Proveedor de base de datos con servidores en EE. UU. <strong>La región es inferida</strong> (por confirmar, ver el punto 3 de abajo).</li>
+<li><strong>Alojamiento y tipografía: Vercel y Google Fonts</strong> (decisión de Randall del 13-oct). Vercel aloja el sitio, en EE. UU., y recibe la IP y datos técnicos de cada visita en sus registros. Google recibe la IP y los datos del navegador porque la tipografía se carga desde sus servidores.</li>
 </ol>
-<p>Además, solo en la versión publicada: un índice de anclas arriba y la fecha nueva. No hay ninguna frase que diga que no se comparten datos con terceros (la sección 6 del .docx dice cuándo sí se comunican, y el complemento dice que a PostHog se le comunican los datos de la medición).</p>
+<p>Además, solo en la versión publicada: un índice de anclas arriba (fuera del bloque de texto de la Política) y la fecha nueva. No hay ninguna frase que diga que no se comparten datos con terceros (la sección 6 del .docx dice cuándo sí se comunican, y el complemento dice quién recibe qué).</p>
 <h2>2. Lo que en el .docx quedó desactualizado o falta frente al sitio real</h2>
 <p>El texto del .docx no se tocó. Esto es lo que Randall puede querer decidir con Esteban:</p>
 <ol>
-<li><strong>Proveedores del sitio sin nombrar.</strong> La sección 10 dice «alojamiento web» en general. El sitio carga la tipografía desde Google Fonts (<code>src/layouts/BaseLayout.astro</code> líneas 38 a 40 y <code>src/styles/global.css</code> línea 1), así que Google recibe la IP de quien visita. El alojamiento es Vercel (por el flujo de despliegue del <code>CLAUDE.md</code>). Ninguno está nombrado; el complemento cubre solo PostHog y Convex.</li>
+<li><strong>Proveedores del sitio.</strong> Resuelto en esta vuelta: el complemento nombra a Vercel y a Google Fonts. Sigue genérico en la sección 10 del .docx lo de «mensajería, correo electrónico, facturación o procesamiento de pagos»: no se nombró a Gmail ni a ningún proveedor de pagos porque no los verifiqué en el sitio.</li>
 <li><strong>WhatsApp y redes sociales.</strong> Los enlaces de contacto del sitio llevan a WhatsApp (Meta) y el pie y la página de contacto a Facebook, Instagram y TikTok. La Política solo da el número como medio de contacto; no dice que al tocar el enlace se sale a un servicio de terceros con su propia política.</li>
-<li><strong>Oposición.</strong> La sección 8 enumera acceso, rectificación, actualización y supresión, pero no nombra la <strong>oposición</strong>. El complemento remite a la sección 11 para ejercerla, y la sección 8 no la menciona.</li>
+<li><strong>Oposición.</strong> La sección 8 enumera acceso, rectificación, actualización y supresión, pero no nombra la <strong>oposición</strong>. Como no hay forma de excluir a una persona de la medición, el complemento ya no promete ese derecho: explica el bloqueo de scripts. Si se quiere reconocer la oposición, hay que decidir cómo se cumpliría.</li>
 <li><strong>Boletín del blog.</strong> <code>src/pages/blog/index.astro</code> (líneas 231 a 246) muestra un formulario «Suscríbete a nuestro newsletter» que pide un correo. No tiene acción ni código que lo envíe (no hay <code>fetch(</code> en <code>src</code>), así que hoy no recoge nada. Si se conecta, la Política no cubre ese uso del correo ni su consentimiento (sección 4).</li>
 <li><strong>Plazo de conservación de los Informes.</strong> La sección 7 da cinco años para los datos de contacto, pero para Informes y fotografías (que viven en Convex) solo dice «los límites temporales establecidos por la normativa vigente», sin un plazo. La Política publicada hasta hoy decía «de forma indefinida».</li>
 <li><strong>Tratamiento fuera de Costa Rica.</strong> PostHog y Convex (y, sin nombrarse, Vercel y Google) están en EE. UU. El .docx no dice que los datos se traten fuera del país. Si hace falta decirlo o contar con una base específica es una consulta para Esteban o su abogada; yo no la resuelvo en el texto.</li>
@@ -36,20 +42,21 @@ code{background:#f3f4f6;padding:0 .25rem;border-radius:.25rem}</style>
 <ul>
 <li><strong>Convex, región:</strong> EE. UU. se infirió de la URL del deployment (<code>*.convex.cloud</code>, sin sufijo de región). Confirmar en el panel de Convex antes de U7.</li>
 <li><strong>IP descartada y sin cookies:</strong> son verdad solo cuando U5a deja en la cuenta de PostHog «Discard client IP data» y «Cookieless server hash mode» encendidos. El verificador lo mide (R4).</li>
-<li><strong>Qué mide:</strong> el texto cubre también el tiempo en cada página, porque la configuración de U3 manda el evento <code>$pageleave</code> al salir de la página.</li>
+<li><strong>Qué mide:</strong> el texto cubre el tiempo en cada página (evento <code>$pageleave</code> de la configuración de U3) y, según la revisión, los datos técnicos, la página de origen, los parámetros de campaña, hasta dónde se baja y la ubicación con ciudad o región. Si U3 cambia la configuración, hay que releer esa lista.</li>
+<li><strong>Vercel, EE. UU.:</strong> es la decisión de Randall. Vercel sirve el sitio desde una red de servidores distribuida, así que la ubicación exacta de los registros no está verificada.</li>
 <li><strong>No se afirmó:</strong> que el identificador de visitante rote cada día (sin verificar en la doc de PostHog), ni cuánto tiempo conserva PostHog los eventos.</li>
 </ul>
 <hr />
 <h1>Texto de la Política</h1>
 <blockquote>
-<p>Todo lo que está fuera de los recuadros «NUEVO» es el .docx tal cual. La página publicada agrega un índice de las 11 secciones arriba del texto.</p>
+<p>Todo lo que está fuera de los recuadros «NUEVO» es el .docx tal cual, salvo el domicilio de la sección 1 (en negrita). La página publicada agrega un índice de las 11 secciones arriba del texto.</p>
 </blockquote>
 <h2>POLÍTICA DE PRIVACIDAD</h2>
 <p>Última actualización: 13 de octubre de 2026</p>
 <p>La presente Política de Privacidad regula el tratamiento de los datos personales que se recopilan como consecuencia del uso del sitio web, la contratación y coordinación de los servicios de SmartCheck y la elaboración de informes de inspección de vehículos.</p>
 <p>Su finalidad es informar de manera clara qué datos se recopilan, para qué se utilizan, durante cuánto tiempo se conservan, en qué casos pueden ser compartidos y cuáles derechos pueden ejercer las personas titulares, de conformidad con la Ley N.° 8968 de Protección de la Persona frente al Tratamiento de sus Datos Personales y su Reglamento.</p>
 <h2>1. Responsable del tratamiento</h2>
-<p>El responsable del tratamiento de los datos personales es 3-102-939601 SOCIEDAD DE RESPONSABILIDAD LIMITADA, cédula jurídica 3-102-939601, que opera comercialmente bajo el nombre de SmartCheck Costa Rica, con domicilio en Heredia, Costa Rica.</p>
+<p>El responsable del tratamiento de los datos personales es 3-102-939601 SOCIEDAD DE RESPONSABILIDAD LIMITADA, cédula jurídica 3-102-939601, que opera comercialmente bajo el nombre de SmartCheck Costa Rica, con domicilio en <strong>San José, Costa Rica.</strong> <em>(Cambio decidido por Randall el 13-oct; el .docx decía Heredia.)</em></p>
 <p>Medios de contacto:</p>
 <ul>
 <li>Correo electrónico: smartcheckcr@gmail.com</li>
@@ -127,16 +134,20 @@ code{background:#f3f4f6;padding:0 .25rem;border-radius:.25rem}</style>
 <h3>Analítica web: PostHog</h3>
 <p>Este sitio utiliza <strong>PostHog</strong> como proveedor de analítica web, con servidores en Estados Unidos de América. Su finalidad es conocer cómo se usa el sitio y qué botones de contacto resultan útiles. PostHog mide:</p>
 <ul>
-<li>las páginas vistas y el tiempo que se permanece en cada página;</li>
+<li>las páginas vistas, el tiempo que se permanece en cada página y hasta dónde se baja en ella;</li>
 <li>los clics en los botones de WhatsApp, con el botón que se tocó y la página en que se encontraba;</li>
-<li>el tipo de navegador y de dispositivo; y</li>
-<li>el país aproximado desde el que se visita el sitio.</li>
+<li>datos técnicos del navegador y del dispositivo, como el navegador, el sistema operativo, el tamaño de la pantalla, el idioma y la zona horaria;</li>
+<li>la página desde la que se llegó al sitio y los parámetros de campaña de la dirección web; y</li>
+<li>la ubicación aproximada (país y ciudad o región).</li>
 </ul>
-<p>Esta analítica no utiliza cookies ni guarda información en su navegador, no crea perfiles de personas y no graba sesiones. La dirección IP se descarta y no se conserva. El identificador anónimo de visitante lo calcula el servidor de PostHog, sin que quede almacenado en su dispositivo. Los datos de esta medición se comunican a PostHog únicamente para prestar este servicio de analítica.</p>
-<p>Usted puede ejercer su derecho de oposición a esta medición por los canales indicados en la sección 11 de esta Política.</p>
+<p>Esta analítica no utiliza cookies ni guarda información en su navegador, no crea perfiles de personas y no graba sesiones. La dirección IP se descarta y no se conserva; solo se usa para estimar la ubicación aproximada. El identificador anónimo de visitante lo calcula el servidor de PostHog, sin que quede almacenado en su dispositivo. Los datos de esta medición se comunican a PostHog únicamente para prestar este servicio de analítica.</p>
+<p>Como los datos de esta medición no permiten identificarle, SmartCheck no puede asociarlos a una persona determinada. Si no desea que se mida su visita, puede evitarlo bloqueando los scripts de analítica en su navegador. Para consultas sobre este tema, puede utilizar los canales indicados en la sección 11 de esta Política.</p>
 <h3>Almacenamiento de Informes y fotografías: Convex</h3>
 <p>Los Informes y las fotografías de las inspecciones se guardan en <strong>Convex</strong>, un proveedor de base de datos con servidores en Estados Unidos de América. SmartCheck procurará que el acceso de ese proveedor se limite a lo necesario para prestar el servicio de almacenamiento, conforme a lo indicado en esta sección.</p>
 <p><strong>POR CONFIRMAR:</strong> la región de Convex (Estados Unidos de América) es inferida de la URL del deployment, no confirmada en el panel. Esta marca solo está en el borrador; la página publicada no la lleva.</p>
+<h3>Alojamiento del sitio y tipografía: Vercel y Google Fonts</h3>
+<p>El sitio está alojado en <strong>Vercel</strong>, un proveedor de alojamiento web con servidores en Estados Unidos de América. Vercel recibe la dirección IP y datos técnicos de cada visita al sitio, que quedan en sus registros de funcionamiento.</p>
+<p>La tipografía del sitio se carga desde los servidores de Google (<strong>Google Fonts</strong>). Por esta razón, Google recibe la dirección IP y los datos del navegador de quien visita el sitio.</p>
 <p><strong>NUEVO · fin del complemento</strong></p>
 </div>
 <h2>11. Cambios a esta Política y contacto</h2>
