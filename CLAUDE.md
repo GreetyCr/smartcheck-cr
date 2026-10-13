@@ -51,6 +51,8 @@ El blog usa el patron antiguo de Astro (no content collections): cada post es un
 
 **`vite.config.js` en la raiz es codigo muerto.** Astro no lee configs de Vite sueltos; la configuracion real de Vite esta en la clave `vite:` de `astro.config.mjs`. Tocar el de la raiz no hace nada.
 
+**PostHog solo carga si `PUBLIC_POSTHOG_KEY` esta en el entorno del build.** `src/components/PostHog.astro` (incluido en el `<head>` de `BaseLayout`) lee la clave de `import.meta.env`; sin clave no renderiza nada y el HTML no trae ni una linea de PostHog (`grep -rl posthog dist --include=*.html` da 0). Es una variable de build: se hornea en el HTML estatico, asi que cambiarla en Vercel exige un redeploy. La clave vive en Vercel solo en el entorno **Production**: los previews y el desarrollo local quedan apagados. Para probar en local, pasala en el comando (`PUBLIC_POSTHOG_KEY=phc_... npm run build`), no en un archivo commiteado (`.env.example` va vacio). Las opciones de `init` (sin cookies, sin perfiles, sin grabacion) son lo que dice la Politica de privacidad: no las cambies sin cambiar el texto legal.
+
 **`public/sw.js` nunca se registra** — no hay ningun `navigator.serviceWorker.register` en el proyecto. El `manifest.json` si esta enlazado desde `BaseLayout`.
 
 **`public/.htaccess`** (compresion + cache de Apache) es inerte en Vercel; sobrevive de un hosting anterior.
