@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es-CR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Borrador de la Política de Privacidad</title>
+<style>body{font-family:system-ui,-apple-system,Segoe UI,sans-serif;max-width:46rem;margin:2rem auto;padding:0 1rem;line-height:1.6;color:#1f2937}
+h1{color:#004AAD}h2{color:#004AAD;margin-top:2rem;border-bottom:1px solid #e5e7eb;padding-bottom:.25rem}h3{margin-top:1.25rem}
+blockquote{margin:1rem 0;padding:.5rem 1rem;background:#f3f4f6;border-left:4px solid #9ca3af}
+.nuevo{background:#fff8db;border:2px solid #FFB700;border-radius:.5rem;padding:.5rem 1.25rem;margin:1.5rem 0}
+code{background:#f3f4f6;padding:0 .25rem;border-radius:.25rem}</style>
+</head>
+<body>
+<h1>Borrador de la Política de Privacidad · para la revisión de Randall</h1>
+<p>Estado: borrador del 13 de octubre de 2026 (U2 del plan <code>docs/planes/2026-10-13-raiz.md</code>). No está publicado: la página <code>src/pages/politica-de-privacidad.astro</code> ya tiene este texto en la rama, pero nada se enciende hasta que Randall lo revise (U7).</p>
+<p>Fuente: <code>docs/legal/fuente/politica-2026-07.txt</code>, la Política del .docx que Esteban confirmó el 13 de octubre. Las 11 secciones están <strong>tal cual</strong>. Lo único que se agregó es el complemento de la sección 10, marcado abajo con el recuadro «NUEVO». La fecha de «Última actualización» pasa a ser el 13 de octubre de 2026.</p>
+<h2>1. Qué es nuevo respecto del .docx</h2>
+<p>Solo dos bloques, ambos dentro de la sección 10, que pide el complemento por sí sola («Si el sitio utiliza herramientas adicionales de seguimiento, analítica o publicidad, esta Política deberá complementarse»):</p>
+<ol>
+<li><strong>Analítica web: PostHog.</strong> Proveedor, servidores en EE. UU., qué mide, qué no hace (cookies, perfiles, grabación, IP) y el derecho de oposición por la sección 11.</li>
+<li><strong>Almacenamiento de Informes y fotografías: Convex.</strong> Proveedor de base de datos con servidores en EE. UU. <strong>La región es inferida</strong> (por confirmar, ver el punto 3).</li>
+</ol>
+<p>Además, solo en la versión publicada: un índice de anclas arriba y la fecha nueva. No hay ninguna frase que diga que no se comparten datos con terceros (la sección 6 del .docx dice cuándo sí se comunican, y el complemento dice que a PostHog se le comunican los datos de la medición).</p>
+<h2>2. Lo que en el .docx quedó desactualizado o falta frente al sitio real</h2>
+<p>El texto del .docx no se tocó. Esto es lo que Randall puede querer decidir con Esteban:</p>
+<ol>
+<li><strong>Proveedores del sitio sin nombrar.</strong> La sección 10 dice «alojamiento web» en general. El sitio carga la tipografía desde Google Fonts (<code>src/layouts/BaseLayout.astro</code> líneas 38 a 40 y <code>src/styles/global.css</code> línea 1), así que Google recibe la IP de quien visita. El alojamiento es Vercel (por el flujo de despliegue del <code>CLAUDE.md</code>). Ninguno está nombrado; el complemento cubre solo PostHog y Convex.</li>
+<li><strong>WhatsApp y redes sociales.</strong> Los enlaces de contacto del sitio llevan a WhatsApp (Meta) y el pie y la página de contacto a Facebook, Instagram y TikTok. La Política solo da el número como medio de contacto; no dice que al tocar el enlace se sale a un servicio de terceros con su propia política.</li>
+<li><strong>Oposición.</strong> La sección 8 enumera acceso, rectificación, actualización y supresión, pero no nombra la <strong>oposición</strong>. El complemento remite a la sección 11 para ejercerla, y la sección 8 no la menciona.</li>
+<li><strong>Boletín del blog.</strong> <code>src/pages/blog/index.astro</code> (líneas 231 a 246) muestra un formulario «Suscríbete a nuestro newsletter» que pide un correo. No tiene acción ni código que lo envíe (no hay <code>fetch(</code> en <code>src</code>), así que hoy no recoge nada. Si se conecta, la Política no cubre ese uso del correo ni su consentimiento (sección 4).</li>
+<li><strong>Plazo de conservación de los Informes.</strong> La sección 7 da cinco años para los datos de contacto, pero para Informes y fotografías (que viven en Convex) solo dice «los límites temporales establecidos por la normativa vigente», sin un plazo. La Política publicada hasta hoy decía «de forma indefinida».</li>
+<li><strong>Tratamiento fuera de Costa Rica.</strong> PostHog y Convex (y, sin nombrarse, Vercel y Google) están en EE. UU. El .docx no dice que los datos se traten fuera del país. Si hace falta decirlo o contar con una base específica es una consulta para Esteban o su abogada; yo no la resuelvo en el texto.</li>
+<li><strong>Consulta de placa.</strong> La Política publicada hasta hoy tenía una sección propia sobre datos de fuentes públicas por placa y cómo pedir su rectificación. El .docx la cubre solo en una viñeta de la sección 2 («Información consultada en fuentes oficiales…»).</li>
+</ol>
+<h2>3. Pendientes antes de publicar (de los que depende este texto)</h2>
+<ul>
+<li><strong>Convex, región:</strong> EE. UU. se infirió de la URL del deployment (<code>*.convex.cloud</code>, sin sufijo de región). Confirmar en el panel de Convex antes de U7.</li>
+<li><strong>IP descartada y sin cookies:</strong> son verdad solo cuando U5a deja en la cuenta de PostHog «Discard client IP data» y «Cookieless server hash mode» encendidos. El verificador lo mide (R4).</li>
+<li><strong>Qué mide:</strong> el texto cubre también el tiempo en cada página, porque la configuración de U3 manda el evento <code>$pageleave</code> al salir de la página.</li>
+<li><strong>No se afirmó:</strong> que el identificador de visitante rote cada día (sin verificar en la doc de PostHog), ni cuánto tiempo conserva PostHog los eventos.</li>
+</ul>
+<hr />
+<h1>Texto de la Política</h1>
+<blockquote>
+<p>Todo lo que está fuera de los recuadros «NUEVO» es el .docx tal cual. La página publicada agrega un índice de las 11 secciones arriba del texto.</p>
+</blockquote>
+<h2>POLÍTICA DE PRIVACIDAD</h2>
+<p>Última actualización: 13 de octubre de 2026</p>
+<p>La presente Política de Privacidad regula el tratamiento de los datos personales que se recopilan como consecuencia del uso del sitio web, la contratación y coordinación de los servicios de SmartCheck y la elaboración de informes de inspección de vehículos.</p>
+<p>Su finalidad es informar de manera clara qué datos se recopilan, para qué se utilizan, durante cuánto tiempo se conservan, en qué casos pueden ser compartidos y cuáles derechos pueden ejercer las personas titulares, de conformidad con la Ley N.° 8968 de Protección de la Persona frente al Tratamiento de sus Datos Personales y su Reglamento.</p>
+<h2>1. Responsable del tratamiento</h2>
+<p>El responsable del tratamiento de los datos personales es 3-102-939601 SOCIEDAD DE RESPONSABILIDAD LIMITADA, cédula jurídica 3-102-939601, que opera comercialmente bajo el nombre de SmartCheck Costa Rica, con domicilio en Heredia, Costa Rica.</p>
+<p>Medios de contacto:</p>
+<ul>
+<li>Correo electrónico: smartcheckcr@gmail.com</li>
+<li>Teléfono / WhatsApp: +506 8675-2713</li>
+<li>Sitio web: smartcheckcr.com</li>
+</ul>
+<h2>2. Datos que se pueden recopilar</h2>
+<p>Dependiendo del servicio solicitado, SmartCheck podrá recopilar:</p>
+<ul>
+<li>Nombre, teléfono, WhatsApp, correo electrónico y datos necesarios para identificar y contactar al cliente.</li>
+<li>Datos necesarios para la facturación y gestión del pago.</li>
+<li>Marca, modelo, año, placa, número de identificación vehicular cuando corresponda y demás datos técnicos del vehículo.</li>
+<li>Kilometraje observado, fotografías, videos, lecturas, códigos de diagnóstico y observaciones obtenidas durante la inspección.</li>
+<li>Datos mínimos del propietario, poseedor o encargado cuando el cliente no sea el dueño del vehículo y ello resulte necesario para coordinar o autorizar la inspección.</li>
+<li>Información consultada en fuentes oficiales o legítimamente accesibles cuando sea necesaria para complementar el servicio.</li>
+</ul>
+<p>Cuando un dato relacionado con el vehículo permita identificar directa o indirectamente a una persona física, SmartCheck lo tratará como dato personal y aplicará las reglas de protección correspondientes.</p>
+<h2>3. Para qué se utilizan los datos</h2>
+<p>Los datos podrán utilizarse para:</p>
+<ul>
+<li>Atender consultas, preparar cotizaciones y coordinar citas.</li>
+<li>Prestar el servicio de inspección y elaborar el Informe correspondiente.</li>
+<li>Contactar al cliente antes, durante y después de la prestación del servicio.</li>
+<li>Gestionar pagos, facturación, reclamos o consultas posteriores.</li>
+<li>Conservar respaldo técnico del servicio realizado y de los hallazgos observados en la fecha de inspección.</li>
+<li>Cumplir obligaciones legales, administrativas o judiciales.</li>
+<li>Mantener, cuando sea legalmente procedente, antecedentes técnicos de vehículos previamente inspeccionados.</li>
+<li>Ofrecer a un tercero un Informe Preexistente del mismo vehículo, siempre que se cumplan las reglas de protección de datos establecidas en esta Política.</li>
+</ul>
+<p>SmartCheck no utilizará los datos personales para finalidades distintas o incompatibles con aquellas informadas, salvo que exista una base legal suficiente o se obtenga el consentimiento adicional que corresponda.</p>
+<h2>4. Consentimiento</h2>
+<p>Cuando la legislación requiera consentimiento, este deberá ser libre, informado, específico e inequívoco. La persona deberá conocer previamente qué datos se recopilan, para qué se utilizarán y, cuando corresponda, si pueden ser comunicados a terceros.</p>
+<p>La aceptación de esta Política no implica una autorización general para utilizar los datos personales para cualquier finalidad futura.</p>
+<h2>5. Informes e información del vehículo</h2>
+<p>SmartCheck podrá conservar el Informe y la información técnica generada durante una inspección como respaldo del servicio, para atención de reclamos, control de calidad y trazabilidad de los hallazgos.</p>
+<p>La contratación de una inspección no autoriza a SmartCheck a vender o compartir libremente los datos personales del cliente.</p>
+<p>Si SmartCheck ofrece posteriormente a otra persona un Informe Preexistente relativo al mismo vehículo, deberá:</p>
+<ul>
+<li>Omitir los datos personales del cliente que originalmente contrató la inspección.</li>
+<li>Excluir datos personales de terceros que no sean necesarios para la finalidad del Informe.</li>
+<li>Indicar de manera clara la fecha en que se realizó la inspección original.</li>
+<li>No presentar el Informe como si reflejara necesariamente el estado actual del vehículo.</li>
+<li>Anonimizar o eliminar información personal cuando sea necesario.</li>
+<li>Obtener el consentimiento correspondiente cuando la transferencia de un dato personal lo requiera.</li>
+</ul>
+<p>SmartCheck podrá abstenerse de entregar un Informe Preexistente cuando no pueda separar adecuadamente la información personal o cuando su antigüedad o contenido pueda inducir a error.</p>
+<h2>6. Comunicación de datos a terceros</h2>
+<p>SmartCheck no comercializará los datos personales del cliente como producto independiente.</p>
+<p>Los datos personales únicamente podrán ser comunicados cuando:</p>
+<ul>
+<li>Sea necesario para prestar el servicio contratado.</li>
+<li>Un proveedor tecnológico o administrativo necesite acceso limitado para prestar un servicio a SmartCheck.</li>
+<li>Exista una obligación legal, administrativa o judicial.</li>
+<li>La persona titular haya dado el consentimiento requerido.</li>
+<li>Exista otro supuesto expresamente permitido por la legislación.</li>
+</ul>
+<p>Cuando la comunicación de datos personales a un tercero requiera consentimiento, SmartCheck deberá contar con dicho consentimiento antes de realizarla.</p>
+<h2>7. Conservación de la información</h2>
+<p>SmartCheck conservará los datos personales únicamente durante el tiempo necesario para cumplir las finalidades para las cuales fueron recopilados, atender obligaciones legales o responder a reclamos.</p>
+<p>Como criterio interno, los datos ordinarios de contacto y de la relación contractual podrán conservarse hasta por cinco años después del último servicio o interacción relevante, salvo que exista una razón legal que justifique otro plazo.</p>
+<p>Cuando un Informe o expediente técnico contenga datos personales capaces de afectar a su titular, SmartCheck aplicará los límites temporales establecidos por la normativa vigente. La información debidamente anonimizada podrá conservarse por un período mayor mientras no permita identificar razonablemente a una persona física.</p>
+<h2>8. Derechos de las personas titulares</h2>
+<p>Las personas titulares podrán ejercer los derechos reconocidos por la Ley N.° 8968, incluyendo solicitar acceso, rectificación, actualización o supresión de sus datos, así como conocer y controlar su eventual cesión o transferencia.</p>
+<p>Las solicitudes deberán enviarse a smartcheckcr@gmail.com e incluir información suficiente para identificar al solicitante y precisar qué dato o tratamiento desea revisar.</p>
+<p>SmartCheck atenderá las solicitudes dentro de los plazos establecidos por la normativa aplicable.</p>
+<h2>9. Seguridad y confidencialidad</h2>
+<p>SmartCheck adoptará medidas razonables para proteger la información contra pérdida, acceso no autorizado, alteración, divulgación indebida o uso contrario a las finalidades informadas.</p>
+<p>El acceso a los datos deberá limitarse a las personas o proveedores que lo necesiten para la prestación del servicio, quienes deberán mantener la confidencialidad correspondiente.</p>
+<h2>10. Herramientas tecnológicas y proveedores</h2>
+<p>SmartCheck podrá utilizar herramientas de mensajería, correo electrónico, almacenamiento, alojamiento web, facturación o procesamiento de pagos para prestar sus servicios.</p>
+<p>Cuando un proveedor tenga acceso a datos personales, SmartCheck deberá procurar que dicho acceso se limite a lo necesario y que la información se maneje bajo condiciones adecuadas de seguridad.</p>
+<p>Si el sitio utiliza herramientas adicionales de seguimiento, analítica o publicidad, esta Política deberá complementarse para informar su uso de manera adecuada.</p>
+<div class="nuevo">
+<p><strong>NUEVO respecto del .docx · inicio del complemento de la sección 10</strong></p>
+<h3>Analítica web: PostHog</h3>
+<p>Este sitio utiliza <strong>PostHog</strong> como proveedor de analítica web, con servidores en Estados Unidos de América. Su finalidad es conocer cómo se usa el sitio y qué botones de contacto resultan útiles. PostHog mide:</p>
+<ul>
+<li>las páginas vistas y el tiempo que se permanece en cada página;</li>
+<li>los clics en los botones de WhatsApp, con el botón que se tocó y la página en que se encontraba;</li>
+<li>el tipo de navegador y de dispositivo; y</li>
+<li>el país aproximado desde el que se visita el sitio.</li>
+</ul>
+<p>Esta analítica no utiliza cookies ni guarda información en su navegador, no crea perfiles de personas y no graba sesiones. La dirección IP se descarta y no se conserva. El identificador anónimo de visitante lo calcula el servidor de PostHog, sin que quede almacenado en su dispositivo. Los datos de esta medición se comunican a PostHog únicamente para prestar este servicio de analítica.</p>
+<p>Usted puede ejercer su derecho de oposición a esta medición por los canales indicados en la sección 11 de esta Política.</p>
+<h3>Almacenamiento de Informes y fotografías: Convex</h3>
+<p>Los Informes y las fotografías de las inspecciones se guardan en <strong>Convex</strong>, un proveedor de base de datos con servidores en Estados Unidos de América. SmartCheck procurará que el acceso de ese proveedor se limite a lo necesario para prestar el servicio de almacenamiento, conforme a lo indicado en esta sección.</p>
+<p><strong>POR CONFIRMAR:</strong> la región de Convex (Estados Unidos de América) es inferida de la URL del deployment, no confirmada en el panel. Esta marca solo está en el borrador; la página publicada no la lleva.</p>
+<p><strong>NUEVO · fin del complemento</strong></p>
+</div>
+<h2>11. Cambios a esta Política y contacto</h2>
+<p>SmartCheck podrá actualizar esta Política cuando cambie la legislación, los servicios ofrecidos o la forma en que se tratan los datos. La versión vigente deberá indicar su fecha de actualización.</p>
+<p>Para consultas relacionadas con privacidad o para ejercer derechos sobre datos personales, puede utilizarse el correo smartcheckcr@gmail.com o el teléfono / WhatsApp +506 8675-2713.</p>
+<p>Lo anterior no limita el derecho de la persona titular de acudir ante la Agencia de Protección de Datos de los Habitantes (PRODHAB) o ante las autoridades competentes.</p>
+</body>
+</html>
