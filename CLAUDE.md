@@ -47,7 +47,7 @@ El blog usa el patron antiguo de Astro (no content collections): cada post es un
 
 **El frontmatter de un `.md` llega como `Astro.props.frontmatter`, no como props sueltas.** `BlogPost.astro` lo desestructura desde ahi (`Astro.props.frontmatter ?? Astro.props`). Leerlo directo de `Astro.props` compila sin error pero deja `title`/`description` vacios: asi estuvieron los 4 articulos hasta el 2026-09-01. Al tocar ese layout, verificar el `<title>` en `dist/blog/<slug>/index.html`, no solo en el navegador.
 
-**`public/sitemap.xml` es manual** (no esta `@astrojs/sitemap`). Cada pagina o post nuevo hay que agregarlo a mano; todos los `lastmod` actuales dicen `2025-01-11`.
+**`public/sitemap.xml` es manual** (no esta `@astrojs/sitemap`). Cada pagina o post nuevo hay que agregarlo a mano; los `lastmod` se ponen a mano con la fecha de publicación de cada página que cambia (al 2026-10-13 dicen esa fecha).
 
 **`vite.config.js` en la raiz es codigo muerto.** Astro no lee configs de Vite sueltos; la configuracion real de Vite esta en la clave `vite:` de `astro.config.mjs`. Tocar el de la raiz no hace nada.
 
