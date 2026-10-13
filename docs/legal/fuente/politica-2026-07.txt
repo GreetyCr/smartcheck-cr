@@ -69,10 +69,9 @@ Si el sitio utiliza herramientas adicionales de seguimiento, analítica o public
 Este sitio utiliza PostHog como proveedor de analítica web, con servidores en Estados Unidos de América. Su finalidad es conocer cómo se usa el sitio y qué botones de contacto resultan útiles. PostHog mide:
 • las páginas vistas, el tiempo que se permanece en cada página y hasta dónde se baja en ella;
 • los clics en los botones de WhatsApp, con el botón que se tocó y la página en que se encontraba;
-• datos técnicos del navegador y del dispositivo, como el navegador, el sistema operativo, el tamaño de la pantalla, el idioma y la zona horaria;
-• la página desde la que se llegó al sitio y los parámetros de campaña de la dirección web; y
-• la ubicación aproximada (país y ciudad o región).
-Esta analítica no utiliza cookies ni guarda información en su navegador, no crea perfiles de personas y no graba sesiones. La dirección IP se descarta y no se conserva; solo se usa para estimar la ubicación aproximada. El identificador anónimo de visitante lo calcula el servidor de PostHog, sin que quede almacenado en su dispositivo. Los datos de esta medición se comunican a PostHog únicamente para prestar este servicio de analítica.
+• datos técnicos del navegador y del dispositivo, como el navegador, el sistema operativo, el tamaño de la pantalla, el idioma y la zona horaria; y
+• la página desde la que se llegó al sitio y los parámetros de campaña de la dirección web.
+Esta analítica no utiliza cookies ni guarda información en su navegador, no crea perfiles de personas y no graba sesiones. La dirección IP se descarta y no se conserva; solo se usa para calcular el identificador anónimo de visitante, y no se registra la ubicación. Ese identificador lo calcula el servidor de PostHog, sin que quede almacenado en su dispositivo. Los datos de esta medición se comunican a PostHog únicamente para prestar este servicio de analítica.
 Como los datos de esta medición no permiten identificarle, SmartCheck no puede asociarlos a una persona determinada. Si no desea que se mida su visita, puede evitarlo bloqueando los scripts de analítica en su navegador. Para consultas sobre este tema, puede utilizar los canales indicados en la sección 11 de esta Política.
 ### Almacenamiento de Informes y fotografías: Convex
 Los Informes y las fotografías de las inspecciones se guardan en Convex, un proveedor de base de datos con servidores en Estados Unidos de América. SmartCheck procurará que el acceso de ese proveedor se limite a lo necesario para prestar el servicio de almacenamiento, conforme a lo indicado en esta sección.

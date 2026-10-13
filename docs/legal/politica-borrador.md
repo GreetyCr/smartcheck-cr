@@ -2,7 +2,9 @@
 
 **Aprobado por Randall el 13-oct-2026.**
 
-Estado: borrador del 13 de octubre de 2026, vuelta 3 (U2 del plan `docs/planes/2026-10-13-raiz.md`), aprobado por Randall ese mismo día. No está publicado: la página `src/pages/politica-de-privacidad.astro` ya tiene este texto en la rama, pero nada se enciende hasta U7.
+Estado: borrador del 13 de octubre de 2026, vuelta 4 (U2 del plan `docs/planes/2026-10-13-raiz.md`), aprobado por Randall ese mismo día. No está publicado: la página `src/pages/politica-de-privacidad.astro` ya tiene este texto en la rama, pero nada se enciende hasta U7.
+
+**Vuelta 4 (13-oct):** se sacó de la sección 10 la ubicación aproximada (país y ciudad o región) de lo que mide PostHog, y la frase de que la IP «solo se usa para estimar la ubicación». Motivo: medido el 13-oct en los ajustes del proyecto de PostHog, con el modo sin cookies («Cookieless tracking») PostHog convierte la IP en un hash y la quita antes de las transformaciones, así que el GeoIP no agrega país ni ciudad a los eventos. Ahora el texto dice que la IP solo se usa para calcular el identificador anónimo, que se descarta y que no se registra la ubicación. Decisión de Randall (1a).
 
 Fuente: `docs/legal/fuente/politica-2026-07.txt`, la Política del .docx que Esteban confirmó el 13 de octubre. Las 11 secciones están **tal cual**, con un solo cambio decidido por Randall (el domicilio, punto 1 de abajo). Lo único que se agregó es el complemento de la sección 10, marcado abajo con el recuadro «NUEVO». La fecha de «Última actualización» pasa a ser el 13 de octubre de 2026.
 
@@ -14,7 +16,7 @@ Fuente: `docs/legal/fuente/politica-2026-07.txt`, la Política del .docx que Est
 
 **Nuevo, todo dentro de la sección 10**, que pide el complemento por sí sola («Si el sitio utiliza herramientas adicionales de seguimiento, analítica o publicidad, esta Política deberá complementarse»):
 
-1. **Analítica web: PostHog.** Proveedor, servidores en EE. UU., qué mide (páginas vistas, tiempo en cada página y hasta dónde se baja; clics a WhatsApp con botón y página; datos técnicos del navegador y del dispositivo; página de origen y parámetros de campaña; ubicación aproximada con ciudad o región), qué no hace (cookies, perfiles, grabación; la IP se descarta y solo sirve para estimar la ubicación) y la oposición.
+1. **Analítica web: PostHog.** Proveedor, servidores en EE. UU., qué mide (páginas vistas, tiempo en cada página y hasta dónde se baja; clics a WhatsApp con botón y página; datos técnicos del navegador y del dispositivo; página de origen y parámetros de campaña; sin ubicación, ver vuelta 4), qué no hace (cookies, perfiles, grabación; la IP se descarta y solo sirve para calcular el identificador anónimo) y la oposición.
 2. **Oposición, sin prometer lo que no se puede cumplir.** No hay mecanismo de opt-out y los datos no identifican a la persona. El texto dice que, como no permiten identificarle, SmartCheck no puede asociarlos a una persona; que quien no quiera ser medido puede bloquear los scripts de analítica en su navegador; y que las consultas van por los canales de la sección 11.
 3. **Almacenamiento de Informes y fotografías: Convex.** Proveedor de base de datos con servidores en EE. UU. (región confirmada por Randall el 13-oct).
 4. **Alojamiento y tipografía: Vercel y Google Fonts** (decisión de Randall del 13-oct). Vercel aloja el sitio, en EE. UU., y recibe la IP y datos técnicos de cada visita en sus registros. Google recibe la IP y los datos del navegador porque la tipografía se carga desde sus servidores.
@@ -36,7 +38,7 @@ El texto del .docx no se tocó. Esto es lo que Randall puede querer decidir con 
 ## 3. Pendientes antes de publicar (de los que depende este texto)
 
 - **IP descartada y sin cookies:** son verdad solo cuando U5a deja en la cuenta de PostHog «Discard client IP data» y «Cookieless server hash mode» encendidos. El verificador lo mide (R4).
-- **Qué mide:** el texto cubre el tiempo en cada página (evento `$pageleave` de la configuración de U3) y, según la revisión, los datos técnicos, la página de origen, los parámetros de campaña, hasta dónde se baja y la ubicación con ciudad o región. Si U3 cambia la configuración, hay que releer esa lista.
+- **Qué mide:** el texto cubre el tiempo en cada página (evento `$pageleave` de la configuración de U3) y, según la revisión, los datos técnicos, la página de origen, los parámetros de campaña, hasta dónde se baja. La ubicación ya no se menciona (vuelta 4). Si U3 cambia la configuración, hay que releer esa lista.
 - **Vercel, EE. UU.:** es la decisión de Randall. Vercel sirve el sitio desde una red de servidores distribuida, así que la ubicación exacta de los registros no está verificada.
 - **No se afirmó:** que el identificador de visitante rote cada día (sin verificar en la doc de PostHog), ni cuánto tiempo conserva PostHog los eventos.
 
@@ -169,11 +171,10 @@ Este sitio utiliza **PostHog** como proveedor de analítica web, con servidores 
 
 - las páginas vistas, el tiempo que se permanece en cada página y hasta dónde se baja en ella;
 - los clics en los botones de WhatsApp, con el botón que se tocó y la página en que se encontraba;
-- datos técnicos del navegador y del dispositivo, como el navegador, el sistema operativo, el tamaño de la pantalla, el idioma y la zona horaria;
-- la página desde la que se llegó al sitio y los parámetros de campaña de la dirección web; y
-- la ubicación aproximada (país y ciudad o región).
+- datos técnicos del navegador y del dispositivo, como el navegador, el sistema operativo, el tamaño de la pantalla, el idioma y la zona horaria; y
+- la página desde la que se llegó al sitio y los parámetros de campaña de la dirección web.
 
-Esta analítica no utiliza cookies ni guarda información en su navegador, no crea perfiles de personas y no graba sesiones. La dirección IP se descarta y no se conserva; solo se usa para estimar la ubicación aproximada. El identificador anónimo de visitante lo calcula el servidor de PostHog, sin que quede almacenado en su dispositivo. Los datos de esta medición se comunican a PostHog únicamente para prestar este servicio de analítica.
+Esta analítica no utiliza cookies ni guarda información en su navegador, no crea perfiles de personas y no graba sesiones. La dirección IP se descarta y no se conserva; solo se usa para calcular el identificador anónimo de visitante, y no se registra la ubicación. Ese identificador lo calcula el servidor de PostHog, sin que quede almacenado en su dispositivo. Los datos de esta medición se comunican a PostHog únicamente para prestar este servicio de analítica.
 
 Como los datos de esta medición no permiten identificarle, SmartCheck no puede asociarlos a una persona determinada. Si no desea que se mida su visita, puede evitarlo bloqueando los scripts de analítica en su navegador. Para consultas sobre este tema, puede utilizar los canales indicados en la sección 11 de esta Política.
 
