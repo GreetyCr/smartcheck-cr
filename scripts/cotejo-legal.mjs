@@ -19,6 +19,10 @@
 //      de ul, li y ol, contra lo que se deduce de la fuente: títulos «N. …» = h2,
 //      «N.N. …» = h3, y cada corrida de viñetas «•» o incisos «a)» = un ul con un li por
 //      ítem. Un h2 convertido en p, o una lista en párrafos, da diferencia.
+//      Subtítulo sin número: una línea de la fuente que empieza con «### » es un h3. El
+//      script quita esos tres caracteres y el espacio antes de comparar el texto (la marca
+//      no es parte del texto de la Política) y compara el resto de la línea con el texto
+//      del h3 de la página, en el mismo orden que los h3 numerados.
 //   4. Contacto: cada href mailto: debe ser un correo de la fuente y cada tel: debe ser
 //      un teléfono de la fuente, por dígitos completos (incluido el 506). En el texto, el
 //      teléfono se compara solo por dígitos (+506 8675-2713 = +506 8675 2713).
@@ -148,7 +152,9 @@ const lineas = fuenteCruda.replace(/\f/g, '').split('\n');
 const iTitulo = lineas.findIndex((l) => l.trim() !== '');
 const lineasCuerpo = lineas.slice(iTitulo + 1);
 const tituloFuente = normalizar(lineas[iTitulo]);
-const cuerpoFuente = normalizar(lineasCuerpo.join('\n'));
+// «### » marca un subtítulo sin número (h3); la marca no es texto de la fuente.
+const MARCA_H3 = /^###[ \t]+/;
+const cuerpoFuente = normalizar(lineasCuerpo.map((l) => l.replace(MARCA_H3, '')).join('\n'));
 const h1 = /<h1\b[^>]*>([\s\S]*?)<\/h1>/i.exec(html);
 const tituloHtml = h1 ? normalizar(aTexto(h1[1])) : '';
 
@@ -246,6 +252,11 @@ function estructuraDeFuente(ls) {
   for (const l of ls) {
     const t = l.trim();
     if (t === '') {
+      enLista = false;
+      continue;
+    }
+    if (MARCA_H3.test(l)) {
+      h3.push(normalizar(l.replace(MARCA_H3, '')));
       enLista = false;
       continue;
     }
