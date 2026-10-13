@@ -5,7 +5,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 const faqs = [
   {
     q: '¿Qué incluye la inspección de vehículos?',
-    a: 'La revisión cubre más de 230 puntos del vehículo, incluyendo sistemas mecánicos (motor, transmisión, frenos), sistemas eléctricos y electrónicos, inspección estructural y de carrocería, verificación de documentación legal y una prueba de carretera completa.',
+    a: 'La revisión cubre hasta 230 puntos del vehículo, según el tipo de vehículo y el servicio contratado, incluyendo sistemas mecánicos (motor, transmisión, frenos), sistemas eléctricos y electrónicos, inspección estructural y de carrocería, verificación de documentación legal y una prueba de carretera completa.',
   },
   {
     q: '¿Dónde se realiza la inspección?',
@@ -17,11 +17,11 @@ const faqs = [
   },
   {
     q: '¿Qué pasa si el vendedor no permite la revisión?',
-    a: 'Si el vendedor no permite la revisión, no se otorga reembolso automático. Podés cancelar siguiendo nuestras políticas: con más de 24 horas de anticipación obtenés devolución del 25% o podés reagendar sin penalización.',
+    a: 'Si no se permite el acceso al vehículo o no hay condiciones para hacer la revisión por una causa atribuible a vos (por ejemplo, que el vendedor no la deje hacer), se aplica la regla de cancelación con menos de 12 horas: no hay devolución y podés reprogramar, sujeto a disponibilidad, pagando un 25% adicional del precio del servicio. Pueden existir circunstancias que justifiquen un tratamiento distinto.',
   },
   {
     q: '¿Puedo reprogramar o cancelar la inspección?',
-    a: 'Sí. Con más de 24 horas de anticipación: devolución del 25% o reagendás sin penalización. Entre 12 y 24 horas: no hay devolución, pero podés reagendar sin penalización. Con menos de 12 horas: no hay devolución y podés reagendar con una penalización del 25%.',
+    a: 'Sí. Con más de 24 horas de anticipación: reprogramás una vez sin penalización, sujeto a disponibilidad, o pedís la devolución del 50% de lo pagado. Entre 12 y 24 horas: reprogramás una vez sin penalización, sujeto a disponibilidad, o pedís la devolución del 50% de lo pagado. Con menos de 12 horas: no hay devolución por cancelación voluntaria, y podés reprogramar, sujeto a disponibilidad, pagando un 25% adicional del precio del servicio.',
   },
 ];
 
@@ -99,7 +99,7 @@ const faqSchema = {
         <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300">
           <div class="px-6 pb-5">
             <p class="text-gray-700 leading-relaxed">
-              La revisión cubre más de 230 puntos del vehículo, incluyendo:
+              La revisión cubre hasta 230 puntos del vehículo, según el tipo de vehículo y el servicio contratado, incluyendo:
             </p>
             <ul class="mt-3 space-y-1 list-disc list-inside text-gray-700 ml-4">
               <li>Sistemas mecánicos (motor, transmisión, frenos)</li>
@@ -175,7 +175,7 @@ const faqSchema = {
         <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300">
           <div class="px-6 pb-5">
             <p class="text-gray-700 leading-relaxed">
-              Si el vendedor no permite la revisión, no se otorga reembolso automático. Sin embargo, podés cancelar siguiendo nuestras políticas estándar: con más de 24 horas de anticipación obtenés devolución del 25% o podés reagendar sin penalización.
+              Si no se permite el acceso al vehículo o no hay condiciones para hacer la revisión por una causa atribuible a vos (por ejemplo, que el vendedor no la deje hacer), se aplica la regla de cancelación con menos de 12 horas: no hay devolución y podés reprogramar, sujeto a disponibilidad, pagando un 25% adicional del precio del servicio. Pueden existir circunstancias que justifiquen un tratamiento distinto.
             </p>
           </div>
         </div>
@@ -197,9 +197,9 @@ const faqSchema = {
               Sí, tenés opciones de reprogramación y cancelación según el tiempo de anticipación:
             </p>
             <ul class="mt-3 space-y-1 list-disc list-inside text-gray-700 ml-4">
-              <li><strong>Con más de 24 horas:</strong> Devolución del 25% o reagendas sin penalización</li>
-              <li><strong>Entre 12 y 24 horas:</strong> No hay devolución, pero podés reagendar sin penalización</li>
-              <li><strong>Con menos de 12 horas:</strong> No hay devolución; podés reagendar con una penalización del 25%</li>
+              <li><strong>Con más de 24 horas:</strong> Reprogramás una vez sin penalización, sujeto a disponibilidad, o pedís la devolución del 50% de lo pagado</li>
+              <li><strong>Entre 12 y 24 horas:</strong> Reprogramás una vez sin penalización, sujeto a disponibilidad, o pedís la devolución del 50% de lo pagado</li>
+              <li><strong>Con menos de 12 horas:</strong> No hay devolución por cancelación voluntaria; podés reprogramar, sujeto a disponibilidad, pagando un 25% adicional del precio del servicio</li>
             </ul>
           </div>
         </div>
