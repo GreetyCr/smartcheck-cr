@@ -1,0 +1,448 @@
+<!doctype html><html lang='es-CR'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>Plan legales y PostHog</title><style>:root{--bg:#fff;--fg:#1d1d1f;--mut:#666;--line:#ddd;--acc:#004AAD;--code:#f4f4f6}
+@media (prefers-color-scheme:dark){:root{--bg:#161618;--fg:#ececec;--mut:#aaa;--line:#333;--acc:#7fb0ff;--code:#222226}}
+body{background:var(--bg);color:var(--fg);font:16px/1.6 -apple-system,system-ui,sans-serif;max-width:860px;margin:0 auto;padding:24px 16px}
+h1,h2,h3{line-height:1.25}h2{border-bottom:1px solid var(--line);padding-bottom:4px;margin-top:2em;color:var(--acc)}
+table{border-collapse:collapse;width:100%;display:block;overflow-x:auto}td,th{border:1px solid var(--line);padding:6px 8px;vertical-align:top}
+code{background:var(--code);padding:1px 4px;border-radius:4px;font-size:.9em}pre{background:var(--code);padding:12px;overflow-x:auto}
+blockquote{border-left:3px solid var(--acc);margin:0;padding-left:12px;color:var(--mut)}</style></head><body><h1>Plan · SmartCheck CR · legales de octubre + PostHog</h1>
+<blockquote>
+<p>Esqueleto aprobado (1a) el 13-oct, en <code>docs/esqueletos/2026-10-13-raiz.md</code>, con dos cambios de Randall: U6 entra (2a) y U0 ya está hecha. Nodo <code>raiz</code>: el repo no tiene árbol y este es su primer plan.</p>
+</blockquote>
+<h2>Resumen (para aprobar sin leer el resto)</h2>
+<p><strong>Qué se construye.</strong> Se publican el T&amp;C de octubre tal cual (25 cláusulas) y la Política nueva, que dice la verdad sobre lo que mide PostHog. El resto del sitio se alinea con octubre: «hasta 230 puntos», la FAQ con su JSON-LD y el bloque «Garantía». PostHog se integra sin cookies, sin perfiles y sin grabación, y con un evento <code>whatsapp_click</code> que dice el botón y la página. Mientras Vercel no tenga la clave, PostHog queda apagado.</p>
+<p><strong>Lo mínimo: 9,3 h de trabajo (estimación).</strong> U0b, U1, U2, U3, U4, U5a, U6 y U7. <strong>Lo que protege: 0,6 h (estimación).</strong> U5b (2FA y una cuenta propia para Randall en PostHog) y U8 (sacar «garantizar» de dos textos de venta). <strong>Total: 9,8 h de trabajo</strong>, todo estimado. Avance = unidades verificadas sobre 11 (U0 ya cuenta como hecha).</p>
+<p><strong>Orden.</strong> U0 (hecha) → U0b → { U1 ∥ U2 ∥ U3 ∥ U6 } → U4 (necesita U3 y U6, porque toca las mismas 6 páginas que U6) → U7 (encender). U5a la hace Randall cuando quiera, pero antes de verificar U3 y U4. U7 no corre sin U5a hecha y sin U2 revisada por Randall.</p>
+<p><strong>Preguntas, respondidas por Randall el 13-oct.</strong></p>
+<ul>
+<li><strong>Esteban:</strong>
+  1. El PDF de octubre es la versión final y reemplaza al .docx de Términos. Quedan resueltas la 12.1 (50 %) y la sección 5.
+  2. Se publica la Política del .docx (la que se le envió). Si le falta algo o algo quedó desactualizado, el borrador de U2 va a Randall para revisarlo antes de publicar.
+  3. Autoriza todo lo necesario en su PostHog («Haga todo lo que necesita»). La cuenta es la que dio para este trabajo y el 2FA va con el autenticador de Randall.</li>
+<li><strong>Abogada:</strong> no hay más consultas. Esteban da por buena la Política y la analítica tal como están. La aprobación de U2 pasa a ser la revisión de Randall del borrador.</li>
+<li><strong>Randall:</strong> los Informes y las fotos de la PWA se guardan en Convex, con la base a nombre de Esteban y la cuenta de correo de Randall. Región: EE. UU., inferida de la URL del deployment sin sufijo de región (<code>*.convex.cloud</code>); se confirma en el panel de Convex antes de U7.</li>
+</ul>
+<p><strong>Supuestos sin verificar.</strong></p>
+<ul>
+<li>Que el hash de visitantes de PostHog rota cada día, así que los únicos no se comparan entre días. La página que lo explicaba dio 404 el 13-oct.</li>
+<li>Que <code>advanced_disable_flags</code> o el código le ganan a la grabación y al autocapture que tiene encendidos el proyecto. La doc no dice qué gana, y por eso existe U5a.</li>
+</ul>
+<p><strong>Guías.</strong> Ninguna aplica: las únicas son <code>app-pwa</code> y <code>panel-de-datos</code>, y no hay guía de sitio web ni de texto legal. Se trabaja con el núcleo.</p>
+<h2>La puerta</h2>
+<h3>1. El arranque: la U0</h3>
+<p><strong>Sobre un proyecto que ya existe.</strong> No hay árbol ni esquema: es un sitio estático sin base de datos. La U0 fue dejar la rama <code>feat/legal-pages-seo-jsonld</code> (PR #1, base <code>main</code>) al día en origin, y <strong>está hecha</strong>: <code>51c4d91</code> se subió el 13-oct. Las unidades salen de esa rama en worktrees, y la sesión principal las integra a ella. Como hay un solo nodo, el paralelo se decide por archivos que no se cruzan (decisión propuesta: la regla «ramas distintas» no tiene cómo aplicarse con un solo nodo).</p>
+<h3>2. Unidades y archivos</h3>
+<table>
+<thead>
+<tr>
+<th>Unidad</th>
+<th>Qué hace</th>
+<th>Rama dueña</th>
+<th>Quién la construye</th>
+<th>Archivos que le tocan</th>
+<th>KB de código</th>
+<th>Contrato</th>
+<th>Datos de DEV</th>
+<th>Estimación (h de trabajo)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>U0</td>
+<td>Push de <code>51c4d91</code></td>
+<td>raiz</td>
+<td>sesión principal</td>
+<td>—</td>
+<td>0</td>
+<td>no aplica</td>
+<td>no aplica</td>
+<td><strong>hecha</strong> 13-oct</td>
+</tr>
+<tr>
+<td>U0b</td>
+<td>Pasar las fuentes al repo: el texto del PDF (<code>pdftotext</code>) a <code>docs/legal/fuente/tyc-2026-10.txt</code> y el cuerpo de la Política del .docx, <strong>sin</strong> «Cambios y recomendaciones principales», a <code>docs/legal/fuente/politica-2026-07.txt</code></td>
+<td>raiz</td>
+<td>sesión principal: lee fuera del repo (WhatsApp y <code>~/Downloads</code>)</td>
+<td><code>docs/legal/fuente/*</code></td>
+<td>~30 KB de texto</td>
+<td>no aplica</td>
+<td>no aplica</td>
+<td>0,25</td>
+</tr>
+<tr>
+<td>U1</td>
+<td>Términos = PDF de octubre, cláusula por cláusula, con índice de anclas arriba (25 <code>h2</code> con <code>id</code>, incisos 12.1 a 12.6, 5 a) a f)). <code>lastUpdated</code> = fecha de publicación (decisión propuesta: el PDF no trae fecha y la cl. 23 la exige). Entrega <code>scripts/cotejo-legal.mjs</code>, que compara el texto de <code>dist/</code> con la fuente y cuenta diferencias</td>
+<td>raiz</td>
+<td>constructor</td>
+<td><code>src/pages/terminos-y-condiciones.astro</code>, <code>scripts/cotejo-legal.mjs</code></td>
+<td>~16</td>
+<td>no aplica</td>
+<td>la fuente de U0b</td>
+<td>2</td>
+</tr>
+<tr>
+<td>U2</td>
+<td>Política = .docx de julio (11 secciones, con índice de anclas) + un complemento en su sec. 10: PostHog como proveedor de analítica en EE. UU.; qué mide (páginas vistas, clics a WhatsApp, navegador, dispositivo y país aproximado); sin cookies ni almacenamiento local; sin perfiles, sin grabación; IP descartada; hash calculado en el servidor de PostHog. Se cae la frase «no compartimos con terceros» (sec. 7 de hoy). Borrador para la revisión de Randall en <code>docs/legal/politica-borrador.md</code> + <code>.html</code>, con lo que cambió respecto del .docx marcado</td>
+<td>raiz</td>
+<td>constructor</td>
+<td><code>src/pages/politica-de-privacidad.astro</code>, <code>docs/legal/politica-borrador.{md,html}</code></td>
+<td>~9</td>
+<td>no aplica</td>
+<td>la fuente de U0b</td>
+<td>2,5</td>
+</tr>
+<tr>
+<td>U3</td>
+<td><code>src/components/PostHog.astro</code>: lee <code>PUBLIC_POSTHOG_KEY</code> en el frontmatter. <strong>Sin clave no renderiza nada.</strong> Con clave, carga el snippet <code>is:inline</code> + <code>define:vars</code> (así lo recomienda la doc de Astro de PostHog) con <code>api_host</code> US, <code>cookieless_mode: "always"</code>, <code>person_profiles: "never"</code>, <code>autocapture: false</code>, <code>disable_session_recording: true</code>, <code>capture_dead_clicks: false</code>, <code>capture_heatmaps: false</code>, <code>disable_surveys: true</code>, <code>capture_pageview: true</code>. Una línea en <code>BaseLayout</code>, <code>.env.example</code> y una trampa nueva en <code>CLAUDE.md</code></td>
+<td>raiz</td>
+<td>constructor</td>
+<td><code>src/components/PostHog.astro</code> (nuevo), <code>src/layouts/BaseLayout.astro</code> (1 línea), <code>.env.example</code>, <code>CLAUDE.md</code></td>
+<td>~18</td>
+<td>aditivo: expone <code>window.posthog</code></td>
+<td>clave pública en el entorno local</td>
+<td>1</td>
+</tr>
+<tr>
+<td>U4</td>
+<td><code>data-wa-boton="{id}"</code> en los 12 enlaces de contacto (ids únicos por página) y un solo listener delegado en <code>PostHog.astro</code> que hace <code>capture('whatsapp_click', {boton, pagina}, {transport: 'sendBeacon', send_instantly: true})</code>. Nunca hace <code>preventDefault</code>. El botón «compartir» del blog queda afuera (decisión propuesta: no es un contacto)</td>
+<td>raiz</td>
+<td>constructor</td>
+<td><code>index</code>, <code>preguntas-frecuentes</code>, <code>metodos-de-pago</code>, <code>contacto</code>, <code>sobre-nosotros</code>, <code>servicios</code> (.astro), <code>src/components/PostHog.astro</code></td>
+<td>~120 entre todos, pero cambia 12 atributos y ~20 líneas</td>
+<td>usa el de U3</td>
+<td>no aplica</td>
+<td>1</td>
+</tr>
+<tr>
+<td>U5a</td>
+<td>Cuenta PostHog: encender «Cookieless server hash mode» (Project Settings &gt; Web analytics, que la doc pide para el cookieless), apagar session replay y autocapture, encender «Discard client IP data». Deja capturas</td>
+<td>raiz</td>
+<td><strong>Randall</strong>, con el OK de Esteban: es la cuenta del cliente y se hace en el navegador</td>
+<td>ninguno</td>
+<td>0</td>
+<td>no aplica</td>
+<td>no aplica</td>
+<td>0,5</td>
+</tr>
+<tr>
+<td>U6</td>
+<td>Alinear con octubre. (a) «más de 230 / 230+» → «hasta 230 puntos» en los 10 lugares de fuera del T&amp;C. (b) FAQ, el arreglo <code>faqs</code> (que alimenta el JSON-LD) y el HTML de las preguntas 4 y 5: 50 % / 50 % / sin devolución + 25 % (cl. 12.1 a 12.3); vendedor que no deja revisar = cl. 12.4. (c) El bloque «Garantía» de <code>metodos-de-pago</code> pasa a llamarse «Si no podemos hacerla» y sigue la 12.5. (d) El contador del index</td>
+<td>raiz</td>
+<td>constructor</td>
+<td><code>index</code>, <code>preguntas-frecuentes</code>, <code>metodos-de-pago</code>, <code>contacto</code>, <code>sobre-nosotros</code>, <code>servicios</code> (.astro)</td>
+<td>~118 de archivos, ~25 líneas cambiadas</td>
+<td>no aplica</td>
+<td>no aplica</td>
+<td>1,5</td>
+</tr>
+<tr>
+<td>U7</td>
+<td>Encender: con U2 revisada por Randall, U5a hecha y el verificador en verde, cargar <code>PUBLIC_POSTHOG_KEY</code> <strong>solo en Production</strong> de Vercel, fusionar el PR #1 y mirar Live events en PROD</td>
+<td>raiz</td>
+<td>sesión principal: es la costura con Vercel y con la cuenta</td>
+<td>ninguno</td>
+<td>0</td>
+<td>no aplica</td>
+<td>no aplica</td>
+<td>0,5</td>
+</tr>
+<tr>
+<td>U5b</td>
+<td><em>Protege.</em> 2FA en la cuenta (con el teléfono de Esteban) e invitar una cuenta de trabajo de Randall como Admin, para no operar con la sesión del cliente</td>
+<td>raiz</td>
+<td>Randall con Esteban</td>
+<td>ninguno</td>
+<td>0</td>
+<td>no aplica</td>
+<td>no aplica</td>
+<td>0,25</td>
+</tr>
+<tr>
+<td>U8</td>
+<td><em>Protege.</em> «para garantizar un diagnóstico preciso» (<code>servicios</code>:56) y «garantizar evaluaciones exactas» (<code>sobre-nosotros</code>:208) chocan con la cl. 5, «no constituye garantía». Se reescriben sin prometer</td>
+<td>raiz</td>
+<td>constructor, en fila después de U6 (mismos archivos)</td>
+<td><code>servicios.astro</code>, <code>sobre-nosotros.astro</code></td>
+<td>2 líneas</td>
+<td>no aplica</td>
+<td>no aplica</td>
+<td>0,3</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>En paralelo:</strong> U1, U2, U3 y U6, que no comparten archivos. <strong>En fila:</strong> U4 y U8 van después de U6 (mismas páginas), y U4 también después de U3 (<code>PostHog.astro</code>).</li>
+<li><strong>Unidades que salen del worktree:</strong> U0b (lee WhatsApp y <code>~/Downloads</code>) y U7 (Vercel) las hace la sesión principal. U5a y U5b las hace Randall en el navegador. La medición en el navegador es del verificador, nunca del constructor.</li>
+<li><strong>Tamaño:</strong> U4 y U6 tocan archivos de ~120 KB entre todos, por encima del techo de 60 KB, pero cambian unas 25 líneas. La orden les manda la lista de líneas (las de §4) y no los archivos enteros. No se parten.</li>
+<li><strong>Costuras:</strong> no aplica, hay un solo nodo. U7 hace de costura con Vercel. <strong>Archivos imán:</strong> no aplica, no hay generador ni árbol.</li>
+</ul>
+<h3>3. Dueño por tabla</h3>
+<p>No aplica: el sitio es estático, sin base de datos. Lo más parecido a un dato compartido es el proyecto de PostHog, y su dueño es Esteban: solo U5a y U5b lo tocan, y solo con su OK.</p>
+<h3>4. Criterio de aceptación</h3>
+<table>
+<thead>
+<tr>
+<th>Requerimiento</th>
+<th>Se cumple cuando</th>
+<th>Quién lo comprueba</th>
+<th>Cifra: definición, universo, comando</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>R1 T&amp;C = octubre</td>
+<td>25 <code>h2</code> numerados como el PDF. <code>node scripts/cotejo-legal.mjs terminos</code> da 0 diferencias de texto contra la fuente, sin contar los datos de contacto, que ya son los del sitio. «Última actualización» con fecha. Bordes: incisos 12.1 a 12.6 y 5 a) a f) completos, «Informe Preexistente» en la 3 y la 16, «videos» en la 8</td>
+<td>U1, con su script</td>
+<td>25 = <code>grep -c '&lt;h2 id=' src/pages/terminos-y-condiciones.astro</code></td>
+</tr>
+<tr>
+<td>R2 Política verdadera</td>
+<td>El texto publicado es igual al que revisó Randall (el cotejo da 0). Nombra a PostHog, EE. UU., sin cookies, sin perfiles, sin grabación. No dice que no se comparten datos con terceros. No incluye «Cambios y recomendaciones»</td>
+<td>U2 + revisión de Randall; el cotejo corre en U7 con el script de U1, así U2 no espera a U1</td>
+<td><code>grep -ci "posthog" dist/politica-de-privacidad/index.html</code> ≥ 1; <code>grep -c "Recomendaciones" …</code> = 0</td>
+</tr>
+<tr>
+<td>R3 Sin clave, apagado</td>
+<td>Si se construye sin <code>PUBLIC_POSTHOG_KEY</code>, no queda rastro de PostHog</td>
+<td>U3</td>
+<td><code>grep -rl posthog dist --include=*.html \| wc -l</code> = 0</td>
+</tr>
+<tr>
+<td>R4 Sin cookies ni grabación</td>
+<td>Con clave, en el navegador: <code>document.cookie</code> vacío, ninguna llave <code>ph_</code> en local ni en session storage, cero pedidos al endpoint de grabación (<code>/s/</code>) y cero eventos <code>$autocapture</code> y <code>$snapshot</code> en Live events</td>
+<td>verificador, sobre U3 (con U5a hecha)</td>
+<td>—</td>
+</tr>
+<tr>
+<td>R5 Evento WhatsApp</td>
+<td>Los 12 enlaces llevan <code>data-wa-boton</code> único en su página. Tocar cada uno abre WhatsApp y deja un <code>whatsapp_click</code> con <code>boton</code> y <code>pagina</code>, también cuando el enlace abre en la misma pestaña. Si PostHog está bloqueado, el enlace funciona igual</td>
+<td>U4 (atributos); verificador (navegador)</td>
+<td>universo 12 = <code>grep -rn -E "wa\.me/[0-9]" src \| wc -l</code>; atributos 12 = <code>grep -ro "data-wa-boton" src/pages \| wc -l</code></td>
+</tr>
+<tr>
+<td>R6 «Hasta 230»</td>
+<td>No queda ningún «más de 230» ni «230+». Después del scroll, el contador del index se lee «Hasta 230», no «230+» ni «NaN+» (ver §5)</td>
+<td>U6; verificador (contador, a 375 px)</td>
+<td>antes 10 = <code>grep -rn -E "230 ?puntos\|230\+" src/pages \| grep -v terminos \| wc -l</code>; después 0 con esa misma búsqueda, y 10 con <code>grep -rni "hasta 230" src/pages \| grep -v terminos</code></td>
+</tr>
+<tr>
+<td>R7 FAQ = 12.1 a 12.5</td>
+<td>El texto visible y el JSON-LD dicen lo mismo y siguen octubre. Ningún «25%» de devolución con más de 24 h</td>
+<td>U6</td>
+<td>JSON-LD sacado de <code>dist/preguntas-frecuentes/index.html</code>: <code>grep -c "Devolución del 25%"</code> = 0</td>
+</tr>
+<tr>
+<td>R8 Sin «Garantía»</td>
+<td><code>metodos-de-pago</code> no promete garantía, y su texto sigue la 12.5</td>
+<td>U6</td>
+<td><code>grep -c "&gt;Garantía&lt;" src/pages/metodos-de-pago.astro</code> = 0</td>
+</tr>
+<tr>
+<td>R9 Cuenta alineada</td>
+<td>Capturas con cookieless server hash, replay y autocapture apagados e IP descartada</td>
+<td>U5a</td>
+<td>—</td>
+</tr>
+<tr>
+<td>R10 Nada se enciende antes de tiempo</td>
+<td>Production tiene la clave solo después de R2 revisado y R9</td>
+<td>U7</td>
+<td>—</td>
+</tr>
+<tr>
+<td>R11 El build pasa</td>
+<td><code>npm run astro -- check</code> en 0 errores y <code>npm run build</code> limpio</td>
+<td>cada unidad de código</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p><strong>La cifra que ve Esteban: clics a WhatsApp, por botón y por página.</strong> Es un evento por cada toque a uno de los 12 enlaces de contacto. <strong>No</strong> cuenta mensajes enviados: alguien puede tocar y no escribir. El universo son las visitas que cargaron PostHog, así que es un piso: quedan fuera quien bloquea scripts o anuncios. Los visitantes únicos son aproximados (hash del servidor). Lo reproduce el insight Trends de <code>whatsapp_click</code> desglosado por <code>boton</code>, o <code>select properties.boton, properties.pagina, count() from events where event = 'whatsapp_click' group by 1, 2</code>. <strong>Qué hace Esteban con ella:</strong> decidir qué botones y páginas mueven contactos, y dónde poner o quitar llamados.</p>
+<h3>5. Supuestos y riesgos del terreno</h3>
+<table>
+<thead>
+<tr>
+<th>Supuesto o riesgo</th>
+<th>Cómo se verificó</th>
+<th>Resultado</th>
+<th>Fecha</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>El PDF trae 12.1 al 50 %, «una vez» para reprogramar y la sec. 5 con a) a f)</td>
+<td><code>pdftotext</code> del PDF</td>
+<td>sí: el PDF ya resuelve esos pendientes de la Fase 2, si Esteban lo confirma como final</td>
+<td>13-oct</td>
+</tr>
+<tr>
+<td>El PDF no trae fecha de versión, y la cl. 23 la exige</td>
+<td>grep «2026», «octubre»</td>
+<td>no tiene fecha → decisión propuesta: la fecha de publicación</td>
+<td>13-oct</td>
+</tr>
+<tr>
+<td>El PDF usa «consultoría» (cl. 4) y «asesoría» (cl. 3)</td>
+<td>lectura</td>
+<td>se transcribe tal cual; no se corrige un texto legal ajeno</td>
+<td>13-oct</td>
+</tr>
+<tr>
+<td>El .docx de la Política ya pide que se declare la analítica (sec. 10 y rec. 11)</td>
+<td><code>textutil</code> del .docx</td>
+<td>sí. La rec. 11 también pregunta dónde se guardan Informes y fotos</td>
+<td>13-oct</td>
+</tr>
+<tr>
+<td><strong>El contador del index rompe «Hasta 230»</strong>: hace <code>parseInt(textContent)</code> y escribe <code>valor + "+"</code></td>
+<td>lectura de <code>index.astro</code> 288-315</td>
+<td>rompe: «Hasta 230» daría «NaN+», y «230» daría «230+». U6 le saca la animación a esa cifra; «2800+» la conserva</td>
+<td>13-oct</td>
+</tr>
+<tr>
+<td>Cookieless necesita un ajuste del proyecto</td>
+<td>doc de PostHog, <code>privacy/data-collection</code></td>
+<td>sí, «Cookieless server hash mode». El agente de Chrome no lo listó → va en U5a</td>
+<td>13-oct</td>
+</tr>
+<tr>
+<td>No se sabe qué gana: el código o el ajuste del proyecto (replay, autocapture)</td>
+<td>doc de <code>config</code></td>
+<td>la doc no lo dice → U5a apaga en el proyecto y el verificador mide R4</td>
+<td>13-oct</td>
+</tr>
+<tr>
+<td>Los nombres de las opciones de <code>init</code> existen</td>
+<td>doc de <code>config</code> (WebFetch; Context7 no estaba disponible)</td>
+<td><code>cookieless_mode</code>, <code>person_profiles</code>, <code>disable_session_recording</code>, <code>autocapture</code>, <code>capture_dead_clicks</code>, <code>capture_heatmaps</code>, <code>disable_surveys</code>; <code>transport: 'sendBeacon'</code> en <code>capture</code></td>
+<td>13-oct</td>
+</tr>
+<tr>
+<td>Cerca de 9 de los 12 enlaces abren en la misma pestaña, y el evento se puede perder</td>
+<td>grep de <code>target="_blank"</code></td>
+<td>solo 3 encontrados → <code>sendBeacon</code> en U4; el verificador lo mide</td>
+<td>13-oct</td>
+</tr>
+<tr>
+<td>El sitio no pone cookies hoy</td>
+<td>grep: sin iframes, GA ni píxeles. Google Fonts se carga desde Google (le llega la IP, no deja cookies)</td>
+<td>sin cookies propias; lo confirma el verificador</td>
+<td>13-oct</td>
+</tr>
+<tr>
+<td>No hay CSP que bloquee PostHog</td>
+<td>grep en <code>src</code>, <code>public</code> y <code>astro.config</code>; no hay <code>vercel.json</code></td>
+<td>no hay</td>
+<td>13-oct</td>
+</tr>
+<tr>
+<td>El hash de visitantes rota cada día</td>
+<td>sin verificar (el tutorial dio 404)</td>
+<td>se verifica en la doc antes de U7; si se confirma, la Política y el insight lo dicen</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Quién más escribe en este código</td>
+<td>ramas y PR</td>
+<td>solo esta rama. <code>49deb11</code> toca solo <code>CLAUDE.md</code>, sin choque con U3 (que agrega una trampa: se integra con cuidado)</td>
+<td>13-oct</td>
+</tr>
+<tr>
+<td>Consumidores de afuera</td>
+<td>lectura</td>
+<td>Google lee el JSON-LD de la FAQ: cambia al recrawlear. El <code>href</code> de WhatsApp no cambia, así que el flujo de Esteban sigue igual. PostHog no tiene otros consumidores</td>
+<td>13-oct</td>
+</tr>
+<tr>
+<td>DEV ≈ PROD</td>
+<td>—</td>
+<td>no aplica la base. PostHog tiene un solo proyecto: los eventos de prueba entran ahí con <code>$host</code> = localhost, y se filtran</td>
+<td>13-oct</td>
+</tr>
+</tbody>
+</table>
+<h3>6. Datos de DEV y lo que falta de afuera</h3>
+<p><strong>Datos de DEV:</strong> no aplica, no hay base. Para U3 y U4 alcanza con la clave pública en el entorno local del verificador. Ningún dato de personas: las fuentes legales solo traen datos de la empresa que ya están publicados en el sitio.</p>
+<table>
+<thead>
+<tr>
+<th>Qué falta</th>
+<th>De quién</th>
+<th>Pedido el</th>
+<th>Hace falta para</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Que el PDF de octubre es final y reemplaza al .docx de Términos</td>
+<td>Esteban</td>
+<td>respondido 13-oct: sí</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Qué Política se publica</td>
+<td>Esteban</td>
+<td>respondido 13-oct: la del .docx, con el complemento de U2 revisado por Randall</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Aprobación de la abogada</td>
+<td>—</td>
+<td>no aplica: Esteban no hará más consultas (13-oct)</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Permiso para cambiar los ajustes de su PostHog y 2FA</td>
+<td>Esteban</td>
+<td>respondido 13-oct: autoriza todo; 2FA con el autenticador de Randall</td>
+<td>U5a, U5b</td>
+</tr>
+<tr>
+<td>Dónde guarda la PWA los Informes y las fotos</td>
+<td>Randall</td>
+<td>respondido 13-oct: Convex, EE. UU. (región inferida, confirmar en el panel)</td>
+<td>el texto de U2</td>
+</tr>
+</tbody>
+</table>
+<h3>7. Cómo se ve</h3>
+<p>No hay pantallas nuevas. Cambian dos páginas legales y unas frases.</p>
+<table>
+<thead>
+<tr>
+<th>Pantalla</th>
+<th>Qué pregunta contesta</th>
+<th>Qué va primero</th>
+<th>Qué no va</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Términos</td>
+<td>«¿Qué firmo al contratar?»</td>
+<td>Hero igual + «Última actualización». Después, un índice de las 25 cláusulas con anclas (decisión propuesta: 25 secciones sin índice no se recorren en el teléfono)</td>
+<td>los datos de contacto en el hero</td>
+</tr>
+<tr>
+<td>Política</td>
+<td>«¿Qué hacen con mis datos y qué miden del sitio?»</td>
+<td>lo mismo, con índice de 11</td>
+<td>banner de cookies</td>
+</tr>
+<tr>
+<td>Index, stat 3</td>
+<td>«¿Cuánto revisan?»</td>
+<td>«Hasta» chico arriba de «230» grande, sin animación; debajo, «Puntos de revisión»</td>
+<td>«230+»</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sin datos ni red:</strong> si PostHog no carga o está bloqueado, el sitio se ve igual y los enlaces abren WhatsApp. Sin la clave, el HTML no trae ni una línea de PostHog. <strong>La cara:</strong> la de hoy (<code>smartcheck-blue</code>, <code>smartcheck-accent</code>, la clase <code>.legal</code>). <strong>Qué se mide:</strong> las dos páginas legales y el stat del index a 375 px. Lo mide el verificador, no un constructor.</p>
+<h2>Documentación</h2>
+<ul>
+<li>Decisiones que se escriben como hojas en <code>decisiones/</code> cuando Randall apruebe: PostHog se enciende con la clave de Production (sin clave no carga); las opciones de <code>init</code> de U3; quedan fuera del evento el «compartir» del blog y la fecha de versión = la de publicación.</li>
+<li>Lo que <strong>no se puede romper:</strong> el texto legal publicado es idéntico a su fuente aprobada (cotejo en 0), y ningún cambio a la cuenta de PostHog se hace sin el OK de Esteban.</li>
+<li>Las horas reales, en <code>ESTADO.md</code>, en el formato trabajo / reloj. La bitácora, en el vault.</li>
+<li><strong>Qué no entra:</strong> banner de cookies, grabación, tableros y embudos en PostHog, texto legal redactado por nosotros fuera del complemento de analítica de U2, <code>49deb11</code>, el blog, el <code>sitemap.xml</code> (sus <code>lastmod</code> quedan viejos, a propósito), y servir Google Fonts desde el propio sitio.</li>
+</ul>
+<h2>Al cerrar el proyecto</h2>
+<p>Post-proyecto con el <code>origen</code> de cada decisión y las líneas <code>Hallado-por</code> y <code>Conflicto</code> de los commits. Lo que se mide primero: si el cotejo legal atrapó diferencias antes que Esteban, y cuántos <code>whatsapp_click</code> llegaron la primera semana, contra las conversaciones que Esteban dice haber recibido.</p></body></html>

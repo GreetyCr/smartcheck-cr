@@ -1,0 +1,442 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const lastUpdated = '13 de octubre de 2026';
+
+// Índice de anclas: mismo orden y numeración que el PDF de octubre (25 cláusulas).
+const indice = [
+  ['identificacion', '1. Identificación del prestador'],
+  ['objeto', '2. Objeto'],
+  ['definiciones', '3. Definiciones'],
+  ['naturaleza-alcance', '4. Naturaleza y alcance del servicio'],
+  ['alcance-informe', '5. Alcance y limitaciones del Informe'],
+  ['decision-compra', '6. Decisión de compra'],
+  ['autorizacion-acceso', '7. Autorización y acceso al vehículo'],
+  ['fotografias', '8. Fotografías y documentación técnica'],
+  ['agendamiento', '9. Agendamiento y confirmación'],
+  ['precios-pago', '10. Precios y forma de pago'],
+  ['retracto', '11. Derecho legal de retracto'],
+  ['cancelacion', '12. Política de cancelación y reprogramación'],
+  ['obligaciones-cliente', '13. Obligaciones del cliente'],
+  ['responsabilidad', '14. Responsabilidad de SmartCheck'],
+  ['uso-informe', '15. Uso y titularidad del Informe'],
+  ['informes-preexistentes', '16. Informes Preexistentes'],
+  ['fuentes-externas', '17. Fuentes externas'],
+  ['datos-personales', '18. Protección de datos personales'],
+  ['propiedad-intelectual', '19. Propiedad intelectual del sitio y sus contenidos'],
+  ['canales-digitales', '20. Uso de los canales digitales'],
+  ['comunicaciones', '21. Comunicaciones'],
+  ['consultas-reclamos', '22. Consultas y reclamos'],
+  ['modificaciones', '23. Modificaciones'],
+  ['validez-parcial', '24. Validez parcial'],
+  ['legislacion', '25. Legislación aplicable y aceptación electrónica'],
+];
+---
+
+<BaseLayout
+  title="Términos y Condiciones"
+  description="Términos y Condiciones de SmartCheck Costa Rica: qué incluye el servicio de inspección de vehículos usados, sus límites, la cancelación y las obligaciones de ambas partes."
+>
+  <!-- Hero -->
+  <section class="relative py-16 md:py-20 px-4 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-smartcheck-blue via-smartcheck-blue/90 to-smartcheck-blue/80 z-0"></div>
+    <div class="absolute top-0 right-0 w-1/3 h-1/3 bg-smartcheck-accent/10 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+    <div class="absolute bottom-0 left-0 w-1/3 h-1/3 bg-white/10 rounded-full translate-y-1/2 -translate-x-1/2"></div>
+
+    <div class="max-w-4xl mx-auto text-center relative z-10">
+      <span class="inline-block px-3 py-1 bg-white/20 text-white rounded-full text-sm font-medium mb-6">LEGAL</span>
+      <h1 class="text-3xl md:text-5xl font-bold text-white mb-4">Términos y Condiciones</h1>
+      <p class="text-white/80">Última actualización: {lastUpdated}</p>
+    </div>
+  </section>
+
+  <!-- Índice -->
+  <div class="max-w-4xl mx-auto px-4 pt-12">
+    <nav aria-label="Índice de cláusulas" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8">
+      <p class="text-sm font-semibold uppercase tracking-wide text-smartcheck-blue mb-4">Las 25 cláusulas</p>
+      <ol class="grid gap-x-8 gap-y-2 md:grid-cols-2 text-sm list-none">
+        {indice.map(([id, titulo]) => (
+          <li>
+            <a href={`#${id}`} class="text-gray-700 hover:text-smartcheck-blue underline-offset-2 hover:underline">{titulo}</a>
+          </li>
+        ))}
+      </ol>
+    </nav>
+  </div>
+
+  <!-- Contenido -->
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-10 legal" data-cotejo="legal">
+      <p>
+        Estos Términos y Condiciones regulan la contratación y prestación de los servicios ofrecidos
+        por SmartCheck Costa Rica y el uso de sus canales digitales. Su objetivo es dejar claro qué
+        incluye el servicio, cuáles son sus limitaciones y cuáles son las obligaciones de SmartCheck
+        y del cliente, sin afectar los derechos que la legislación costarricense reconoce al
+        consumidor.
+      </p>
+
+      <h2 id="identificacion">1. Identificación del prestador</h2>
+      <p>
+        Los servicios son prestados por 3-102-939601 SOCIEDAD DE RESPONSABILIDAD
+        LIMITADA, cédula jurídica número 3-102-939601, que opera comercialmente bajo el
+        nombre de fantasía SmartCheck Costa Rica, con domicilio en San José, Costa Rica.
+        Medios oficiales de contacto:
+      </p>
+      <ul>
+        <li>Correo electrónico: <a href="mailto:smartcheckcr@gmail.com">smartcheckcr@gmail.com</a></li>
+        <li>Teléfono / WhatsApp: <a href="tel:+50686752713">+506 8675-2713</a></li>
+        <li>Sitio web: <a href="https://smartcheckcr.com">smartcheckcr.com</a></li>
+      </ul>
+      <p>En adelante se denominará simplemente "SmartCheck".</p>
+
+      <h2 id="objeto">2. Objeto</h2>
+      <p>
+        Estos Términos regulan la solicitud, contratación y prestación de consultoría de vehículos
+        usados, la elaboración y entrega de los informes correspondientes y, cuando aplique, el
+        acceso a informes elaborados anteriormente sobre un mismo vehículo.
+      </p>
+      <p>
+        Al contratar un servicio, el cliente declara que tuvo la oportunidad de conocer estos
+        Términos antes de confirmar la contratación.
+      </p>
+
+      <h2 id="definiciones">3. Definiciones</h2>
+      <p>Para efectos de estos Términos se entenderá por:</p>
+      <ul>
+        <li><strong>Cliente:</strong> persona física o jurídica que solicita o contrata un servicio de SmartCheck.</li>
+        <li><strong>Vehículo:</strong> vehículo automotor que será inspeccionado o sobre el cual existe información previamente recopilada.</li>
+        <li><strong>Servicio de asesoría:</strong> inspección, revisión visual, funcional y asesoría técnica del vehículo conforme al alcance ofrecido por SmartCheck.</li>
+        <li><strong>Informe:</strong> documento físico o digital elaborado como resultado de una inspección y que refleja los hallazgos observados en una fecha determinada.</li>
+        <li><strong>Informe Preexistente:</strong> informe elaborado anteriormente sobre el mismo vehículo y que SmartCheck podrá poner a disposición de otro interesado cuando legalmente corresponda.</li>
+        <li><strong>Información Técnica:</strong> fotografías, mediciones, lecturas, observaciones, información técnica y hallazgos obtenidos durante la inspección.</li>
+        <li><strong>GAM (Gran Área Metropolitana):</strong> para estos Términos se entenderá como el área de cobertura ordinaria de SmartCheck dentro de las provincias de San José, Alajuela, Heredia y Cartago. Los servicios fuera de la zona de cobertura podrán tener costos adicionales de traslado o condiciones especiales, que deberán informarse al cliente antes de confirmar la cita.</li>
+      </ul>
+
+      <h2 id="naturaleza-alcance">4. Naturaleza y alcance del servicio</h2>
+      <p>
+        SmartCheck presta servicios de consultoría sobre vehículos usados para brindar al cliente
+        información técnica que le ayude a valorar una eventual compra.
+      </p>
+      <p>
+        El servicio incluye una revisión visual, funcional y técnica de hasta doscientos treinta puntos,
+        según el tipo de vehículo y el servicio contratado.
+      </p>
+      <p>Salvo que se acuerde expresamente algo distinto, la inspección:</p>
+      <ul>
+        <li>No implica desarmar motor, transmisión ni otros componentes mecánicos, eléctricos o electrónicos.</li>
+        <li>No incluye pruebas destructivas ni de laboratorio.</li>
+        <li>No constituye peritaje judicial ni avalúo.</li>
+        <li>No certifica el kilometraje del vehículo.</li>
+        <li>No incluye estudio registral, fiscal, judicial, prendario o administrativo.</li>
+        <li>No permite revisar componentes a los que razonablemente no pueda accederse mediante una inspección ordinaria.</li>
+      </ul>
+
+      <h2 id="alcance-informe">5. Alcance y limitaciones del Informe</h2>
+      <p>
+        El Informe refleja únicamente lo que pudo observarse o detectarse razonablemente en la
+        fecha de la inspección y dentro del alcance del servicio contratado.
+      </p>
+      <p>El Informe no constituye una garantía del vehículo. SmartCheck no garantiza:</p>
+      <ul class="incisos">
+        <li>a) que el vehículo esté libre de vicios o defectos ocultos;</li>
+        <li>b) el funcionamiento futuro del vehículo o de sus componentes;</li>
+        <li>c) que una pieza no pueda fallar después de la inspección;</li>
+        <li>d) la exactitud de información suministrada por vendedores, propietarios o terceros que SmartCheck no pueda verificar razonablemente;</li>
+        <li>e) la situación registral, fiscal, judicial o administrativa del vehículo;</li>
+        <li>f) que puedan detectarse todos los defectos existentes mediante una revisión visual y funcional sin desarme.</li>
+      </ul>
+
+      <h2 id="decision-compra">6. Decisión de compra</h2>
+      <p>
+        El Informe es una herramienta de apoyo. La decisión final de comprar, no comprar,
+        negociar, reparar o utilizar el vehículo corresponde al cliente.
+      </p>
+      <p>
+        Cuando sea recomendable, SmartCheck podrá sugerir pruebas o valoraciones adicionales
+        en un taller, agencia o con otro especialista antes de tomar una decisión.
+      </p>
+
+      <h2 id="autorizacion-acceso">7. Autorización y acceso al vehículo</h2>
+      <p>
+        Si el cliente no es propietario del vehículo, deberá gestionar u obtener que el propietario,
+        poseedor o persona encargada autorice la inspección y permita el acceso necesario.
+      </p>
+      <p>
+        SmartCheck podrá solicitar confirmación de esa autorización y podrá suspender o rechazar
+        la inspección si existen dudas razonables sobre el acceso, si las condiciones de seguridad
+        no son adecuadas o si técnicamente no es posible realizar la revisión.
+      </p>
+
+      <h2 id="fotografias">8. Fotografías y documentación técnica</h2>
+      <p>
+        Como parte de la inspección, SmartCheck podrá tomar fotografías, videos, lecturas y
+        capturas de diagnóstico necesarias para documentar el estado del vehículo y respaldar el
+        Informe.
+      </p>
+      <p>
+        Cualquier dato personal contenido en esos registros será tratado conforme a la
+        <a href="/politica-de-privacidad">Política de Privacidad</a> de SmartCheck.
+      </p>
+
+      <h2 id="agendamiento">9. Agendamiento y confirmación</h2>
+      <p>
+        Los servicios podrán solicitarse por medio del sitio web, WhatsApp u otros canales oficiales
+        de SmartCheck.
+      </p>
+      <p>
+        La cita se considerará confirmada cuando SmartCheck comunique al cliente la fecha, hora,
+        ubicación, servicio contratado, precio y confirmación de la reserva.
+      </p>
+      <p>
+        El cliente deberá brindar información correcta y suficiente para identificar y ubicar el
+        vehículo.
+      </p>
+
+      <h2 id="precios-pago">10. Precios y forma de pago</h2>
+      <p>
+        El precio aplicable será el publicado o cotizado y aceptado al momento de contratar. Los
+        servicios fuera del área ordinaria de cobertura, vehículos especiales o servicios adicionales
+        podrán tener un costo diferente, que deberá informarse antes de confirmar la cita.
+      </p>
+      <p>
+        Para reservar un espacio, SmartCheck podrá solicitar el pago del cincuenta por ciento
+        (50%) del precio total o el pago completo, según la modalidad ofrecida. Si se paga
+        únicamente la reserva, el saldo deberá cancelarse antes de iniciar la inspección, salvo
+        acuerdo diferente.
+      </p>
+      <p>El precio de una cita ya confirmada no será modificado de manera retroactiva.</p>
+
+      <h2 id="retracto">11. Derecho legal de retracto</h2>
+      <p>
+        Cuando la contratación se realice por internet, sitio web, WhatsApp u otro medio electrónico
+        y resulte aplicable el derecho de retracto previsto por la legislación de protección al
+        consumidor, el cliente podrá ejercerlo dentro del plazo y bajo las condiciones que
+        establezca la normativa vigente.
+      </p>
+      <p>
+        Cuando el retracto proceda legalmente, tendrá prioridad sobre la política ordinaria de
+        cancelación. En servicios ya prestados se aplicarán las reglas legales correspondientes.
+      </p>
+      <p>
+        La solicitud podrá comunicarse por el mismo medio utilizado para contratar o por cualquiera
+        de los canales oficiales de SmartCheck, procurando que quede constancia.
+      </p>
+
+      <h2 id="cancelacion">12. Política de cancelación y reprogramación</h2>
+      <p>
+        Estas reglas aplican a cancelaciones voluntarias distintas del ejercicio válido del derecho
+        legal de retracto. El plazo se contará a partir de la fecha y hora confirmadas de la cita.
+      </p>
+
+      <h3 id="cancelacion-12-1">12.1. Más de 24 horas de anticipación</h3>
+      <p>
+        El cliente podrá reprogramar una vez sin penalización, sujeto a disponibilidad, o solicitar la
+        devolución del cincuenta por ciento (50%) de lo pagado. El cincuenta por ciento (50%)
+        restante se retendrá por la gestión administrativa y la reserva del espacio.
+      </p>
+
+      <h3 id="cancelacion-12-2">12.2. Entre 12 y 24 horas de anticipación</h3>
+      <p>
+        El cliente podrá reprogramar una vez sin penalización, sujeto a disponibilidad, o solicitar la
+        devolución del cincuenta por ciento (50%) de lo pagado. El cincuenta por ciento (50%)
+        restante no será reembolsado.
+      </p>
+
+      <h3 id="cancelacion-12-3">12.3. Menos de 12 horas de anticipación</h3>
+      <p>
+        No habrá devolución por cancelación voluntaria. El cliente podrá solicitar una
+        reprogramación, sujeta a disponibilidad, pagando un veinticinco por ciento (25%) adicional
+        del precio del servicio.
+      </p>
+
+      <h3 id="cancelacion-12-4">12.4. Inasistencia o falta de acceso atribuible al cliente</h3>
+      <p>
+        Si al momento de la cita no se permite el acceso al vehículo o no existen condiciones para
+        realizar la inspección por una causa atribuible al cliente, se aplicará la regla prevista para
+        cancelaciones con menos de doce horas, salvo que existan circunstancias que justifiquen
+        un tratamiento diferente.
+      </p>
+
+      <h3 id="cancelacion-12-5">12.5. Imposibilidad atribuible a SmartCheck</h3>
+      <p>
+        Si SmartCheck no puede prestar el servicio por una causa atribuible a SmartCheck, el
+        cliente podrá elegir entre reprogramar sin costo o recibir la devolución total de lo pagado por
+        el servicio no prestado.
+      </p>
+
+      <h3 id="cancelacion-12-6">12.6. Causas externas</h3>
+      <p>
+        Si la inspección no puede realizarse por causas ajenas a ambas partes, como condiciones
+        climáticas graves, problemas de seguridad o imposibilidad sobrevenida de acceso, se
+        procurará reprogramar la cita sin aplicar penalizaciones injustificadas.
+      </p>
+
+      <h2 id="obligaciones-cliente">13. Obligaciones del cliente</h2>
+      <p>El cliente se compromete a:</p>
+      <ul class="incisos">
+        <li>a) brindar información verdadera y actualizada;</li>
+        <li>b) identificar correctamente el vehículo;</li>
+        <li>c) gestionar el acceso al vehículo y comunicar al propietario o encargado la naturaleza de la inspección;</li>
+        <li>d) informar cualquier condición especial relevante;</li>
+        <li>e) realizar los pagos acordados; y</li>
+        <li>f) no alterar, falsificar o presentar el Informe de forma que pueda inducir a error sobre su contenido, fecha o conclusiones.</li>
+      </ul>
+
+      <h2 id="responsabilidad">14. Responsabilidad de SmartCheck</h2>
+      <p>
+        SmartCheck se compromete a prestar el servicio con diligencia y conforme al alcance
+        contratado, y responderá por los daños que legalmente le sean imputables cuando exista
+        una prestación defectuosa.
+      </p>
+      <p>SmartCheck no será responsable por:</p>
+      <ul class="incisos">
+        <li>a) defectos ocultos que razonablemente no puedan detectarse mediante la inspección contratada;</li>
+        <li>b) fallas o desperfectos ocurridos después de la inspección;</li>
+        <li>c) cambios en el estado del vehículo posteriores a la fecha del Informe;</li>
+        <li>d) reparaciones, alteraciones, accidentes o intervenciones posteriores;</li>
+        <li>e) información falsa o inexacta suministrada por terceros que no pueda verificarse razonablemente; ni</li>
+        <li>f) decisiones tomadas ignorando las advertencias o limitaciones expresamente indicadas en el Informe.</li>
+      </ul>
+      <p>
+        Nada de lo establecido en estos Términos pretende eliminar derechos o responsabilidades
+        que por ley sean irrenunciables.
+      </p>
+
+      <h2 id="uso-informe">15. Uso y titularidad del Informe</h2>
+      <p>
+        El cliente puede utilizar y compartir su Informe para fines personales y para valorar o
+        negociar la eventual compra del vehículo.
+      </p>
+      <p>
+        La contratación de la inspección no otorga exclusividad sobre los hechos o la información
+        técnica obtenida legítimamente durante la revisión.
+      </p>
+      <p>
+        SmartCheck conserva los derechos que legalmente le correspondan sobre la redacción,
+        estructura, diseño, fotografías propias, material gráfico y demás elementos originales del
+        Informe. El cliente no podrá comercializar, falsificar o presentar como propio el formato o
+        contenido protegido de SmartCheck.
+      </p>
+
+      <h2 id="informes-preexistentes">16. Informes Preexistentes</h2>
+      <p>
+        SmartCheck podrá conservar información obtenida legítimamente durante sus inspecciones
+        y, cuando la legislación lo permita, poner a disposición de otro interesado un Informe
+        Preexistente sobre el mismo vehículo.
+      </p>
+      <p>
+        La entrega de un Informe Preexistente no equivale a una nueva inspección. El documento
+        deberá indicar de forma clara la fecha de la inspección original y sus hallazgos se
+        entenderán referidos a esa fecha.
+      </p>
+      <p>
+        SmartCheck no garantiza que el vehículo mantenga posteriormente las mismas condiciones
+        y podrá abstenerse de entregar el Informe si considera que por su antigüedad o contenido
+        podría resultar engañoso.
+      </p>
+      <p>
+        En cualquier entrega posterior deberán omitirse los datos personales del cliente original y
+        cualquier otro dato cuya comunicación no sea necesaria o legal. Cuando se requiera
+        consentimiento para transferir determinada información, SmartCheck solo procederá si se
+        cumple ese requisito.
+      </p>
+
+      <h2 id="fuentes-externas">17. Fuentes externas</h2>
+      <p>
+        SmartCheck podrá consultar fuentes oficiales o legítimamente accesibles para
+        complementar determinadas verificaciones. Esto no convierte la inspección en un estudio
+        registral ni implica que SmartCheck garantice la actualización o exactitud de información
+        administrada por terceros.
+      </p>
+
+      <h2 id="datos-personales">18. Protección de datos personales</h2>
+      <p>
+        El tratamiento de datos personales se regirá por la
+        <a href="/politica-de-privacidad">Política de Privacidad</a> de SmartCheck y
+        por la legislación costarricense aplicable.
+      </p>
+
+      <h2 id="propiedad-intelectual">19. Propiedad intelectual del sitio y sus contenidos</h2>
+      <p>
+        Los textos, fotografías, material gráfico, logotipos, diseños, documentos, informes e
+        interfaces originales de SmartCheck están protegidos por la legislación costarricense
+        aplicable en materia de propiedad intelectual.
+      </p>
+      <p>
+        El uso del sitio o la contratación de un servicio no implica la cesión de derechos de
+        propiedad intelectual, salvo los derechos de uso expresamente reconocidos al cliente.
+      </p>
+
+      <h2 id="canales-digitales">20. Uso de los canales digitales</h2>
+      <p>
+        El usuario deberá utilizar el sitio web y los demás canales digitales de SmartCheck de forma
+        lícita. No se permite alterar informes, suplantar identidades, extraer información de forma
+        automatizada sin autorización o realizar actividades que afecten la seguridad o
+        funcionamiento del servicio.
+      </p>
+
+      <h2 id="comunicaciones">21. Comunicaciones</h2>
+      <p>
+        SmartCheck podrá utilizar los datos de contacto suministrados para cotizaciones,
+        confirmación y coordinación de citas, prestación del servicio, entrega del Informe,
+        facturación y atención de consultas o reclamos.
+      </p>
+      <p>
+        Las comunicaciones publicitarias se realizarán únicamente cuando corresponda legalmente
+        y de acuerdo con las preferencias o consentimientos aplicables.
+      </p>
+
+      <h2 id="consultas-reclamos">22. Consultas y reclamos</h2>
+      <p>
+        Las consultas, solicitudes o inconformidades podrán comunicarse al correo
+        <a href="mailto:smartcheckcr@gmail.com">smartcheckcr@gmail.com</a> o al teléfono / WhatsApp
+        <a href="tel:+50686752713">+506 8675-2713</a>.
+      </p>
+      <p>
+        El uso de estos canales no limita el derecho del consumidor de acudir ante las autoridades
+        competentes.
+      </p>
+
+      <h2 id="modificaciones">23. Modificaciones</h2>
+      <p>
+        SmartCheck podrá modificar estos Términos para futuras contrataciones cuando existan
+        cambios legales, tecnológicos o comerciales. Cada versión deberá indicar su fecha de
+        actualización.
+      </p>
+      <p>
+        Los cambios no modificarán retroactivamente un servicio ya contratado, salvo que lo exija la
+        ley o exista aceptación expresa de las partes.
+      </p>
+
+      <h2 id="validez-parcial">24. Validez parcial</h2>
+      <p>
+        Si una disposición de estos Términos fuera declarada inválida o inaplicable, las demás
+        disposiciones continuarán vigentes en lo que legalmente corresponda.
+      </p>
+
+      <h2 id="legislacion">25. Legislación aplicable y aceptación electrónica</h2>
+      <p>Estos Términos se rigen por las leyes de la República de Costa Rica.</p>
+      <p>
+        La aceptación realizada mediante el sitio web, WhatsApp u otro medio electrónico habilitado
+        por SmartCheck tendrá los efectos que reconozca la legislación aplicable. SmartCheck
+        procurará conservar evidencia de la versión aceptada por el cliente al momento de cada
+        contratación.
+      </p>
+    </div>
+  </div>
+</BaseLayout>
+
+<style is:global>
+  .legal { @apply text-gray-700 leading-relaxed; }
+  .legal h2 { @apply text-2xl font-bold text-smartcheck-blue mt-10 mb-4 scroll-mt-24; }
+  .legal > p:first-child { @apply text-lg text-gray-600 mb-8; }
+  .legal h3 { @apply text-lg font-bold text-gray-800 mt-6 mb-3 scroll-mt-24; }
+  .legal p { @apply mb-4; }
+  .legal ul { @apply list-disc pl-6 mb-4 space-y-2; }
+  .legal ul.incisos { @apply list-none pl-2; }
+  .legal ol { @apply list-decimal pl-6 mb-4 space-y-2; }
+  .legal li { @apply pl-1; }
+  .legal strong { @apply text-gray-900 font-semibold; }
+  .legal a { @apply text-smartcheck-blue font-medium underline hover:text-smartcheck-accent; }
+  .legal hr { @apply my-8 border-gray-200; }
+</style>

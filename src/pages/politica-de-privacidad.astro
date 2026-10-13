@@ -1,0 +1,301 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const lastUpdated = '13 de octubre de 2026';
+
+const indice = [
+  ['responsable', '1. Responsable del tratamiento'],
+  ['datos', '2. Datos que se pueden recopilar'],
+  ['uso', '3. Para qué se utilizan los datos'],
+  ['consentimiento', '4. Consentimiento'],
+  ['informes', '5. Informes e información del vehículo'],
+  ['terceros', '6. Comunicación de datos a terceros'],
+  ['conservacion', '7. Conservación de la información'],
+  ['derechos', '8. Derechos de las personas titulares'],
+  ['seguridad', '9. Seguridad y confidencialidad'],
+  ['herramientas', '10. Herramientas tecnológicas y proveedores'],
+  ['cambios', '11. Cambios a esta Política y contacto'],
+];
+---
+
+<BaseLayout
+  title="Política de Privacidad"
+  description="Política de Privacidad de SmartCheck Costa Rica: qué datos personales se recopilan, para qué se utilizan, cuánto se conservan y qué derechos tiene usted, conforme a la Ley N.° 8968."
+>
+  <!-- Hero -->
+  <section class="relative py-16 md:py-20 px-4 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-smartcheck-blue via-smartcheck-blue/90 to-smartcheck-blue/80 z-0"></div>
+    <div class="absolute top-0 right-0 w-1/3 h-1/3 bg-smartcheck-accent/10 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+    <div class="absolute bottom-0 left-0 w-1/3 h-1/3 bg-white/10 rounded-full translate-y-1/2 -translate-x-1/2"></div>
+
+    <div class="max-w-4xl mx-auto text-center relative z-10">
+      <span class="inline-block px-3 py-1 bg-white/20 text-white rounded-full text-sm font-medium mb-6">LEGAL</span>
+      <h1 class="text-3xl md:text-5xl font-bold text-white mb-4">Política de Privacidad</h1>
+      <p class="text-white/80">Última actualización: {lastUpdated}</p>
+    </div>
+  </section>
+
+  <!-- Índice -->
+  <div class="max-w-4xl mx-auto px-4 pt-12">
+    <nav aria-label="Índice de la Política" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8">
+      <p class="text-sm font-semibold uppercase tracking-wide text-smartcheck-blue mb-4">Las 11 secciones</p>
+      <ol class="grid gap-x-8 gap-y-2 md:grid-cols-2 text-sm list-none">
+        {indice.map(([id, titulo]) => (
+          <li>
+            <a href={`#${id}`} class="text-gray-700 hover:text-smartcheck-blue underline-offset-2 hover:underline">{titulo}</a>
+          </li>
+        ))}
+      </ol>
+    </nav>
+  </div>
+
+  <!-- Contenido -->
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-10 legal">
+      <p>
+        La presente Política de Privacidad regula el tratamiento de los datos personales que se
+        recopilan como consecuencia del uso del sitio web, la contratación y coordinación de los
+        servicios de SmartCheck y la elaboración de informes de inspección de vehículos.
+      </p>
+      <p>
+        Su finalidad es informar de manera clara qué datos se recopilan, para qué se utilizan, durante
+        cuánto tiempo se conservan, en qué casos pueden ser compartidos y cuáles derechos pueden
+        ejercer las personas titulares, de conformidad con la Ley N.° 8968 de Protección de la Persona
+        frente al Tratamiento de sus Datos Personales y su Reglamento.
+      </p>
+
+      <h2 id="responsable">1. Responsable del tratamiento</h2>
+      <p>
+        El responsable del tratamiento de los datos personales es
+        <strong>3-102-939601 SOCIEDAD DE RESPONSABILIDAD LIMITADA</strong>, cédula jurídica
+        3-102-939601, que opera comercialmente bajo el nombre de <strong>SmartCheck Costa Rica</strong>,
+        con domicilio en San José, Costa Rica.
+      </p>
+      <p>Medios de contacto:</p>
+      <ul>
+        <li>Correo electrónico: <a href="mailto:smartcheckcr@gmail.com">smartcheckcr@gmail.com</a></li>
+        <li>Teléfono / WhatsApp: <a href="tel:+50686752713">+506 8675-2713</a></li>
+        <li>Sitio web: <a href="https://smartcheckcr.com">smartcheckcr.com</a></li>
+      </ul>
+
+      <h2 id="datos">2. Datos que se pueden recopilar</h2>
+      <p>Dependiendo del servicio solicitado, SmartCheck podrá recopilar:</p>
+      <ul>
+        <li>Nombre, teléfono, WhatsApp, correo electrónico y datos necesarios para identificar y contactar al cliente.</li>
+        <li>Datos necesarios para la facturación y gestión del pago.</li>
+        <li>Marca, modelo, año, placa, número de identificación vehicular cuando corresponda y demás datos técnicos del vehículo.</li>
+        <li>Kilometraje observado, fotografías, videos, lecturas, códigos de diagnóstico y observaciones obtenidas durante la inspección.</li>
+        <li>Datos mínimos del propietario, poseedor o encargado cuando el cliente no sea el dueño del vehículo y ello resulte necesario para coordinar o autorizar la inspección.</li>
+        <li>Información consultada en fuentes oficiales o legítimamente accesibles cuando sea necesaria para complementar el servicio.</li>
+      </ul>
+      <p>
+        Cuando un dato relacionado con el vehículo permita identificar directa o indirectamente a una
+        persona física, SmartCheck lo tratará como dato personal y aplicará las reglas de protección
+        correspondientes.
+      </p>
+
+      <h2 id="uso">3. Para qué se utilizan los datos</h2>
+      <p>Los datos podrán utilizarse para:</p>
+      <ul>
+        <li>Atender consultas, preparar cotizaciones y coordinar citas.</li>
+        <li>Prestar el servicio de inspección y elaborar el Informe correspondiente.</li>
+        <li>Contactar al cliente antes, durante y después de la prestación del servicio.</li>
+        <li>Gestionar pagos, facturación, reclamos o consultas posteriores.</li>
+        <li>Conservar respaldo técnico del servicio realizado y de los hallazgos observados en la fecha de inspección.</li>
+        <li>Cumplir obligaciones legales, administrativas o judiciales.</li>
+        <li>Mantener, cuando sea legalmente procedente, antecedentes técnicos de vehículos previamente inspeccionados.</li>
+        <li>Ofrecer a un tercero un Informe Preexistente del mismo vehículo, siempre que se cumplan las reglas de protección de datos establecidas en esta Política.</li>
+      </ul>
+      <p>
+        SmartCheck no utilizará los datos personales para finalidades distintas o incompatibles con
+        aquellas informadas, salvo que exista una base legal suficiente o se obtenga el consentimiento
+        adicional que corresponda.
+      </p>
+
+      <h2 id="consentimiento">4. Consentimiento</h2>
+      <p>
+        Cuando la legislación requiera consentimiento, este deberá ser libre, informado, específico e
+        inequívoco. La persona deberá conocer previamente qué datos se recopilan, para qué se utilizarán
+        y, cuando corresponda, si pueden ser comunicados a terceros.
+      </p>
+      <p>
+        La aceptación de esta Política no implica una autorización general para utilizar los datos
+        personales para cualquier finalidad futura.
+      </p>
+
+      <h2 id="informes">5. Informes e información del vehículo</h2>
+      <p>
+        SmartCheck podrá conservar el Informe y la información técnica generada durante una inspección
+        como respaldo del servicio, para atención de reclamos, control de calidad y trazabilidad de los
+        hallazgos.
+      </p>
+      <p>
+        La contratación de una inspección no autoriza a SmartCheck a vender o compartir libremente los
+        datos personales del cliente.
+      </p>
+      <p>
+        Si SmartCheck ofrece posteriormente a otra persona un Informe Preexistente relativo al mismo
+        vehículo, deberá:
+      </p>
+      <ul>
+        <li>Omitir los datos personales del cliente que originalmente contrató la inspección.</li>
+        <li>Excluir datos personales de terceros que no sean necesarios para la finalidad del Informe.</li>
+        <li>Indicar de manera clara la fecha en que se realizó la inspección original.</li>
+        <li>No presentar el Informe como si reflejara necesariamente el estado actual del vehículo.</li>
+        <li>Anonimizar o eliminar información personal cuando sea necesario.</li>
+        <li>Obtener el consentimiento correspondiente cuando la transferencia de un dato personal lo requiera.</li>
+      </ul>
+      <p>
+        SmartCheck podrá abstenerse de entregar un Informe Preexistente cuando no pueda separar
+        adecuadamente la información personal o cuando su antigüedad o contenido pueda inducir a error.
+      </p>
+
+      <h2 id="terceros">6. Comunicación de datos a terceros</h2>
+      <p>SmartCheck no comercializará los datos personales del cliente como producto independiente.</p>
+      <p>Los datos personales únicamente podrán ser comunicados cuando:</p>
+      <ul>
+        <li>Sea necesario para prestar el servicio contratado.</li>
+        <li>Un proveedor tecnológico o administrativo necesite acceso limitado para prestar un servicio a SmartCheck.</li>
+        <li>Exista una obligación legal, administrativa o judicial.</li>
+        <li>La persona titular haya dado el consentimiento requerido.</li>
+        <li>Exista otro supuesto expresamente permitido por la legislación.</li>
+      </ul>
+      <p>
+        Cuando la comunicación de datos personales a un tercero requiera consentimiento, SmartCheck
+        deberá contar con dicho consentimiento antes de realizarla.
+      </p>
+
+      <h2 id="conservacion">7. Conservación de la información</h2>
+      <p>
+        SmartCheck conservará los datos personales únicamente durante el tiempo necesario para cumplir
+        las finalidades para las cuales fueron recopilados, atender obligaciones legales o responder a
+        reclamos.
+      </p>
+      <p>
+        Como criterio interno, los datos ordinarios de contacto y de la relación contractual podrán
+        conservarse hasta por cinco años después del último servicio o interacción relevante, salvo que
+        exista una razón legal que justifique otro plazo.
+      </p>
+      <p>
+        Cuando un Informe o expediente técnico contenga datos personales capaces de afectar a su
+        titular, SmartCheck aplicará los límites temporales establecidos por la normativa vigente. La
+        información debidamente anonimizada podrá conservarse por un período mayor mientras no permita
+        identificar razonablemente a una persona física.
+      </p>
+
+      <h2 id="derechos">8. Derechos de las personas titulares</h2>
+      <p>
+        Las personas titulares podrán ejercer los derechos reconocidos por la Ley N.° 8968, incluyendo
+        solicitar acceso, rectificación, actualización o supresión de sus datos, así como conocer y
+        controlar su eventual cesión o transferencia.
+      </p>
+      <p>
+        Las solicitudes deberán enviarse a
+        <a href="mailto:smartcheckcr@gmail.com">smartcheckcr@gmail.com</a> e incluir información
+        suficiente para identificar al solicitante y precisar qué dato o tratamiento desea revisar.
+      </p>
+      <p>SmartCheck atenderá las solicitudes dentro de los plazos establecidos por la normativa aplicable.</p>
+
+      <h2 id="seguridad">9. Seguridad y confidencialidad</h2>
+      <p>
+        SmartCheck adoptará medidas razonables para proteger la información contra pérdida, acceso no
+        autorizado, alteración, divulgación indebida o uso contrario a las finalidades informadas.
+      </p>
+      <p>
+        El acceso a los datos deberá limitarse a las personas o proveedores que lo necesiten para la
+        prestación del servicio, quienes deberán mantener la confidencialidad correspondiente.
+      </p>
+
+      <h2 id="herramientas">10. Herramientas tecnológicas y proveedores</h2>
+      <p>
+        SmartCheck podrá utilizar herramientas de mensajería, correo electrónico, almacenamiento,
+        alojamiento web, facturación o procesamiento de pagos para prestar sus servicios.
+      </p>
+      <p>
+        Cuando un proveedor tenga acceso a datos personales, SmartCheck deberá procurar que dicho acceso
+        se limite a lo necesario y que la información se maneje bajo condiciones adecuadas de
+        seguridad.
+      </p>
+      <p>
+        Si el sitio utiliza herramientas adicionales de seguimiento, analítica o publicidad, esta
+        Política deberá complementarse para informar su uso de manera adecuada.
+      </p>
+
+      <h3 id="analitica">Analítica web: PostHog</h3>
+      <p>
+        Este sitio utiliza <strong>PostHog</strong> como proveedor de analítica web, con servidores en
+        Estados Unidos de América. Su finalidad es conocer cómo se usa el sitio y qué botones de
+        contacto resultan útiles. PostHog mide:
+      </p>
+      <ul>
+        <li>las páginas vistas, el tiempo que se permanece en cada página y hasta dónde se baja en ella;</li>
+        <li>los clics en los botones de WhatsApp, con el botón que se tocó y la página en que se encontraba;</li>
+        <li>datos técnicos del navegador y del dispositivo, como el navegador, el sistema operativo, el tamaño de la pantalla, el idioma y la zona horaria; y</li>
+        <li>la página desde la que se llegó al sitio y los parámetros de campaña de la dirección web.</li>
+      </ul>
+      <p>
+        Esta analítica no utiliza cookies ni guarda información en su navegador, no crea perfiles de
+        personas y no graba sesiones. La dirección IP se descarta y no se conserva; solo se usa para
+        calcular el identificador anónimo de visitante, y no se registra la ubicación. Ese
+        identificador lo calcula el servidor de PostHog, sin que quede almacenado en su dispositivo. Los datos de esta medición se
+        comunican a PostHog únicamente para prestar este servicio de analítica.
+      </p>
+      <p>
+        Como los datos de esta medición no permiten identificarle, SmartCheck no puede asociarlos a
+        una persona determinada. Si no desea que se mida su visita, puede evitarlo bloqueando los
+        scripts de analítica en su navegador. Para consultas sobre este tema, puede utilizar los
+        canales indicados en la sección <a href="#cambios">11</a> de esta Política.
+      </p>
+
+      <h3 id="almacenamiento">Almacenamiento de Informes y fotografías: Convex</h3>
+      <p>
+        Los Informes y las fotografías de las inspecciones se guardan en <strong>Convex</strong>, un
+        proveedor de base de datos con servidores en Estados Unidos de América. SmartCheck procurará que
+        el acceso de ese proveedor se limite a lo necesario para prestar el servicio de almacenamiento,
+        conforme a lo indicado en esta sección.
+      </p>
+
+      <h3 id="alojamiento">Alojamiento del sitio y tipografía: Vercel y Google Fonts</h3>
+      <p>
+        El sitio está alojado en <strong>Vercel</strong>, un proveedor de alojamiento web con servidores
+        en Estados Unidos de América. Vercel recibe la dirección IP y datos técnicos de cada visita al
+        sitio, que quedan en sus registros de funcionamiento.
+      </p>
+      <p>
+        La tipografía del sitio se carga desde los servidores de Google (<strong>Google Fonts</strong>).
+        Por esta razón, Google recibe la dirección IP y los datos del navegador de quien visita el
+        sitio.
+      </p>
+
+      <h2 id="cambios">11. Cambios a esta Política y contacto</h2>
+      <p>
+        SmartCheck podrá actualizar esta Política cuando cambie la legislación, los servicios ofrecidos
+        o la forma en que se tratan los datos. La versión vigente deberá indicar su fecha de
+        actualización.
+      </p>
+      <p>
+        Para consultas relacionadas con privacidad o para ejercer derechos sobre datos personales,
+        puede utilizarse el correo <a href="mailto:smartcheckcr@gmail.com">smartcheckcr@gmail.com</a> o
+        el teléfono / WhatsApp <a href="tel:+50686752713">+506 8675-2713</a>.
+      </p>
+      <p>
+        Lo anterior no limita el derecho de la persona titular de acudir ante la Agencia de Protección
+        de Datos de los Habitantes (PRODHAB) o ante las autoridades competentes.
+      </p>
+    </div>
+  </div>
+</BaseLayout>
+
+<style is:global>
+  .legal { @apply text-gray-700 leading-relaxed; }
+  .legal h2 { @apply text-2xl font-bold text-smartcheck-blue mt-10 mb-4 scroll-mt-24; }
+  .legal > p:first-child { @apply text-lg text-gray-600 mb-8; }
+  .legal h3 { @apply text-lg font-bold text-gray-800 mt-6 mb-3 scroll-mt-24; }
+  .legal p { @apply mb-4; }
+  .legal ul { @apply list-disc pl-6 mb-4 space-y-2; }
+  .legal ol { @apply list-decimal pl-6 mb-4 space-y-2; }
+  .legal li { @apply pl-1; }
+  .legal strong { @apply text-gray-900 font-semibold; }
+  .legal a { @apply text-smartcheck-blue font-medium underline hover:text-smartcheck-accent; }
+  .legal hr { @apply my-8 border-gray-200; }
+</style>
