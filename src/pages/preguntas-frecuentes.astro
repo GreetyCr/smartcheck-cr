@@ -5,7 +5,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 const faqs = [
   {
     q: '¿Qué incluye la inspección de vehículos?',
-    a: 'La revisión cubre hasta 230 puntos del vehículo, según el tipo de vehículo y el servicio contratado, incluyendo sistemas mecánicos (motor, transmisión, frenos), sistemas eléctricos y electrónicos, inspección estructural y de carrocería, verificación de documentación legal y una prueba de carretera completa.',
+    a: 'La revisión cubre hasta 230 puntos del vehículo, según el tipo de vehículo y el servicio contratado, incluyendo sistemas mecánicos (motor, transmisión, frenos), sistemas eléctricos y electrónicos, inspección estructural y de carrocería, y una prueba de carretera completa. No incluye estudio registral, fiscal, judicial, prendario ni administrativo.',
   },
   {
     q: '¿Dónde se realiza la inspección?',
@@ -105,9 +105,11 @@ const faqSchema = {
               <li>Sistemas mecánicos (motor, transmisión, frenos)</li>
               <li>Sistemas eléctricos y electrónicos</li>
               <li>Inspección estructural y de carrocería</li>
-              <li>Verificación de documentación legal</li>
               <li>Prueba de carretera completa</li>
             </ul>
+            <p class="mt-3 text-gray-700 leading-relaxed">
+              No incluye estudio registral, fiscal, judicial, prendario ni administrativo.
+            </p>
           </div>
         </div>
       </div>
