@@ -1,7 +1,7 @@
 ---
 // PostHog, sin cookies, sin perfiles y sin grabacion.
 // Sin PUBLIC_POSTHOG_KEY en el entorno de build no renderiza nada: ni una linea de PostHog en el HTML.
-// Con clave, expone window.posthog (el listener de whatsapp_click cuelga de ahi).
+// Con clave, expone window.posthog y registra el listener de whatsapp_click (a[data-wa-boton]).
 // Una clave de solo espacios cuenta como sin clave.
 const posthogKey = (import.meta.env.PUBLIC_POSTHOG_KEY ?? '').trim();
 ---
@@ -20,6 +20,19 @@ const posthogKey = (import.meta.env.PUBLIC_POSTHOG_KEY ?? '').trim();
       capture_pageview: true,
       capture_performance: false,
       capture_exceptions: false,
+    });
+    // Clics a WhatsApp: un solo listener delegado. Nunca frena el enlace (sin preventDefault);
+    // sendBeacon + send_instantly para que el evento salga aunque el enlace abra en la misma pestana.
+    document.addEventListener('click', function (ev) {
+      try {
+        var el = ev.target && ev.target.closest ? ev.target.closest('a[data-wa-boton]') : null;
+        if (!el) return;
+        window.posthog?.capture(
+          'whatsapp_click',
+          { boton: el.dataset.waBoton, pagina: location.pathname },
+          { transport: 'sendBeacon', send_instantly: true }
+        );
+      } catch (e) {}
     });
   </script>
 )}
