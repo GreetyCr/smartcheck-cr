@@ -4,6 +4,7 @@
 //
 // Uso (después de `npm run build`):
 //   node scripts/cotejo-legal.mjs terminos
+//   node scripts/cotejo-legal.mjs aceptar
 //   node scripts/cotejo-legal.mjs politica
 //   node scripts/cotejo-legal.mjs terminos --dist=/ruta/a/otra/copia/de/dist
 //
@@ -49,6 +50,15 @@ const PAGINAS = {
     fuente: 'docs/legal/fuente/tyc-2026-10.txt',
     indice: true, // la página debe traer el índice de anclas
     // Control de la deducción desde la fuente: si cambia, el script avisa en vez de callar.
+    esperado: { h2: 25, h3: 6, ul: 6, li: 34 },
+  },
+  // Página de clientes: mismo componente y misma fuente que `terminos`, más el botón de aceptar.
+  aceptar: {
+    ruta: 'aceptar-terminos',
+    astro: 'src/pages/aceptar-terminos.astro',
+    origen: ['src/components/TerminosCuerpo.astro', 'src/data/terminos.ts'],
+    fuente: 'docs/legal/fuente/tyc-2026-10.txt',
+    indice: true,
     esperado: { h2: 25, h3: 6, ul: 6, li: 34 },
   },
   politica: {

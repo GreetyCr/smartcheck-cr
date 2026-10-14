@@ -53,6 +53,9 @@ El blog usa el patron antiguo de Astro (no content collections): cada post es un
 
 **PostHog solo carga si `PUBLIC_POSTHOG_KEY` esta en el entorno del build.** `src/components/PostHog.astro` (incluido en el `<head>` de `BaseLayout`) lee la clave de `import.meta.env` y la recorta con `.trim()`; sin clave, o con una de solo espacios, no renderiza nada y el HTML no trae ni una linea de PostHog (`grep -rli posthog dist` tiene que dar 0). Es una variable de build: se hornea en el HTML estatico, asi que cambiarla en Vercel exige un redeploy. Reglas: la clave va solo en el entorno **Production** de Vercel, para que los previews y el desarrollo local queden apagados; para probar en local se pasa en el comando (`PUBLIC_POSTHOG_KEY=phc_... npm run build`), nunca en un archivo commiteado (`.env.example` va vacio); las opciones de `init` tienen que coincidir con la sec. 10 de la Politica de privacidad, y si cambian hay que cambiar el texto legal.
 
+**`/aceptar-terminos` comparte fuente con `/terminos-y-condiciones`** (`TerminosCuerpo.astro` + `src/data/terminos.ts`): el texto se edita solo ahi y se cotejan las dos con `scripts/cotejo-legal.mjs`.
+Lleva `noindex`, no va en `sitemap.xml`, su boton no lleva `data-wa-boton` y PostHog la excluye con un filtro del proyecto (`Current URL` no contiene `/aceptar-terminos`), no con codigo.
+
 **`public/sw.js` nunca se registra** — no hay ningun `navigator.serviceWorker.register` en el proyecto. El `manifest.json` si esta enlazado desde `BaseLayout`.
 
 **`public/.htaccess`** (compresion + cache de Apache) es inerte en Vercel; sobrevive de un hosting anterior.
