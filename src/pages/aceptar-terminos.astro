@@ -26,7 +26,13 @@ const enlaceWhatsApp = 'https://wa.me/50686752713?text=' + encodeURIComponent(me
       <h1 class="text-3xl md:text-5xl font-bold text-white mb-4">Términos y Condiciones</h1>
       <p class="text-white/80">Última actualización: {lastUpdated}</p>
       <p class="text-white/80 mt-2">Al final de la página está el botón para aceptarlos.</p>
-      <a href="#aceptar" class="inline-block mt-6 text-white font-medium underline underline-offset-4 hover:text-smartcheck-accent transition-colors">Ir a aceptar ↓</a>
+      <!-- Mismo estilo que el botón de aceptar del final, para que se reconozca al llegar allí. -->
+      <a href="#aceptar" class="inline-flex items-center justify-center mt-8 min-h-[3rem] bg-smartcheck-accent hover:brightness-95 text-smartcheck-blue font-bold py-3 px-8 rounded-xl text-lg shadow-lg shadow-black/20 hover:shadow-xl focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/60 transition">
+        Ir a aceptar
+        <svg class="w-5 h-5 ml-2 shrink-0 motion-safe:animate-bounce" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14m0 0l-6-6m6 6l6-6"/>
+        </svg>
+      </a>
     </div>
   </section>
 
