@@ -4,12 +4,14 @@
 //
 // Uso (después de `npm run build`):
 //   node scripts/cotejo-legal.mjs terminos
+//   node scripts/cotejo-legal.mjs aceptar
 //   node scripts/cotejo-legal.mjs politica
 //   node scripts/cotejo-legal.mjs terminos --dist=/ruta/a/otra/copia/de/dist
 //
 // Qué se compara:
-//   1. Dist al día: si el .astro de la página es más nuevo que su index.html en dist,
-//      el cotejo se niega (código 2) y pide `npm run build`.
+//   1. Dist al día: si el .astro de la página, o cualquiera de los archivos de los que
+//      sale su texto (`origen`: el componente y el dato de los Términos), es más nuevo que
+//      su index.html en dist, el cotejo se niega (código 2) y pide `npm run build`.
 //   2. Texto: el cuerpo es el <div> cuya clase incluye el token exacto `legal` (no
 //      `legal-x`). Se quitan las etiquetas, se decodifican las entidades y se colapsan
 //      los espacios, así que los saltos de línea del PDF no cuentan. Palabra por palabra.
@@ -43,9 +45,20 @@ const PAGINAS = {
   terminos: {
     ruta: 'terminos-y-condiciones',
     astro: 'src/pages/terminos-y-condiciones.astro',
+    // Otros archivos que fabrican el HTML de la página (la fuente única de los Términos).
+    origen: ['src/components/TerminosCuerpo.astro', 'src/data/terminos.ts'],
     fuente: 'docs/legal/fuente/tyc-2026-10.txt',
     indice: true, // la página debe traer el índice de anclas
     // Control de la deducción desde la fuente: si cambia, el script avisa en vez de callar.
+    esperado: { h2: 25, h3: 6, ul: 6, li: 34 },
+  },
+  // Página de clientes: mismo componente y misma fuente que `terminos`, más el botón de aceptar.
+  aceptar: {
+    ruta: 'aceptar-terminos',
+    astro: 'src/pages/aceptar-terminos.astro',
+    origen: ['src/components/TerminosCuerpo.astro', 'src/data/terminos.ts'],
+    fuente: 'docs/legal/fuente/tyc-2026-10.txt',
+    indice: true,
     esperado: { h2: 25, h3: 6, ul: 6, li: 34 },
   },
   politica: {
@@ -75,12 +88,14 @@ for (const r of [rutaHtml, rutaFuente]) {
     process.exit(2);
   }
 }
-// 1. Dist viejo: el .astro cambió después de construir.
-if (existsSync(rutaAstro) && statSync(rutaAstro).mtimeMs > statSync(rutaHtml).mtimeMs) {
-  console.error(
-    `${etiqueta(rutaAstro)} es más nuevo que ${etiqueta(rutaHtml)}: el dist está viejo. Corré \`npm run build\` y volvé a cotejar.`,
-  );
-  process.exit(2);
+// 1. Dist viejo: la página o algo de lo que la fabrica cambió después de construir.
+for (const r of [rutaAstro, ...(pagina.origen ?? []).map((x) => resolve(raiz, x))]) {
+  if (existsSync(r) && statSync(r).mtimeMs > statSync(rutaHtml).mtimeMs) {
+    console.error(
+      `${etiqueta(r)} es más nuevo que ${etiqueta(rutaHtml)}: el dist está viejo. Corré \`npm run build\` y volvé a cotejar.`,
+    );
+    process.exit(2);
+  }
 }
 
 const ENTIDADES = { amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", nbsp: ' ' };

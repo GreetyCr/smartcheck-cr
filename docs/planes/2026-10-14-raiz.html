@@ -1,0 +1,396 @@
+<!doctype html><html lang='es-CR'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>Plan aceptar los Términos por WhatsApp</title><style>:root{--bg:#fff;--fg:#1d1d1f;--mut:#666;--line:#ddd;--acc:#004AAD;--code:#f4f4f6}
+@media (prefers-color-scheme:dark){:root{--bg:#161618;--fg:#ececec;--mut:#aaa;--line:#333;--acc:#7fb0ff;--code:#222226}}
+body{background:var(--bg);color:var(--fg);font:16px/1.6 -apple-system,system-ui,sans-serif;max-width:860px;margin:0 auto;padding:24px 16px}
+h1,h2,h3{line-height:1.25}h2{border-bottom:1px solid var(--line);padding-bottom:4px;margin-top:2em;color:var(--acc)}
+table{border-collapse:collapse;width:100%;display:block;overflow-x:auto}td,th{border:1px solid var(--line);padding:6px 8px;vertical-align:top}
+code{background:var(--code);padding:1px 4px;border-radius:4px;font-size:.9em}pre{background:var(--code);padding:12px;overflow-x:auto}
+blockquote{border-left:3px solid var(--acc);margin:0;padding-left:12px;color:var(--mut)}</style></head><body><h1>Plan · SmartCheck CR · aceptar los Términos por WhatsApp</h1>
+<blockquote>
+<p>Plan aprobado por Randall el 14-oct (1a), con U5b y U7 adentro (2a, 3a). Esqueleto del 14-oct, con las decisiones de Randall «1c, 2b, 3a, 4a». Cambia tres cosas del esqueleto: PostHog <strong>sí</strong> carga en la página (se excluye con un filtro del proyecto, como <code>?prueba=1</code>), la cuenta de PostHog <strong>sí</strong> se toca (solo ese filtro), y hay una URL aparte para clientes, con el texto legal de una sola fuente. El <code>lastmod</code> del sitemap ya no se toca: la página pública no cambia. Por la fuente única, la estimación pasa de unas 3 h a 4,5 h.</p>
+</blockquote>
+<h2>Resumen (para aprobar sin leer el resto)</h2>
+<p><strong>Qué se construye.</strong> Una página <code>/aceptar-terminos</code>, con <code>noindex</code> y fuera del sitemap, que es la que Esteban manda por WhatsApp. Trae el mismo texto que <code>/terminos-y-condiciones</code>, sacado del mismo componente, y al final un botón «Acepto los términos y condiciones». El botón abre un <code>&lt;dialog&gt;</code> que muestra el mensaje, y ahí «Abrir WhatsApp» abre el chat de Esteban con «He leído y acepto los Términos y Condiciones (versión del 13 de octubre de 2026)», con la fecha tomada de <code>lastUpdated</code>. PostHog sigue cargando ahí; Randall agrega en el proyecto la línea <code>Current URL</code> · doesn't contain · <code>/aceptar-terminos</code>. La página pública y la Política no cambian.</p>
+<p><strong>Lo mínimo: 4,5 h de trabajo (estimación).</strong> U0, U1, U2, U3, U4, U5 y U6. <strong>Lo que protege: 0,35 h (estimación).</strong> U5b (tapar el primer salto a otra página) y U7 (el mensaje a Esteban). <strong>Total: 4,85 h de trabajo</strong>, todo estimado. Avance = unidades verificadas sobre 9.</p>
+<p><strong>Orden.</strong> U0 → U1 → U2 → U3 (integrar y medir) → U4 (WhatsApp en los dos teléfonos) → U6 (merge y PROD). U5 y U7 corren en paralelo desde ya; U5 se comprueba después de U6, porque en la vista previa PostHog no carga.</p>
+<p><strong>Decisiones propuestas (Randall las aprueba o las cambia).</strong></p>
+<ol>
+<li><strong>Slug <code>/aceptar-terminos</code>.</strong> Ninguna URL del sitio lo contiene (<code>grep -rl aceptar-terminos src public</code> da 0), así que el filtro no se come nada más.</li>
+<li><strong>El botón va solo en la página de clientes.</strong> En la pública, un visitante cualquiera mandaría «acepto» sin contratación, y Esteban no sabría de quién es. Además así la pública queda idéntica y se sigue midiendo limpia.</li>
+<li><strong>Canónica a sí misma, con <code>noindex</code>.</strong> Una canónica a la pública sumada al <code>noindex</code> le da a Google dos señales que se contradicen. Con <code>noindex</code> la copia no compite con la pública. <code>robots.txt</code> no la bloquea, porque si la bloquea Google no llega a leer el <code>noindex</code>.</li>
+<li><strong>El botón de aceptar no lleva <code>data-wa-boton</code>.</strong> Así nunca cuenta como <code>whatsapp_click</code>, tampoco en Live events ni en SQL, donde el filtro no corre. Los 12 de contacto siguen siendo 12.</li>
+<li><strong>La prueba de U4 no envía el mensaje.</strong> Alcanza con ver el chat de Esteban con el texto escrito. Un envío de prueba le llegaría a Esteban como una aceptación.</li>
+</ol>
+<p><strong>Decidido el 14-oct.</strong> Lo que protege entra entero: U5b (si se cumple la sección 5) y U7, que redacta la sesión principal.</p>
+<p><strong>Supuestos sin verificar.</strong> Que el filtro de <code>?prueba=1</code> quedó guardado el 13-oct: las instrucciones se dieron y la sesión terminó sin confirmación. Que los filtros de «internal and test users» corren al consultar (o sea, también sobre lo que ya pasó) y no en Live events ni en SQL. Que <code>$referrer</code> viaja en cada evento (U5b depende de eso). Que el enlace <code>wa.me</code> abre el chat desde el navegador interno de WhatsApp.</p>
+<p><strong>Guías.</strong> Ninguna aplica: las únicas son <code>app-pwa</code> y <code>panel-de-datos</code>, y no hay guía de sitio web. Se trabaja con el núcleo.</p>
+<h2>La puerta</h2>
+<h3>1. El arranque: la U0</h3>
+<p><strong>Sobre un proyecto que ya existe.</strong> No hay árbol ni esquema: es un sitio estático, con un solo nodo. La U0 crea <code>feat/aceptar-terminos</code> desde <code>main</code> (<code>6aeae61</code>, igual a <code>origin/main</code> al 14-oct) y le sube este plan y su esqueleto, que hoy viven sin commit en <code>docs/cierre-plan-octubre</code>. Con un solo nodo, el paralelo se decide por archivos que no se cruzan.</p>
+<h3>2. Unidades y archivos</h3>
+<table>
+<thead>
+<tr>
+<th>Unidad</th>
+<th>Qué hace</th>
+<th>Rama dueña</th>
+<th>Quién la construye</th>
+<th>Archivos que le tocan</th>
+<th>KB de código</th>
+<th>Contrato</th>
+<th>Datos de DEV</th>
+<th>Estimación (h de trabajo)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>U0</td>
+<td>Rama desde <code>main</code>; commit del plan y del esqueleto; push</td>
+<td>raiz</td>
+<td>sesión principal</td>
+<td><code>docs/planes/</code>, <code>docs/esqueletos/</code></td>
+<td>0</td>
+<td>no aplica</td>
+<td>no aplica</td>
+<td>0,25</td>
+</tr>
+<tr>
+<td>U1</td>
+<td><strong>Fuente única.</strong> <code>lastUpdated</code> e <code>indice</code> pasan a <code>src/data/terminos.ts</code>. El índice, el bloque <code>legal</code> y su <code>&lt;style is:global&gt;</code> pasan a <code>src/components/TerminosCuerpo.astro</code>. <code>terminos-y-condiciones.astro</code> queda como <code>BaseLayout</code> + hero + <code>&lt;TerminosCuerpo /&gt;</code>, con el mismo HTML de hoy. <code>cotejo-legal.mjs</code>: el chequeo de «dist viejo» mira también el componente y el dato (hoy solo mira el <code>.astro</code> de la página)</td>
+<td>raiz</td>
+<td>constructor</td>
+<td><code>src/pages/terminos-y-condiciones.astro</code>, <code>src/components/TerminosCuerpo.astro</code> (nuevo), <code>src/data/terminos.ts</code> (nuevo), <code>scripts/cotejo-legal.mjs</code></td>
+<td>~40 (23 se mudan sin cambiar)</td>
+<td>aditivo: el componente y el dato</td>
+<td>la fuente <code>docs/legal/fuente/tyc-2026-10.txt</code></td>
+<td>1,25</td>
+</tr>
+<tr>
+<td>U2</td>
+<td><strong>Página de clientes.</strong> <code>src/pages/aceptar-terminos.astro</code> con <code>BaseLayout</code> (<code>noindex</code>), hero, <code>&lt;TerminosCuerpo /&gt;</code> y la sección <code>#aceptar</code>: el botón, el <code>&lt;dialog&gt;</code> y un <code>&lt;script&gt;</code> corto (sección 7). El enlace se arma una sola vez en el frontmatter: <code>https://wa.me/50686752713?text=</code> + <code>encodeURIComponent</code> de <code>versión del ${lastUpdated}</code>. Sin helper ni almacenamiento. Prop <code>noindex?</code> en <code>BaseLayout</code> (meta <code>robots</code> = <code>noindex, follow</code>). Entrada <code>aceptar</code> en el cotejo. La trampa en <code>CLAUDE.md</code>, en tres líneas como máximo: una fuente con dos páginas, <code>noindex</code>, fuera del sitemap, sin <code>data-wa-boton</code> y el filtro en PostHog. El <code>CLAUDE.md</code> pesa 6,6 KB y el techo del método es 7 KB (<code>TECHO_REPO</code> de <code>puerta_salida.py</code>)</td>
+<td>raiz</td>
+<td>constructor</td>
+<td><code>src/pages/aceptar-terminos.astro</code> (nuevo), <code>src/layouts/BaseLayout.astro</code> (2 líneas), <code>scripts/cotejo-legal.mjs</code>, <code>CLAUDE.md</code></td>
+<td>~45</td>
+<td>aditivo: prop opcional</td>
+<td>la misma fuente</td>
+<td>1,5</td>
+</tr>
+<tr>
+<td>U3</td>
+<td>Integrar U1 y U2, <code>npm run build</code>, los dos cotejos, push y vista previa de Vercel; lanzar al verificador (sección 4, R7 y R8, a 375 px)</td>
+<td>raiz</td>
+<td>sesión principal: es la costura y lanza al verificador</td>
+<td>ninguno</td>
+<td>0</td>
+<td>no aplica</td>
+<td>no aplica</td>
+<td>0,75 (0,25 de integrar + 0,5 de medir)</td>
+</tr>
+<tr>
+<td>U4</td>
+<td>Desde un chat de WhatsApp, en iPhone y en Android, abrir el enlace de la vista previa, leer, «Ir a aceptar», el botón, el diálogo, «Abrir WhatsApp»: se abre el chat de +506 8675 2713 con el mensaje escrito. <strong>No se envía</strong></td>
+<td>raiz</td>
+<td><strong>Randall</strong>: hacen falta sus dos teléfonos</td>
+<td>ninguno</td>
+<td>0</td>
+<td>no aplica</td>
+<td>no aplica</td>
+<td>0,25</td>
+</tr>
+<tr>
+<td>U5</td>
+<td><strong>El filtro de PostHog</strong>, a mano (abajo, sección 6). Se agrega cuando quiera y se comprueba después de U6</td>
+<td>raiz</td>
+<td><strong>Randall</strong>: la cuenta es de Esteban y el clasificador bloqueó al agente el 13-oct</td>
+<td>ninguno</td>
+<td>0</td>
+<td>no aplica</td>
+<td>no aplica</td>
+<td>0,25</td>
+</tr>
+<tr>
+<td>U6</td>
+<td>Merge del PR a <code>main</code> (Randall), deploy de Production y comprobación en PROD con <code>curl</code>: 200, <code>noindex</code>, <code>posthog.init</code> presente y pública sin cambios</td>
+<td>raiz</td>
+<td>sesión principal + Randall (el merge)</td>
+<td>ninguno</td>
+<td>0</td>
+<td>no aplica</td>
+<td>no aplica</td>
+<td>0,25</td>
+</tr>
+<tr>
+<td>U5b</td>
+<td><em>Protege.</em> Segunda línea del filtro: <code>Referrer URL</code> · doesn't contain · <code>/aceptar-terminos</code>, solo si al comprobar se cumple lo que dice la sección 5</td>
+<td>raiz</td>
+<td><strong>Randall</strong></td>
+<td>ninguno</td>
+<td>0</td>
+<td>no aplica</td>
+<td>no aplica</td>
+<td>0,1</td>
+</tr>
+<tr>
+<td>U7</td>
+<td><em>Protege.</em> Mensaje a Esteban: el enlace, que el cliente tiene que enviar el mensaje (y que lo puede editar), que no borre esos chats porque son la evidencia de la cl. 25, y que no publique el enlace en redes. Lo redacta la principal y lo manda Randall</td>
+<td>raiz</td>
+<td>sesión principal (redacción)</td>
+<td>ninguno</td>
+<td>0</td>
+<td>no aplica</td>
+<td>no aplica</td>
+<td>0,25</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>En fila:</strong> U0 → U1 → U2 → U3 → U4 → U6. U2 usa el componente de U1, y las dos tocan <code>cotejo-legal.mjs</code>. <strong>En paralelo:</strong> U5, U5b y U7, con todo; ninguna toca archivos.</li>
+<li><strong>Salir del worktree:</strong> ninguna unidad de constructor lo necesita. Medir con navegador es del verificador. Los teléfonos y PostHog son de Randall. El <code>curl</code> a PROD es de la principal.</li>
+<li><strong>Archivos imán:</strong> no aplica, el repo no tiene árbol ni decisiones por rama.</li>
+</ul>
+<h3>3. Dueño por tabla</h3>
+<p>No aplica: es un sitio estático, sin base de datos. El único dato compartido es el proyecto de PostHog, de Esteban. Solo U5 y U5b lo tocan, y solo con un filtro de vista que no borra eventos. Esteban autorizó «todo lo necesario» el 13-oct.</p>
+<h3>4. Criterio de aceptación</h3>
+<p>Los comandos corren desde la raíz del repo, después de <code>npm run build</code> <strong>sin</strong> <code>PUBLIC_POSTHOG_KEY</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Requerimiento</th>
+<th>Se cumple cuando</th>
+<th>Quién lo comprueba</th>
+<th>Cifra: definición, universo, comando</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>R1 Una sola fuente</td>
+<td>El texto de los Términos está en un solo archivo de <code>src</code>, y la fecha también</td>
+<td>U1</td>
+<td><code>grep -rl "La aceptación realizada mediante el sitio web" src | wc -l</code> → <strong>1</strong>; <code>grep -rl "const lastUpdated = '13 de octubre" src | wc -l</code> → <strong>2</strong> (el dato de Términos y la Política, que no se toca)</td>
+</tr>
+<tr>
+<td>R2 La pública no cambia</td>
+<td>Cotejo en 0, sin botón ni diálogo, y se ve igual a <code>main</code> a 375 px</td>
+<td>U1; la vista, el verificador</td>
+<td><code>node scripts/cotejo-legal.mjs terminos | tail -1</code> → <strong>Diferencias: 0</strong>; <code>grep -c "&lt;dialog" dist/terminos-y-condiciones/index.html</code> → <strong>0</strong></td>
+</tr>
+<tr>
+<td>R3 Mismo texto en la de clientes</td>
+<td>Cotejo en 0 con la misma fuente; el bloque <code>legal</code> no contiene ni el botón ni el diálogo; no se repiten ids</td>
+<td>U2</td>
+<td><code>node scripts/cotejo-legal.mjs aceptar | tail -1</code> → <strong>Diferencias: 0</strong></td>
+</tr>
+<tr>
+<td>R4 Fuera de Google</td>
+<td><code>noindex</code> solo en esa página, canónica a sí misma, fuera del sitemap y sin bloquear en <code>robots.txt</code></td>
+<td>U2</td>
+<td><code>grep -rl "noindex" dist --include=index.html | wc -l</code> → <strong>1</strong>; <code>grep -c 'rel="canonical" href="https://smartcheckcr.com/aceptar-terminos"' dist/aceptar-terminos/index.html</code> → <strong>1</strong>; <code>grep -c "aceptar-terminos" public/sitemap.xml public/robots.txt | grep -c ":0"</code> → <strong>2</strong></td>
+</tr>
+<tr>
+<td>R5 El mensaje exacto, con la versión del dato</td>
+<td>El texto decodificado es el de 3a, y la fecha no está escrita en la página</td>
+<td>U2</td>
+<td><code>node -e "const h=require('fs').readFileSync('dist/aceptar-terminos/index.html','utf8');console.log(decodeURIComponent(h.match(/wa\.me\/50686752713\?text=([^\"]+)/)[1]))"</code> → <strong>He leído y acepto los Términos y Condiciones (versión del 13 de octubre de 2026)</strong>; <code>grep -c "13 de octubre" src/pages/aceptar-terminos.astro</code> → <strong>0</strong></td>
+</tr>
+<tr>
+<td>R6 Botón como los otros, fuera del evento</td>
+<td><code>wa.me</code> en el <code>href</code>, las clases y el ícono del de <code>contacto</code>, sin <code>data-wa-boton</code>. El enlace aparece dos veces en la página (el botón, que sin JS va directo, y «Abrir WhatsApp»)</td>
+<td>U2</td>
+<td><code>grep -o "wa.me/50686752713" dist/aceptar-terminos/index.html | wc -l</code> → <strong>2</strong>; <code>grep -c "data-wa-boton" dist/aceptar-terminos/index.html</code> → <strong>0</strong>; <code>grep -ro "data-wa-boton" src/pages | wc -l</code> → <strong>12</strong>; <code>grep -rn -E "wa\.me/[0-9]" src | wc -l</code> → <strong>13</strong></td>
+</tr>
+<tr>
+<td>R7 Diálogo accesible y usable a 375 px</td>
+<td>Se abre con <code>showModal()</code> y el foco cae en «Abrir WhatsApp». Tab no sale del diálogo. Escape y «Volver» lo cierran y el foco vuelve al botón. Tiene <code>aria-labelledby</code> y <code>aria-describedby</code>. A 375 px no hay scroll horizontal y los dos botones se ven sin desplazar. Sin JS, o sin <code>&lt;dialog&gt;</code>, el botón abre WhatsApp directo</td>
+<td>verificador, sobre U2</td>
+<td>a ojo, con capturas a 375 px</td>
+</tr>
+<tr>
+<td>R8 Nada guardado en el navegador</td>
+<td>Después del flujo completo, sin cookies, <code>localStorage</code> ni <code>sessionStorage</code> del sitio. Se prueba con un build local con la clave (los eventos van con <code>localhost</code>, que ya se filtra)</td>
+<td>U2 (estático); verificador (navegador)</td>
+<td><code>grep -cE "localStorage|sessionStorage|document\.cookie" dist/aceptar-terminos/index.html</code> → <strong>0</strong></td>
+</tr>
+<tr>
+<td>R9 PostHog sigue cargando ahí</td>
+<td>En PROD, la página trae <code>posthog.init</code></td>
+<td>U6</td>
+<td><code>curl -s https://smartcheckcr.com/aceptar-terminos | grep -c "posthog.init"</code> → <strong>1</strong></td>
+</tr>
+<tr>
+<td>R10 El tráfico de clientes no se cuenta</td>
+<td>En un Trends de <code>$pageview</code> de las últimas 24 h, desglosado por <code>Path name</code>, con el filtro de internos encendido no aparece <code>/aceptar-terminos</code>, y con el filtro apagado sí aparece. Los demás paths dan lo mismo con el filtro encendido y apagado, salvo <code>?prueba=1</code> y <code>localhost</code>. Live events sí la muestra, y está bien: ahí no corre el filtro</td>
+<td>U5 (Randall)</td>
+<td>en PostHog, sin comando de shell: <code>select count() from events where properties.$current_url ilike '%/aceptar-terminos%'</code> ≥ 1</td>
+</tr>
+<tr>
+<td>R11 Funciona desde WhatsApp</td>
+<td>En iPhone y en Android, desde un chat: la página abre, el diálogo se usa con el dedo y «Abrir WhatsApp» deja el chat de +506 8675 2713 con el mensaje escrito</td>
+<td>U4 (Randall)</td>
+<td>a ojo, una captura por teléfono</td>
+</tr>
+<tr>
+<td>R11b <code>CLAUDE.md</code> bajo el techo</td>
+<td>La trampa entra sin pasar los 7 KB</td>
+<td>U2</td>
+<td><code>wc -c &lt; CLAUDE.md | awk '{print ($1 &lt;= 7168)}'</code> → <strong>1</strong></td>
+</tr>
+<tr>
+<td>R12 Esteban sabe cómo se usa</td>
+<td>Recibió el mensaje de U7</td>
+<td>U7 (si entra)</td>
+<td>no aplica</td>
+</tr>
+</tbody>
+</table>
+<p><strong>La cifra que cambia para el cliente: visitas y <code>whatsapp_click</code> en PostHog.</strong> Se definen igual que el 13-oct, pero el universo pasa a ser los eventos cuyo <code>$current_url</code> no contiene <code>prueba=1</code>, <code>localhost</code> ni <code>/aceptar-terminos</code> (con U5b, tampoco los que traen <code>$referrer</code> de esa página). Lo reproduce <code>select count() from events where event = '$pageview' and properties.$current_url not ilike '%/aceptar-terminos%' and properties.$current_url not ilike '%prueba=1%' and properties.$current_url not ilike '%localhost%'</code>. <strong>Qué hace Randall con ella:</strong> leer cuánta gente llega sola al sitio, sin los clientes a los que Esteban ya les mandó el enlace.</p>
+<h3>5. Supuestos y riesgos del terreno</h3>
+<table>
+<thead>
+<tr>
+<th>Supuesto o riesgo</th>
+<th>Cómo se verificó</th>
+<th>Resultado</th>
+<th>Fecha</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>El filtro de <code>?prueba=1</code> existe</td>
+<td>Sesión del 13-oct: se le dieron a Randall los pasos (Settings → Customization → «Filter out internal and test users», <code>Current URL</code> doesn't contain <code>prueba=1</code> y <code>localhost</code>, «Enable this filter on all new insights»). No está en el vault ni en el plan</td>
+<td><strong>sin verificar</strong>: la sesión terminó sin confirmar. U5 lo mira primero</td>
+<td>14-oct</td>
+</tr>
+<tr>
+<td>El filtro corre al consultar (también sobre lo pasado), solo donde está encendido, y no corre en Live events ni en SQL</td>
+<td>Doc de PostHog (trends/filters, web-analytics): no lo dice</td>
+<td><strong>sin verificar</strong>; se comprueba en U5 (R10). Si Web analytics tiene «Allow precompute», se mira si respeta el filtro</td>
+<td>14-oct</td>
+</tr>
+<tr>
+<td>Si el cliente pasa de esa página a otra, esa visita sí se mide</td>
+<td>Por cómo funciona el filtro: mira la URL de cada evento, y la cookieless no une visitas</td>
+<td>Fuga aceptada con 1c. U5b tapa el primer salto si <code>$referrer</code> viaja en cada evento y una visita directa trae <code>$direct</code> (no vacío). Si no, U5b no se hace</td>
+<td>14-oct</td>
+</tr>
+<tr>
+<td>Si Esteban manda la pública por costumbre, esa visita se mide y no hay botón</td>
+<td>—</td>
+<td>riesgo; lo cubre U7</td>
+<td>14-oct</td>
+</tr>
+<tr>
+<td>El enlace <code>wa.me</code> abre el chat desde el navegador interno de WhatsApp</td>
+<td>conocimiento, no medido</td>
+<td><strong>sin verificar</strong> → U4</td>
+<td>14-oct</td>
+</tr>
+<tr>
+<td><code>&lt;dialog&gt;</code> con <code>showModal()</code>: Safari 15.4 o más y Chrome</td>
+<td>conocimiento</td>
+<td>sin <code>&lt;dialog&gt;</code>, el botón va directo a WhatsApp (R7)</td>
+<td>14-oct</td>
+</tr>
+<tr>
+<td>La cl. 25 acepta la aceptación por WhatsApp y pide guardar evidencia de la versión</td>
+<td>lectura de <code>terminos-y-condiciones.astro</code></td>
+<td>sí; por eso el mensaje lleva la versión</td>
+<td>14-oct</td>
+</tr>
+<tr>
+<td>Quién más trabaja en el código</td>
+<td><code>git worktree list</code>, <code>git log main..</code></td>
+<td>12 worktrees viejos, todos integrados. <code>docs/cierre-plan-octubre</code> tiene un commit de docs fuera de <code>main</code> (<code>467d878</code>). No se cruzan</td>
+<td>14-oct</td>
+</tr>
+<tr>
+<td>Quién consume afuera</td>
+<td>lectura</td>
+<td>Esteban (el mensaje). Google (<code>noindex</code>). La vista previa del enlace en WhatsApp, que lee <code>og:title</code> y <code>og:description</code>: la página lleva título y descripción propios. Los insights de <code>whatsapp_click</code>, que no cambian (decisión 4)</td>
+<td>14-oct</td>
+</tr>
+<tr>
+<td>DEV ≈ PROD</td>
+<td>—</td>
+<td>no aplica la base. En la vista previa PostHog no carga (la clave está solo en Production), así que R9 y R10 se miden en PROD</td>
+<td>14-oct</td>
+</tr>
+</tbody>
+</table>
+<h3>6. Datos de DEV y lo que falta de afuera</h3>
+<p><strong>Datos de DEV:</strong> no aplica, no hay base. La única muestra es la fuente legal que ya está en el repo, sin datos de personas. La visita de prueba de U5 es de Randall.</p>
+<p><strong>U5, el filtro, paso a paso.</strong></p>
+<ol>
+<li>Abrir <code>https://us.posthog.com/project/652323/settings/project-customization</code>, en «Filter out internal and test users». Confirmar que están las líneas de <code>prueba=1</code> y <code>localhost</code>. Si no están, se agregan primero.</li>
+<li>«+ Filter» → propiedad de evento <strong><code>Current URL</code></strong> (<code>$current_url</code>) → operador <strong>doesn't contain</strong> (<code>not_icontains</code>) → valor <strong><code>/aceptar-terminos</code></strong>. «Save».</li>
+<li>Después de U6, desde el teléfono y <strong>sin</strong> <code>?prueba=1</code>, abrir <code>https://smartcheckcr.com/aceptar-terminos</code> y no navegar a otra página.</li>
+<li>Activity → Live events: llega un <code>$pageview</code> con <code>Current URL</code> = esa dirección. Eso prueba que PostHog carga ahí. Live events no aplica el filtro, así que ahí tiene que aparecer.</li>
+<li>Comprobar R10 con el Trends, con el filtro encendido y apagado.</li>
+<li>U5b, si entra: en el paso 3, tocar el logo para ir al inicio, y en Live events mirar que ese <code>$pageview</code> traiga <code>Referrer URL</code> con <code>/aceptar-terminos</code>. Después abrir el inicio directo y mirar que traiga <code>$direct</code>. Si se cumplen las dos, «+ Filter» → <strong><code>Referrer URL</code></strong> (<code>$referrer</code>) · doesn't contain · <strong><code>/aceptar-terminos</code></strong>, y repetir el paso 5.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Qué falta</th>
+<th>De quién</th>
+<th>Pedido el</th>
+<th>Hace falta para</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nada para construir</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Los dos teléfonos con WhatsApp</td>
+<td>Randall</td>
+<td>14-oct</td>
+<td>U4</td>
+</tr>
+</tbody>
+</table>
+<h3>7. Cómo se ve</h3>
+<table>
+<thead>
+<tr>
+<th>Pantalla</th>
+<th>Qué pregunta contesta</th>
+<th>Qué va primero, arriba</th>
+<th>Qué no va</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/aceptar-terminos</code></td>
+<td>«¿Cómo le digo a SmartCheck que acepto, sin escribirlo yo?»</td>
+<td>El hero de Términos, con un enlace «Ir a aceptar»</td>
+<td>Contador o registro de aceptaciones, casilla «he leído», nada guardado</td>
+</tr>
+<tr>
+<td><code>/terminos-y-condiciones</code></td>
+<td>La de hoy</td>
+<td>Sin cambios</td>
+<td>El botón (decisión 2)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>El boceto de <code>/aceptar-terminos</code>.</strong></p>
+<ul>
+<li><strong>Hero</strong> (el azul de hoy): <code>h1</code> «Términos y Condiciones», «Última actualización: 13 de octubre de 2026», una línea «Al final de la página está el botón para aceptarlos» y el enlace «Ir a aceptar ↓» (a <code>#aceptar</code>).</li>
+<li><strong>Índice</strong> y <strong>bloque legal</strong>: el componente, igual que en la pública.</li>
+<li><strong><code>#aceptar</code></strong>: tarjeta blanca como las del bloque legal, «¿Está de acuerdo con estos Términos?» y debajo el botón azul con el ícono de WhatsApp, «Acepto los términos y condiciones», a todo el ancho en el teléfono.</li>
+<li><strong>El diálogo</strong>: título «Confirmar aceptación»; «WhatsApp se va a abrir con este mensaje para SmartCheck:» y el mensaje entre comillas; «La aceptación cuenta cuando el mensaje se envía.»; «Abrir WhatsApp» (azul, el enlace) y «Volver» (texto). Ancho máximo de pantalla menos 2 rem.</li>
+</ul>
+<p><strong>Cuando no hay nada que mostrar.</strong> Sin JS o sin <code>&lt;dialog&gt;</code>, el botón abre WhatsApp directo. Sin WhatsApp instalado, <code>wa.me</code> muestra su propia página (no la controlamos). Sin red, el enlace falla como cualquier otro. No hay datos que cargar: la página es estática.</p>
+<p><strong>De dónde sale la cara.</strong> La de hoy: <code>smartcheck-blue</code>, <code>smartcheck-accent</code>, la clase <code>.legal</code> y las clases del botón de <code>contacto</code> (<code>tarjeta-whatsapp</code>).</p>
+<p><strong>Qué se mide.</strong> Las dos páginas y el diálogo abierto a 375 px. Modo oscuro: no aplica, el sitio no tiene. Lo mide el verificador, nunca un constructor.</p>
+<h2>Documentación</h2>
+<ul>
+<li>Las decisiones que se escriben como hojas cuando Randall apruebe: las cinco del resumen, más la fuente única de los Términos (componente + dato) y la exclusión por filtro del proyecto, no en el código.</li>
+<li>Lo que <strong>no se puede romper:</strong> el cotejo en 0 en las dos páginas; la página pública idéntica; ningún dato guardado en el navegador; la Política sin tocar (4a).</li>
+<li>Lo real de cada unidad, en <code>ESTADO.md</code>; las horas, en la bitácora del vault.</li>
+</ul>
+<h2>Al cerrar el proyecto</h2>
+<p>Post-proyecto corto, como el del 13-oct: horas por unidad, vueltas y su origen, y si U5 confirmó o no los supuestos de PostHog. Lo primero que se mide: la primera semana de <code>/aceptar-terminos</code> en SQL contra las aceptaciones que Esteban dice haber recibido.</p></body></html>
