@@ -393,4 +393,23 @@ blockquote{border-left:3px solid var(--acc);margin:0;padding-left:12px;color:var
 <li>Lo real de cada unidad, en <code>ESTADO.md</code>; las horas, en la bitácora del vault.</li>
 </ul>
 <h2>Al cerrar el proyecto</h2>
-<p>Post-proyecto corto, como el del 13-oct: horas por unidad, vueltas y su origen, y si U5 confirmó o no los supuestos de PostHog. Lo primero que se mide: la primera semana de <code>/aceptar-terminos</code> en SQL contra las aceptaciones que Esteban dice haber recibido.</p></body></html>
+<p>Post-proyecto corto, como el del 13-oct: horas por unidad, vueltas y su origen, y si U5 confirmó o no los supuestos de PostHog. Lo primero que se mide: la primera semana de <code>/aceptar-terminos</code> en SQL contra las aceptaciones que Esteban dice haber recibido.</p>
+<h2>Post-proyecto (cerrado el 14-oct-2026)</h2>
+<p><strong>Publicado</strong> el 14-oct: PR GreetyCr/smartcheck-cr#2 mergeado (<code>1d371eb</code>, 16:51), deploy de Production en verde. 9 de 9 unidades: U0 a U7, con U5b. 3 commits entre <code>8263611</code> (U0, 16:18) y el merge. Horas: sin medir; la sesión fue de las 16:18 a las ~17:00 más el esqueleto, que no tiene hora anotada («~?h» en la bitácora). Contra 4,85 h estimadas, no se puede comparar.</p>
+<p><strong>Vueltas:</strong> U1 y U2 salieron en la vuelta 1 (trailers <code>Vuelta: 1</code>). El verificador pasó R1 a R8 y R11b sin fallas. No hubo conflictos de merge.</p>
+<p><strong>Lo que atrapó cada pieza:</strong></p>
+<ul>
+<li>El verificador: el ícono de WhatsApp del botón se ve diminuto a 375 px y el texto se parte en dos líneas. Cosmético; queda para otra vuelta si Randall la pide.</li>
+<li>La medición en PostHog antes de U5b: <code>$referrer</code> viaja en <code>$pageview</code> y <code>$pageleave</code>, y una visita directa trae <code>$direct</code>, así que la segunda línea no excluye visitas normales.</li>
+</ul>
+<p><strong>Los supuestos de PostHog:</strong></p>
+<ul>
+<li>El filtro de <code>?prueba=1</code> sí estaba guardado desde el 13-oct: confirmado.</li>
+<li><code>$referrer</code> viaja en cada evento: confirmado (U5b hecha).</li>
+<li>La lista de filtros quedó leída por API: <code>$current_url</code> ∌ <code>localhost</code>, <code>prueba=1</code>, <code>/aceptar-terminos</code>; <code>$referrer</code> ∌ <code>/aceptar-terminos</code>.</li>
+<li>Que el filtro corre al consultar y también sobre lo pasado, y la prueba de R10 con el Trends encendido y apagado: <strong>sin verificar</strong>.</li>
+<li>El enlace <code>wa.me</code> desde el navegador interno de WhatsApp: confirmado por Randall en iPhone y Android (U4).</li>
+</ul>
+<p><strong>Lo que frenó:</strong> la vista previa de Vercel pide sesión y el conector de Vercel no tiene permiso sobre el proyecto, así que Randall sacó el enlace con «Share» para U4. Esta vez el filtro de PostHog sí se pudo agregar desde Chrome.</p>
+<p><strong>Lo que se mide primero:</strong> la primera semana de <code>/aceptar-terminos</code> (15 al 21-oct) en SQL, <code>select count() from events where event = '$pageview' and properties.$current_url ilike '%/aceptar-terminos%'</code>, contra las aceptaciones que Esteban dice haber recibido por WhatsApp.</p>
+<p><strong>Queda fuera, para otro plan:</strong> el ícono del botón; «Enable this filter on all new insights», que está apagado (cada insight nuevo necesita el filtro encendido a mano); la fuga del segundo salto (un cliente que pasa a una tercera página sí se cuenta).</p></body></html>
