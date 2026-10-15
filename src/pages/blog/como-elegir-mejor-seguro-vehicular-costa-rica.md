@@ -1,15 +1,16 @@
 ---
 layout: ../../layouts/BlogPost.astro
-title: "Cómo elegir el mejor seguro vehicular en Costa Rica: Guía completa 2024"
-description: "Aprende a seleccionar el seguro de auto ideal para tus necesidades en Costa Rica. Compara coberturas, precios y beneficios de las principales aseguradoras para tomar la mejor decisión."
+title: "Cómo elegir el mejor seguro vehicular en Costa Rica: Guía completa"
+seoTitle: "Cómo elegir el mejor seguro vehicular"
+description: "Aprende a elegir el seguro de auto ideal en Costa Rica. Compara coberturas, precios y beneficios de las principales aseguradoras para tomar la mejor decisión."
 pubDate: "2024-05-30T00:00:00.000Z"
 category: "Trámites y documentación"
-image: "/images/blog/documentacion-legal-vehiculos.jpg"
+image: "/images/blog/seguro-vehicular.jpg"
+imageWidth: 800
+imageHeight: 533
 author: "Equipo SmartCheck"
 readingTime: "11 min de lectura"
 ---
-
-# Cómo elegir el mejor seguro vehicular en Costa Rica: Guía completa 2024
 
 El seguro vehicular es una inversión esencial para cualquier propietario de automóvil en Costa Rica. No solo es un requisito legal para circular, sino también una protección financiera contra accidentes, robos y otros imprevistos. Sin embargo, con tantas opciones disponibles, seleccionar la póliza adecuada puede resultar abrumador.
 

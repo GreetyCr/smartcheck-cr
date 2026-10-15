@@ -7,7 +7,7 @@ import heroImage from '../assets/hero-inspection.jpg';
 
 <BaseLayout
   title="Revisión de Vehículos para Compra"
-  description="SmartCheck ofrece servicios profesionales de revisión de vehículos usados en Costa Rica. Evaluaciones detalladas antes de comprar para tomar decisiones informadas."
+  description="SmartCheck ofrece servicios profesionales de revisión de vehículos usados en Costa Rica. Evaluaciones detalladas antes de comprar para decisiones informadas."
 >
   <!-- Hero Section -->
   <section class="relative min-h-[90vh] flex items-center overflow-hidden">
@@ -54,6 +54,8 @@ import heroImage from '../assets/hero-inspection.jpg';
             height={400} 
             class="w-full h-auto object-cover"
             quality={85}
+            loading="eager"
+            fetchpriority="high"
           />
           <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent p-6">
             <p class="text-white font-bold text-xl">La mejor decisión para su próxima compra</p>

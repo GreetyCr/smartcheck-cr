@@ -8,6 +8,11 @@ interface Props {
   canonicalURL?: string;
   image?: string;
   noindex?: boolean;
+  ogType?: 'website' | 'article';
+  publishedTime?: string | Date;
+  imageAlt?: string;
+  imageWidth?: number;
+  imageHeight?: number;
 }
 
 const {
@@ -16,6 +21,11 @@ const {
   canonicalURL,
   image = '/images/social-share.jpg',
   noindex = false,
+  ogType = 'website',
+  publishedTime,
+  imageAlt,
+  imageWidth,
+  imageHeight,
 } = Astro.props;
 
 const siteName = 'SmartCheck CR';
@@ -28,7 +38,18 @@ const canonical = canonicalURL ?? pageURL;
 // URL absoluta para la imagen social (og:image / twitter:image).
 // El `||` no es redundante: BlogPost pasa image="" cuando el post no trae una,
 // y un string vacío no dispara el valor por defecto de la prop.
-const socialImage = new URL(image || '/images/social-share.jpg', Astro.site ?? Astro.url).href;
+const DEFAULT_SOCIAL_IMAGE = '/images/social-share.jpg';
+const socialImage = new URL(image || DEFAULT_SOCIAL_IMAGE, Astro.site ?? Astro.url).href;
+
+// Dimensiones de la imagen social: las que pase la página; si no, las de la
+// imagen por defecto (2250x1500). Con otra imagen sin dimensiones no se emiten.
+const usesDefaultImage = !image || image === DEFAULT_SOCIAL_IMAGE;
+const ogImageWidth = imageWidth && imageHeight ? imageWidth : usesDefaultImage ? 2250 : undefined;
+const ogImageHeight = imageWidth && imageHeight ? imageHeight : usesDefaultImage ? 1500 : undefined;
+// Alt genérico y honesto: la foto por defecto es de stock, no se describe su contenido.
+const ogImageAlt = imageAlt || `${siteName}, revisión de vehículos para compra en Costa Rica`;
+const articlePublishedTime =
+  ogType === 'article' && publishedTime ? new Date(publishedTime).toISOString() : undefined;
 ---
 
 <!doctype html>
@@ -63,11 +84,17 @@ const socialImage = new URL(image || '/images/social-share.jpg', Astro.site ?? A
     <meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow'} />
 
     <!-- Open Graph / Social Media -->
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:locale" content="es_CR" />
+    {articlePublishedTime && <meta property="article:published_time" content={articlePublishedTime} />}
     <meta property="og:url" content={canonical} />
     <meta property="og:title" content={`${title} | ${siteName}`} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={socialImage} />
+    {ogImageWidth && ogImageHeight && <meta property="og:image:width" content={String(ogImageWidth)} />}
+    {ogImageWidth && ogImageHeight && <meta property="og:image:height" content={String(ogImageHeight)} />}
+    <meta property="og:image:alt" content={ogImageAlt} />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
@@ -75,6 +102,7 @@ const socialImage = new URL(image || '/images/social-share.jpg', Astro.site ?? A
     <meta property="twitter:title" content={`${title} | ${siteName}`} />
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={socialImage} />
+    <meta property="twitter:image:alt" content={ogImageAlt} />
     
     <!-- Structured Data for Local Business -->
     <script type="application/ld+json">
@@ -135,7 +163,9 @@ const socialImage = new URL(image || '/images/social-share.jpg', Astro.site ?? A
               "@type": "Service",
               "name": "Revisión de Automóvil Convencional",
               "description": "Revisión completa para automóviles convencionales usados - ₡59.000"
-            }
+            },
+            "price": "59000",
+            "priceCurrency": "CRC"
           },
           {
             "@type": "Offer", 
@@ -143,7 +173,9 @@ const socialImage = new URL(image || '/images/social-share.jpg', Astro.site ?? A
               "@type": "Service",
               "name": "Revisión de Crossover y SUV Medianos",
               "description": "Revisión completa para crossover o SUV medianos convencionales - ₡64.000"
-            }
+            },
+            "price": "64000",
+            "priceCurrency": "CRC"
           },
           {
             "@type": "Offer", 
@@ -151,7 +183,9 @@ const socialImage = new URL(image || '/images/social-share.jpg', Astro.site ?? A
               "@type": "Service",
               "name": "Revisión de SUV y Pick up Grandes",
               "description": "Revisión completa para SUV o pick up convencionales - ₡69.000"
-            }
+            },
+            "price": "69000",
+            "priceCurrency": "CRC"
           },
           {
             "@type": "Offer", 
@@ -159,7 +193,9 @@ const socialImage = new URL(image || '/images/social-share.jpg', Astro.site ?? A
               "@type": "Service",
               "name": "Revisión de Vehículos Eléctricos o Híbridos",
               "description": "Revisión especializada para automóviles eléctricos o híbridos usados - ₡85.000"
-            }
+            },
+            "price": "85000",
+            "priceCurrency": "CRC"
           }
         ]
       }

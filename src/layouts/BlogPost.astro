@@ -5,10 +5,13 @@ import { es } from 'date-fns/locale';
 
 interface PostData {
   title: string;
+  seoTitle?: string;
   description: string;
   pubDate: Date | string;
   category?: string;
   image?: string;
+  imageWidth?: number;
+  imageHeight?: number;
   author?: string;
   authorImage?: string;
   readingTime?: string;
@@ -21,10 +24,13 @@ type Props = Partial<PostData> & { frontmatter?: PostData };
 
 const {
   title,
+  seoTitle,
   description,
   pubDate,
   category = "Revisión de vehículos",
   image = "",
+  imageWidth,
+  imageHeight,
   author = "SmartCheck",
   authorImage = "",
   readingTime = "5 min de lectura"
@@ -62,18 +68,50 @@ const relatedArticles = [
     title: "Mantenimiento preventivo vehicular: Guía completa",
     url: "/blog/mantenimiento-preventivo-vehicular-guia-completa",
     image: "/images/blog/mantenimiento-preventivo.jpg"
+  },
+  {
+    title: "Cómo elegir el mejor seguro vehicular en Costa Rica",
+    url: "/blog/como-elegir-mejor-seguro-vehicular-costa-rica",
+    image: "/images/blog/seguro-vehicular.jpg"
   }
 ];
 
 // Filtrar para no mostrar el artículo actual en los relacionados
 const filteredRelatedArticles = relatedArticles.filter(article => !Astro.url.pathname.includes(article.url));
+
+// --- JSON-LD BlogPosting ---
+// La canonica se calcula igual que en BaseLayout (sin barra final) para que
+// mainEntityOfPage coincida exactamente con el rel="canonical" de la pagina.
+const normalizedPath = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const canonicalHref = new URL(normalizedPath, Astro.site ?? Astro.url).href;
+const imageHref = new URL(image || '/images/social-share.jpg', Astro.site ?? Astro.url).href;
+// Equipo/empresa => Organization; un nombre de persona => Person.
+const isOrganization = /equipo|smartcheck|empresa|\bS\.A\.?$/i.test(author);
+const blogPostingJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: title.length > 110 ? `${title.slice(0, 109).trimEnd()}…` : title,
+  description,
+  image: imageHref,
+  datePublished: date.toISOString(),
+  author: { '@type': isOrganization ? 'Organization' : 'Person', name: author },
+  publisher: { '@type': 'Organization', name: 'SmartCheck CR', url: 'https://smartcheckcr.com' },
+  mainEntityOfPage: canonicalHref,
+  inLanguage: 'es-CR',
+};
 ---
 
 <BaseLayout
-  title={title}
+  title={seoTitle || title}
   description={description}
   image={image}
+  ogType="article"
+  publishedTime={date}
+  imageAlt={title}
+  imageWidth={image ? imageWidth : undefined}
+  imageHeight={image ? imageHeight : undefined}
 >
+  <script type="application/ld+json" set:html={JSON.stringify(blogPostingJsonLd)} />
   <article class="relative">
     <!-- Hero Section -->
     <div class="relative py-16 md:py-24 overflow-hidden">
@@ -260,7 +298,7 @@ const filteredRelatedArticles = relatedArticles.filter(article => !Astro.url.pat
               <a href={article.url} class="bg-white rounded-xl shadow-lg overflow-hidden hover:-translate-y-2 hover:shadow-xl transition-all duration-300">
                 <div class="aspect-video relative overflow-hidden">
                   <img 
-                    src={article.image || "/images/blog/default-blog.jpg"} 
+                    src={article.image || "/images/social-share.jpg"} 
                     alt={article.title}
                     class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" 
                   />

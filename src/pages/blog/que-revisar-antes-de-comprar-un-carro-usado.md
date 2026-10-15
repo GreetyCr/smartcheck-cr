@@ -1,15 +1,16 @@
 ---
 layout: ../../layouts/BlogPost.astro
 title: "Qué revisar antes de comprar un carro usado: Guía completa"
-description: "Una guía completa con los puntos más importantes que debes revisar antes de adquirir un vehículo usado en Costa Rica. Evita sorpresas y realiza una compra segura."
+seoTitle: "Qué revisar antes de comprar un carro usado"
+description: "Una guía con los puntos más importantes que debes revisar antes de adquirir un vehículo usado en Costa Rica. Evita sorpresas y realiza una compra segura."
 pubDate: "2024-04-06T00:00:00.000Z"
 category: "Compra de vehículos"
 image: "/images/blog/inspeccion-carro-usado.jpg"
+imageWidth: 800
+imageHeight: 600
 author: "Equipo SmartCheck"
 readingTime: "7 min de lectura"
 ---
-
-# Qué revisar antes de comprar un carro usado: Guía completa
 
 Comprar un vehículo usado puede ser una excelente decisión financiera, pero también implica ciertos riesgos si no se realiza una inspección adecuada. En esta guía, te presentamos los aspectos más importantes que debes revisar antes de realizar tu compra.
 

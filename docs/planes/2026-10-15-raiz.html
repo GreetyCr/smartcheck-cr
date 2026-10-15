@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="es-CR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plan SEO SmartCheck</title>
+<style>
+  :root {
+    --bg: #f6f8fb; --card: #ffffff; --text: #1f2937; --muted: #5b6575; --line: #e3e8ef;
+    --blue: #004AAD; --accent: #FFB700; --chip: #eef1f5;
+    --warn: #9a6700; --warn-bg: #fff6db; --ok: #067647; --ok-bg: #e7f6ee;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f1520; --card: #172031; --text: #e6eaf0; --muted: #a3adbd; --line: #2a3548;
+      --blue: #7fb0ff; --chip: #253042; --warn: #ffd27a; --warn-bg: #3a2f12; --ok: #7ee2ae; --ok-bg: #143327;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 1040px; margin: 0 auto; padding: 32px 16px 64px; }
+  header.top { border-bottom: 4px solid var(--accent); padding-bottom: 16px; margin-bottom: 24px; }
+  h1 { color: var(--blue); margin: 0 0 4px; font-size: 1.9rem; line-height: 1.2; }
+  h2 { color: var(--blue); margin: 40px 0 12px; font-size: 1.35rem; }
+  h3 { margin: 24px 0 8px; font-size: 1.1rem; }
+  .meta { color: var(--muted); font-size: .95rem; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px 20px; margin: 12px 0; }
+  .note { border-left: 4px solid var(--accent); padding: 8px 14px; background: var(--card); border-radius: 0 8px 8px 0; margin: 12px 0; }
+  .warn { color: var(--warn); background: var(--warn-bg); padding: 2px 8px; border-radius: 999px; font-size: .78rem; font-weight: 700; }
+  .ok { color: var(--ok); background: var(--ok-bg); padding: 2px 8px; border-radius: 999px; font-size: .78rem; font-weight: 700; }
+  code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .86em; }
+  code { background: var(--chip); padding: 1px 5px; border-radius: 4px; overflow-wrap: anywhere; }
+  pre { background: var(--chip); padding: 12px 14px; border-radius: 8px; overflow-x: auto; white-space: pre-wrap; }
+  .table-wrap { overflow-x: auto; margin: 8px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: .9rem; background: var(--card); }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { color: var(--muted); font-weight: 600; white-space: nowrap; }
+  .big { font-size: 2rem; font-weight: 800; color: var(--blue); line-height: 1; }
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
+  .flow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .flow span.box { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; font-weight: 600; }
+  ul.sources { font-size: .92rem; color: var(--muted); }
+</style>
+</head>
+<body>
+<main>
+
+<header class="top">
+  <h1>Plan · SmartCheck CR · correcciones SEO de la auditoría del 14-oct</h1>
+  <div class="meta">15 de octubre de 2026 · base <code>main</code> en <code>81e22ee</code> (PR #4 fusionado) · estado: <strong>aprobado el 15-oct</strong> (decisiones 1–5 tal cual; decisión 6: tercer intento con Opus)</div>
+</header>
+
+<h2>Resumen (para aprobar sin leer el resto)</h2>
+<p><strong>Qué se construye.</strong> Las correcciones de la auditoría SEO que se pueden hacer en código y que se comprobaron contra el build:</p>
+<ul>
+  <li>Un solo H1 por artículo, y la imagen correcta en el de seguros.</li>
+  <li>Títulos y descripciones dentro de los largos que Google muestra, y sin el "2024" del título de seguros.</li>
+  <li>Precios y <code>BlogPosting</code> en el JSON-LD, y metas sociales completas.</li>
+  <li>La foto de la portada cargando de inmediato.</li>
+  <li><code>robots.txt</code> limpio, archivos sin uso borrados y <code>sitemap.xml</code> con su <code>lastmod</code> al día.</li>
+</ul>
+<p>Las acciones en Google Search Console van aparte, en <code>gsc-search-console-2026-10-15.html</code>, y se hacen <strong>después</strong> de desplegar esto.</p>
+
+<div class="stats">
+  <div class="card"><div class="big">6</div>subagentes Sonnet en el caso normal: 5 constructores y 1 verificador</div>
+  <div class="card"><div class="big">18</div>máximo si cada uno falla dos veces: 12 Sonnet + 6 Opus</div>
+  <div class="card"><div class="big">~4,5 h</div>de trabajo, estimación (no son horas de reloj)</div>
+  <div class="card"><div class="big">2</div>olas de construcción en paralelo, más integración y verificación</div>
+</div>
+
+<p><strong>Orden.</strong></p>
+<div class="flow">
+  <span class="box">U0 rama</span> →
+  <span class="box">Ola 1: U1 · U3 · U4 · U5 en paralelo</span> →
+  <span class="box">Ola 2: U2</span> →
+  <span class="box">U6 integrar + sitemap</span> →
+  <span class="box">U7 verificador</span> →
+  <span class="box">U8 PR + merge</span> →
+  <span class="box">Search Console (otro agente)</span>
+</div>
+
+<h3>Decisiones propuestas</h3>
+<p>Las apruebas o las cambias.</p>
+<ol>
+  <li><strong>Título SEO separado del H1 en el blog.</strong> El layout arma <code>${title} | SmartCheck CR</code>, que suma 16 caracteres. Para quedar en ~60, el título tendría que bajar a ~44 caracteres, demasiado corto para un H1. Se propone un campo opcional <code>seoTitle</code> en el frontmatter: lo usa el <code>&lt;title&gt;</code>, y el H1 sigue usando <code>title</code>.</li>
+  <li><strong>"2024" sale del título de seguros, pero no se cambia ningún <code>pubDate</code>.</strong> Poner una fecha nueva sin actualizar el contenido le diría a Google algo que no pasó.</li>
+  <li><strong>El fallback roto <code>/images/blog/default-blog.jpg</code></strong> pasa a apuntar a <code>/images/social-share.jpg</code>, que existe. No se crea una imagen nueva.</li>
+  <li><strong>La imagen social nueva de 1200×630 queda fuera.</strong> Hacen falta fotos propias del dueño. Mientras tanto se añaden <code>og:image:width</code>/<code>height</code>/<code>alt</code> a la imagen actual.</li>
+  <li><strong>Se borran 6 archivos sin uso</strong> (lista en U5). <code>seguro-vehicular.jpg</code> <em>no</em> se borra, porque U1 la empieza a usar.</li>
+  <li><strong>El tercer intento de cada unidad va con Opus</strong> (decidido el 15-oct). Los intentos 1 y 2 son Sonnet.</li>
+</ol>
+
+<h2>La puerta</h2>
+
+<h3>1. El arranque: la U0</h3>
+<p><strong>Sobre un proyecto que ya existe.</strong> Es un sitio estático con un solo nodo. La U0 la hace la sesión principal:</p>
+<ul>
+  <li>Reinicia <code>claude/cool-pascal-loz09v</code> desde <code>origin/main</code> (<code>81e22ee</code>). El PR #4 ya se fusionó, así que la rama no se reutiliza con su historia vieja.</li>
+  <li>Sube este plan a <code>docs/planes/2026-10-15-raiz.md</code> y <code>.html</code>, siguiendo la convención del repo.</li>
+</ul>
+<p>Los constructores trabajan cada uno en un worktree aislado (<code>isolation: "worktree"</code>). El paralelo se decide por archivos que no se cruzan.</p>
+
+<h3>2. Unidades y archivos</h3>
+<div class="table-wrap">
+<table>
+<tr><th>Unidad</th><th>Qué hace</th><th>Quién</th><th>Archivos que le tocan (y solo esos)</th><th>Contrato</th><th>Est. (h)</th></tr>
+<tr><td>U0</td><td>Rama desde <code>main</code>; commit del plan.</td><td>sesión principal</td><td><code>docs/planes/</code></td><td>no aplica</td><td>0,25</td></tr>
+<tr><td>U1</td><td><strong>Contenido del blog.</strong>
+  <ul>
+    <li>Borrar la línea <code># …</code> del cuerpo de los 4 posts (dos H1).</li>
+    <li>Seguros: <code>image</code> → <code>/images/blog/seguro-vehicular.jpg</code>, y quitar "2024" de <code>title</code> y del cuerpo, si aparece como año del título.</li>
+    <li>Añadir <code>seoTitle</code> (≤ 44 caracteres) a los 4 posts.</li>
+    <li>Recortar las <code>description</code> a 150–160.</li>
+    <li>En <code>blog/index.astro</code>, quitar "| SmartCheck Costa Rica" del <code>title</code>, recortar su <code>description</code> si pasa de 160 y cambiar el fallback <code>default-blog.jpg</code> → <code>/images/social-share.jpg</code>.</li>
+  </ul></td>
+  <td>constructor Sonnet</td><td><code>src/pages/blog/*.md</code> (4), <code>src/pages/blog/index.astro</code></td><td>aditivo: campo <code>seoTitle</code> opcional (lo lee U2)</td><td>1,0</td></tr>
+<tr><td>U3</td><td><strong>Layout base.</strong>
+  <ul>
+    <li>Props opcionales nuevas: <code>ogType</code> (<code>'website'</code> por defecto), <code>publishedTime</code>, <code>imageAlt</code>, <code>imageWidth</code>, <code>imageHeight</code>.</li>
+    <li>Emitir <code>og:type</code> desde la prop, <code>article:published_time</code> si es <code>article</code>, <code>og:image:width</code>/<code>height</code> (2250×1500 para la imagen por defecto), <code>og:image:alt</code>, <code>og:site_name</code> y <code>og:locale</code> = <code>es_CR</code>.</li>
+    <li>En las 4 <code>Offer</code> del JSON-LD, <code>price</code> (59000 / 64000 / 69000 / 85000, tomados de <code>/contacto#precios</code>) y <code>priceCurrency: "CRC"</code>.</li>
+  </ul></td>
+  <td>constructor Sonnet</td><td><code>src/layouts/BaseLayout.astro</code></td><td>aditivo: props opcionales; ninguna página existente cambia de salida salvo las metas nuevas</td><td>0,75</td></tr>
+<tr><td>U4</td><td><strong>Páginas.</strong>
+  <ul>
+    <li>Recortar a ≤ 160 las <code>description</code> de <code>index</code>, <code>sobre-nosotros</code>, <code>politica-de-privacidad</code> y <code>terminos-y-condiciones</code>. Es solo la prop <code>description</code>, no el texto legal.</li>
+    <li>La foto principal de la portada pasa a <code>loading="eager"</code> con <code>fetchpriority="high"</code>.</li>
+  </ul></td>
+  <td>constructor Sonnet</td><td><code>src/pages/index.astro</code>, <code>sobre-nosotros.astro</code>, <code>politica-de-privacidad.astro</code>, <code>terminos-y-condiciones.astro</code></td><td>ninguno</td><td>0,5</td></tr>
+<tr><td>U5</td><td><strong>Limpieza de <code>public/</code>.</strong>
+  <ul>
+    <li><code>robots.txt</code>: quitar <code>Crawl-delay</code>, <code>Disallow: /admin/</code> y <code>Disallow: /*.json$</code>, y poner la fecha del comentario.</li>
+    <li>Borrar 6 archivos: <code>public/assets/hero-inspection.jpg</code> (duplicado de <code>social-share.jpg</code>), las 4 imágenes del blog sin uso (<code>herramientas-diagnostico</code>, <code>escaner-obd2</code>, <code>software-diagnostico</code>, <code>analizador-bateria</code>) y <code>src/scripts/download-blog-images.js</code>.</li>
+    <li>No se tocan <code>seguro-vehicular.jpg</code> (la empieza a usar U1) ni <code>mantenimiento-preventivo.jpg</code> (en uso).</li>
+  </ul></td>
+  <td>constructor Sonnet</td><td><code>public/robots.txt</code>, <code>public/assets/hero-inspection.jpg</code>, <code>public/images/blog/{herramientas-diagnostico,escaner-obd2,software-diagnostico,analizador-bateria}.jpg</code>, <code>src/scripts/download-blog-images.js</code></td><td>ninguno</td><td>0,25</td></tr>
+<tr><td>U2</td><td><strong>Layout del blog</strong> (ola 2, después de U3).
+  <ul>
+    <li>Pasar a <code>BaseLayout</code> <code>title={seoTitle ?? title}</code>, <code>ogType="article"</code>, <code>publishedTime={pubDate}</code> e <code>imageAlt={title}</code>.</li>
+    <li>JSON-LD <code>BlogPosting</code> con <code>headline</code>, <code>description</code>, <code>image</code> absoluta, <code>datePublished</code>, <code>author</code>, <code>publisher</code> SmartCheck CR y <code>mainEntityOfPage</code> = canónica.</li>
+    <li>Fallback <code>default-blog.jpg</code> → <code>/images/social-share.jpg</code>.</li>
+    <li>Añadir el post de seguros a la lista de relacionados.</li>
+  </ul></td>
+  <td>constructor Sonnet</td><td><code>src/layouts/BlogPost.astro</code></td><td>consume las props de U3 y el <code>seoTitle</code> de U1</td><td>0,75</td></tr>
+<tr><td>U6</td><td><strong>Integración.</strong>
+  <ul>
+    <li>Juntar los worktrees en la rama.</li>
+    <li><code>sitemap.xml</code>: <code>lastmod</code> = fecha de U6 en las páginas cuyo HTML cambió.</li>
+    <li>Corregir en <code>CLAUDE.md</code> la línea de <code>grep -rli posthog dist</code>: da 1, por el texto legal de la Política, no 0. El archivo no puede pasar de 7 KB; hoy pesa 6.995 bytes.</li>
+    <li>Build y push.</li>
+  </ul></td>
+  <td>sesión principal: es la costura</td><td><code>public/sitemap.xml</code>, <code>CLAUDE.md</code></td><td>no aplica</td><td>0,5</td></tr>
+<tr><td>U7</td><td><strong>Verificación</strong> independiente: corre todos los comandos de la sección 4 y saca capturas de un post y de la portada a 375 px y en escritorio.</td><td>verificador Sonnet (solo lectura)</td><td>ninguno</td><td>no aplica</td><td>0,5</td></tr>
+<tr><td>U8</td><td>PR, revisión del estado de Vercel y merge.</td><td>sesión principal</td><td>ninguno</td><td>no aplica</td><td>0,1</td></tr>
+</table>
+</div>
+<ul>
+  <li><strong>En paralelo (ola 1):</strong> U1, U3, U4 y U5. No comparten ningún archivo.</li>
+  <li><strong>En fila:</strong> U2 después de U3, porque usa sus props y lee el <code>seoTitle</code> de U1. U6 después de todas. U7 después de U6.</li>
+  <li><strong>Salir del worktree:</strong> ningún constructor lo necesita. Las capturas con navegador son de U7.</li>
+  <li><strong>Archivo compartido:</strong> <code>BaseLayout.astro</code> tiene un solo dueño (U3). U2 no lo toca, solo le pasa props.</li>
+</ul>
+
+<h3>3. Dueño por tabla</h3>
+<p>No aplica: es un sitio estático, sin base de datos.</p>
+
+<h3>4. Criterio de aceptación</h3>
+<p>Cada constructor corre <strong>sus</strong> filas antes de entregar, y U7 las corre <strong>todas</strong> sobre la rama integrada. Todas se corren después de <code>npm run build</code>, en la raíz del repo.</p>
+<div class="table-wrap">
+<table>
+<tr><th>R</th><th>Se cumple cuando</th><th>Unidad</th><th>Comando que lo reproduce</th></tr>
+<tr><td>R1</td><td>Cada post tiene 1 H1 (hoy 2)</td><td>U1</td><td><code>for f in dist/blog/*/index.html; do grep -o '&lt;h1' $f | wc -l; done</code> → 1, 1, 1, 1</td></tr>
+<tr><td>R2</td><td>og:image de seguros = su propia imagen</td><td>U1</td><td><code>grep -o 'og:image" content="[^"]*' dist/blog/como-elegir-mejor-seguro-vehicular-costa-rica/index.html</code> → <code>…/seguro-vehicular.jpg</code></td></tr>
+<tr><td>R3</td><td>Todo <code>&lt;title&gt;</code> de página indexable ≤ 65 caracteres</td><td>U1, U2</td><td><code>node -e</code> que lea cada <code>dist/**/index.html</code> menos 404 y aceptar-terminos, y liste los títulos de más de 65 → lista vacía</td></tr>
+<tr><td>R4</td><td>Toda meta description indexable ≤ 160 caracteres</td><td>U1, U4</td><td>el mismo script, con la description → lista vacía</td></tr>
+<tr><td>R5</td><td>Ningún <code>&lt;title&gt;</code> contiene "2024"</td><td>U1</td><td><code>grep -l '&lt;title&gt;[^&lt;]*2024' -r dist</code> → nada</td></tr>
+<tr><td>R6</td><td>Todo bloque JSON-LD parsea; 4 <code>Offer</code> con <code>price</code> y <code>priceCurrency</code> CRC; <code>BlogPosting</code> en los 4 posts</td><td>U3, U2</td><td><code>node -e</code> que extraiga cada <code>&lt;script type="application/ld+json"&gt;</code>, haga <code>JSON.parse</code> y cuente → 0 errores, 4 precios, 4 BlogPosting</td></tr>
+<tr><td>R7</td><td>Los posts emiten <code>og:type</code> article y <code>article:published_time</code>; todas las páginas emiten <code>og:image:width</code>, <code>og:site_name</code> y <code>og:locale</code></td><td>U3, U2</td><td><code>grep -c 'og:type" content="article' dist/blog/*/index.html</code> → 1 en cada uno; <code>grep -L 'og:image:width' -r dist --include=*.html</code> → nada</td></tr>
+<tr><td>R8</td><td>La foto de la portada no lleva <code>loading="lazy"</code></td><td>U4</td><td><code>grep -o '&lt;img[^&gt;]*hero-inspection[^&gt;]*&gt;' dist/index.html</code> → contiene <code>loading="eager"</code></td></tr>
+<tr><td>R9</td><td>robots.txt sin <code>Crawl-delay</code> ni <code>*.json</code>, con la línea <code>Sitemap:</code></td><td>U5</td><td><code>grep -cE 'Crawl-delay|\.json' public/robots.txt</code> → 0; <code>grep -c '^Sitemap: https://smartcheckcr.com/sitemap.xml' public/robots.txt</code> → 1</td></tr>
+<tr><td>R10</td><td>Nada apunta a un archivo borrado ni a <code>default-blog.jpg</code></td><td>U5, U1, U2</td><td><code>grep -rnE 'default-blog|herramientas-diagnostico|escaner-obd2|software-diagnostico|analizador-bateria|assets/hero-inspection|download-blog-images' src public</code> → nada</td></tr>
+<tr><td>R11</td><td>Sitemap: 13 <code>&lt;loc&gt;</code> iguales a las canónicas; <code>lastmod</code> nuevo en las páginas cambiadas</td><td>U6</td><td>comparar <code>grep -o '&lt;loc&gt;[^&lt;]*'</code> del sitemap con <code>grep -o 'rel="canonical" href="[^"]*'</code> de <code>dist</code> → 13 = 13</td></tr>
+<tr><td>R12</td><td>Sin errores de tipos y el texto legal intacto</td><td>todas</td><td><code>npm run astro -- check</code> → 0 errores; <code>node scripts/cotejo-legal.mjs terminos</code>, <code>aceptar</code> y <code>politica</code> → "Diferencias: 0" en las tres</td></tr>
+<tr><td>R13</td><td>Nada cambia a la vista salvo el título de pestaña de los posts</td><td>U7</td><td>capturas de un post, la portada y <code>/aceptar-terminos</code> a 375 px y 1280 px, comparadas con <code>main</code></td></tr>
+</table>
+</div>
+
+<h3>5. Supuestos y riesgos del terreno</h3>
+<div class="table-wrap">
+<table>
+<tr><th>Supuesto o riesgo</th><th>Cómo se verificó</th><th>Resultado</th></tr>
+<tr><td>Los hallazgos son reales</td><td>Se volvieron a medir contra el build del 14-oct: H1, títulos, descripciones, imagen de seguros, robots y precios del JSON-LD</td><td><span class="ok">confirmado</span></td></tr>
+<tr><td>Las imágenes a borrar no se usan</td><td><code>grep -rn</code> en <code>src</code> y <code>public</code>: solo aparecen en <code>download-blog-images.js</code>, que también se borra</td><td><span class="ok">confirmado</span></td></tr>
+<tr><td>El cotejo legal mira el texto, no la meta description</td><td>Sin verificar; U4 lo comprueba corriendo los tres cotejos</td><td><span class="warn">por verificar</span></td></tr>
+<tr><td>Google respeta <code>seoTitle</code> como título</td><td>Google puede reescribir títulos; ningún cambio lo garantiza</td><td><span class="warn">riesgo aceptado</span></td></tr>
+<tr><td>El sitio en vivo sirve lo que dice el build</td><td>No se puede comprobar desde este entorno (el proxy da 403 a smartcheckcr.com)</td><td><span class="warn">sin verificar</span></td></tr>
+<tr><td><code>CLAUDE.md</code> cerca del techo</td><td><code>wc -c</code> = 6.995 bytes; el método pone el techo en 7 KB</td><td>U6 corrige una línea sin crecer</td></tr>
+</table>
+</div>
+
+<h3>6. Lo que falta de afuera</h3>
+<div class="table-wrap">
+<table>
+<tr><th>Qué falta</th><th>De quién</th><th>Hace falta para</th></tr>
+<tr><td>Fotos propias (equipo, inspecciones) en resolución original</td><td>cliente (dueño de SmartCheck)</td><td>reemplazar las imágenes de stock y la imagen social. Queda fuera de este plan.</td></tr>
+<tr><td>Acceso a Google Search Console</td><td>tú</td><td>el documento aparte de Search Console</td></tr>
+<tr><td>Permiso del conector de Vercel al equipo <code>greetycrs-projects</code></td><td>tú (opcional)</td><td>que la sesión compruebe el despliegue a producción. Hoy da 403.</td></tr>
+</table>
+</div>
+
+<h3>7. Cómo se ve</h3>
+<p>No cambia nada en pantalla, salvo el título de la pestaña de los 4 posts (<code>seoTitle</code>) y el post de seguros en "Artículos relacionados". El H1 de los posts se mantiene; solo desaparece el duplicado del cuerpo, que hoy se ve como un segundo título igual debajo del encabezado. U7 lo comprueba con capturas.</p>
+
+<h2>Cómo trabajan los subagentes</h2>
+
+<h3>Cuántos y cuáles</h3>
+<div class="table-wrap">
+<table>
+<tr><th>Rol</th><th>Unidades</th><th>Intento 1</th><th>Intento 2 (si falla)</th><th>Intento 3 (si vuelve a fallar)</th></tr>
+<tr><td>Constructor</td><td>U1</td><td>Sonnet</td><td>Sonnet + diagnóstico</td><td>Opus + diagnóstico</td></tr>
+<tr><td>Constructor</td><td>U3</td><td>Sonnet</td><td>Sonnet + diagnóstico</td><td>Opus + diagnóstico</td></tr>
+<tr><td>Constructor</td><td>U4</td><td>Sonnet</td><td>Sonnet + diagnóstico</td><td>Opus + diagnóstico</td></tr>
+<tr><td>Constructor</td><td>U5</td><td>Sonnet</td><td>Sonnet + diagnóstico</td><td>Opus + diagnóstico</td></tr>
+<tr><td>Constructor</td><td>U2</td><td>Sonnet</td><td>Sonnet + diagnóstico</td><td>Opus + diagnóstico</td></tr>
+<tr><td>Verificador</td><td>U7</td><td>Sonnet</td><td>Sonnet + diagnóstico</td><td>Opus + diagnóstico</td></tr>
+<tr><td colspan="2"><strong>Total</strong></td><td><strong>6</strong></td><td>hasta +6</td><td>hasta +6 → <strong>máximo 18</strong></td></tr>
+</table>
+</div>
+<p>La sesión principal no es un subagente. Se queda con U0, U6 y U8, con las costuras y con decidir si un intento falló.</p>
+<p>La auditoría de Search Console la hace otro agente, con su propio documento, y no cuenta aquí.</p>
+
+<h3>Qué recibe cada constructor</h3>
+<ul>
+  <li>Su fila de la sección 2: qué hace y la lista cerrada de archivos que puede tocar.</li>
+  <li>Sus filas del criterio de aceptación, con los comandos.</li>
+  <li>El contrato con otras unidades.</li>
+  <li>Las gotchas de <code>CLAUDE.md</code> que le aplican: el frontmatter llega en <code>Astro.props.frontmatter</code>, solo vale <code>tailwind.config.cjs</code>, y los <code>commits</code> van en español.</li>
+  <li>La orden de hacer commit en su worktree, <strong>sin push</strong>.</li>
+</ul>
+
+<h3>El entregable de cada subagente</h3>
+<p>Cada subagente termina con este informe, en Markdown, como respuesta final:</p>
+<pre>## Entregable · U# · intento N
+Estado: COMPLETO | PARCIAL | FALLÓ
+Qué se pidió: (una línea)
+Qué hice: archivo por archivo, qué cambió y por qué
+Cómo lo verifiqué: cada comando de mis filas R#, con su salida real
+Problemas encontrados: qué no salió como esperaba, qué decidí y por qué
+Desvíos del plan: archivos tocados fuera de mi lista (debería ser "ninguno")
+Commit: hash y mensaje</pre>
+
+<h3>Cuándo un intento cuenta como fallido</h3>
+<p>La sesión principal lo decide, no el subagente. Basta una de estas:</p>
+<ul>
+  <li>El estado dice FALLÓ o PARCIAL.</li>
+  <li>Al correr sus comandos R#, la principal obtiene otro resultado.</li>
+  <li>Tocó un archivo fuera de su lista.</li>
+  <li>Rompe <code>npm run build</code> o <code>astro check</code>.</li>
+</ul>
+
+<h3>Reintentos</h3>
+<ol>
+  <li><strong>Intento 2.</strong> Un Sonnet nuevo recibe la orden original, el entregable del intento 1 y un <strong>diagnóstico</strong> de la principal: qué falló, con la salida del comando, y qué hacer distinto. Parte del worktree limpio, no de lo que dejó el intento 1, salvo que el diagnóstico diga que algo se puede reutilizar.</li>
+  <li><strong>Intento 3 (Opus).</strong> Lo mismo, con los dos entregables anteriores y un diagnóstico más acotado. Si la causa es una decisión del plan y no un error de ejecución, no se lanza: se te pregunta.</li>
+  <li><strong>Si falla el intento 3,</strong> la unidad se detiene y se te reporta con los tres entregables. Las unidades que no dependen de ella siguen; U2 no arranca si U3 no pasó.</li>
+</ol>
+
+<h3>Lo que recibes al final</h3>
+<p>Un solo HTML con:</p>
+<ul>
+  <li>Los entregables de todos los intentos.</li>
+  <li>La tabla R1–R13 con el resultado de U7.</li>
+  <li>Los problemas encontrados y cómo se resolvieron.</li>
+  <li>Las horas de trabajo y de reloj.</li>
+  <li>El enlace al PR.</li>
+</ul>
+
+<h2>Fuentes</h2>
+<ul class="sources">
+  <li>Auditoría SEO del 14-oct (subagente), con los hallazgos medidos de nuevo sobre <code>dist/</code>.</li>
+  <li><code>docs/_plantilla-plan.md</code> y <code>docs/planes/2026-10-14-raiz.md</code> (formato y convenciones).</li>
+  <li><code>CLAUDE.md</code> (gotchas, techo de tamaño), <code>public/sitemap.xml</code>, <code>public/robots.txt</code>.</li>
+  <li><code>src/pages/blog/*.md</code>, <code>src/layouts/BaseLayout.astro</code>, <code>src/layouts/BlogPost.astro</code>, <code>src/pages/blog/index.astro</code>, <code>src/pages/index.astro</code>.</li>
+  <li><code>grep</code> de referencias a las imágenes, y <code>wc -c CLAUDE.md</code>.</li>
+  <li>PR #4 de <code>GreetyCr/smartcheck-cr</code> (fusionado en <code>81e22ee</code>).</li>
+</ul>
+
+</main>
+</body>
+</html>
