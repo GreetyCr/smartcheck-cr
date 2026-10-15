@@ -2,14 +2,6 @@
 User-agent: *
 Allow: /
 
-# Sitemap
 Sitemap: https://smartcheckcr.com/sitemap.xml
 
-# Directorios y archivos específicos
-Disallow: /admin/
-Disallow: /*.json$
-
-# Mejorar eficiencia de rastreo
-Crawl-delay: 10
-
-# Last updated: 2025-01-11 
+# Last updated: 2026-10-15
