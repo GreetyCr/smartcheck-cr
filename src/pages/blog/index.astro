@@ -24,7 +24,7 @@ const regularPosts = sortedPosts.length > 1 ? sortedPosts.slice(1) : [];
 ---
 
 <BaseLayout 
-  title="Blog de Revisión de Vehículos | SmartCheck Costa Rica"
+  title="Blog de Revisión de Vehículos"
   description="Artículos y guías sobre revisión de vehículos para compra, consejos para comprar carros usados y más información útil de SmartCheck Costa Rica."
 >
   <!-- Hero Section -->
@@ -111,7 +111,7 @@ const regularPosts = sortedPosts.length > 1 ? sortedPosts.slice(1) : [];
                   <div class="md:w-1/2 relative">
                     <div class="aspect-[4/3] bg-gray-200 relative overflow-hidden">
                       <img 
-                        src={featuredPost.frontmatter.image || '/images/blog/default-blog.jpg'} 
+                        src={featuredPost.frontmatter.image || '/images/social-share.jpg'} 
                         alt={featuredPost.frontmatter.title} 
                         class="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
                       />
@@ -171,7 +171,7 @@ const regularPosts = sortedPosts.length > 1 ? sortedPosts.slice(1) : [];
                   <a href={post.url}>
                     <div class="aspect-[4/3] bg-gray-200 relative overflow-hidden">
                       <img 
-                        src={post.frontmatter.image || '/images/blog/default-blog.jpg'} 
+                        src={post.frontmatter.image || '/images/social-share.jpg'} 
                         alt={post.frontmatter.title} 
                         class="w-full h-full object-cover object-center transition-transform duration-500 hover:scale-105"
                       />

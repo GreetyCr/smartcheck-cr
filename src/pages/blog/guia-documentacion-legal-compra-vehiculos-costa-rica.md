@@ -1,15 +1,16 @@
 ---
 layout: ../../layouts/BlogPost.astro
 title: "Documentación legal para comprar un vehículo en Costa Rica: Guía completa"
-description: "Conoce todos los documentos legales necesarios para comprar un vehículo en Costa Rica. Evita fraudes y problemas legales con esta guía detallada sobre trámites, requisitos e impuestos."
+seoTitle: "Documentación legal para comprar un vehículo"
+description: "Conoce los documentos legales necesarios para comprar un vehículo en Costa Rica. Evita fraudes y problemas con esta guía sobre trámites, requisitos e impuestos."
 pubDate: "2024-05-15T00:00:00.000Z"
 category: "Trámites y documentación"
 image: "/images/blog/documentacion-legal-vehiculos.jpg"
+imageWidth: 800
+imageHeight: 534
 author: "Equipo SmartCheck"
 readingTime: "8 min de lectura"
 ---
-
-# Documentación legal para comprar un vehículo en Costa Rica: Guía completa
 
 La compra de un vehículo en Costa Rica implica diversos trámites legales que deben completarse correctamente para evitar problemas futuros. Esta guía detalla todos los documentos y requisitos necesarios para realizar una compra segura y conforme a la ley.
 

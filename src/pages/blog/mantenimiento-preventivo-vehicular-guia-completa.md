@@ -1,15 +1,16 @@
 ---
 layout: ../../layouts/BlogPost.astro
 title: "Mantenimiento preventivo vehicular: Guía completa para extender la vida de tu carro"
-description: "Aprende a realizar un mantenimiento preventivo adecuado para tu vehículo en Costa Rica. Guía detallada con consejos prácticos, cronogramas y recomendaciones de expertos."
+seoTitle: "Mantenimiento preventivo vehicular"
+description: "Aprende a hacer un mantenimiento preventivo adecuado a tu vehículo en Costa Rica. Guía con consejos prácticos, cronogramas y recomendaciones de expertos."
 pubDate: "2024-05-20T00:00:00.000Z"
 category: "Mantenimiento"
 image: "/images/blog/mantenimiento-preventivo.jpg"
+imageWidth: 800
+imageHeight: 534
 author: "Equipo SmartCheck"
 readingTime: "10 min de lectura"
 ---
-
-# Mantenimiento preventivo vehicular: Guía completa para extender la vida de tu carro
 
 El mantenimiento preventivo es fundamental para garantizar la durabilidad, seguridad y buen funcionamiento de tu vehículo. En esta guía completa, te explicamos los aspectos esenciales que debes considerar para mantener tu carro en óptimas condiciones y evitar costosas reparaciones futuras.
 
