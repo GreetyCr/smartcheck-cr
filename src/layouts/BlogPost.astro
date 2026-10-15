@@ -476,6 +476,14 @@ const blogPostingJsonLd = {
   .prose table {
     @apply w-full border-collapse my-6;
   }
+  /* En movil una tabla ancha (p. ej. la comparativa de aseguradoras) desbordaba
+     la pagina: como bloque con overflow-x se desplaza dentro de su caja. Desde
+     md (768px) sigue siendo display: table y el layout de escritorio no cambia. */
+  @media (max-width: 767.98px) {
+    .prose table {
+      @apply block overflow-x-auto;
+    }
+  }
   .prose th {
     @apply bg-gray-50 text-left p-3 font-semibold text-smartcheck-blue;
   }
